@@ -1,23 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Monu_detailsActivity"
-    tools:showIn="@layout/info_layout">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tv_scrolling"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:lineSpacingExtra="8dp"
-        android:text="@string/informazioni"
-        android:textIsSelectable="true" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</android.support.v4.widget.NestedScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/infotextView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginLeft="13dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="15dp"
+                android:text="@string/punti_di_salita_title" />
+
+            <TextView
+                android:id="@+id/infotextView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/punti_di_salita" />
+
+            <TextView
+                android:id="@+id/infotextView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginLeft="13dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="15dp"
+                android:text="@string/orari_title" />
+
+            <TextView
+                android:id="@+id/infotextView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/orari" />
+            <TextView
+                android:id="@+id/infotextView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginLeft="13dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="15dp"
+                android:text="@string/biglietti_title" />
+
+            <TextView
+                android:id="@+id/infotextView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/biglietti" />
+            <TextView
+                android:id="@+id/infotextView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginLeft="13dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="15dp"
+                android:text="@string/didattica_title" />
+
+            <TextView
+                android:id="@+id/infotextView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_marginRight="13dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/didattica" />
+
+            <TextView
+                android:id="@+id/infotextView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginLeft="13dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="15dp"
+                android:text="@string/accessibilita_title" />
+
+            <TextView
+                android:id="@+id/infotextView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_marginRight="13dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/accessibilita" />
+
+            <TextView
+                android:id="@+id/infotextView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginLeft="13dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="15dp"
+                android:text="@string/informazioni_title" />
+
+            <TextView
+                android:id="@+id/infotextView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_marginRight="13dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/informazioni" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
