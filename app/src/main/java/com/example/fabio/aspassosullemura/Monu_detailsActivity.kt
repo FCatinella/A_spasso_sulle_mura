@@ -1,5 +1,6 @@
 package com.example.fabio.aspassosullemura
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -17,10 +18,8 @@ class Monu_detailsActivity : AppCompatActivity() {
         image_scrolling_top.setImageDrawable(getDrawable(R.drawable.mura1))
         image_scrolling_top.imageAlpha=750
 
-
-
         //questa cosa è allucinante!
-        toolbar.title="Mura di Pisa"
+        toolbar.title=intent.extras.getString(Intent.EXTRA_TEXT) //estraggo il nome del monumento dall'intent
         toolbar_layout.setExpandedTitleColor(resources.getColor(R.color.colorPrimary))
         setSupportActionBar(toolbar)
 

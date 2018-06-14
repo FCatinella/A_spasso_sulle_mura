@@ -93,5 +93,59 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="informazioni">
+                <b>"Info e prenotazioni\n\n"</b>
+        "Punti di salita\n\n"
+        "Torre Santa Maria, Torre Piezometrica, Piazza delle Gondole, Torre di Legno\n\n"
+
+        "Orari di apertura\n\n"
+        "Dal lunedì prima di Pasqua alla prima domenica di novembre\n\n"
+
+        "tutti i giorni dalle ore 9.00 alle 19.00\n\n"
+
+        "giugno, luglio, agosto\n\n"
+
+        "giovedì, venerdì e sabato\n\n"
+
+        "dalle ore 9.00 alle 21.00\n\n"
+
+        "dalla domenica al mercoledì\n\n"
+
+        "dalle ore9.00 alle 19.00\n\n"
+
+        "Da novembre alla domenica prima di Pasqua\n\n"
+
+        "tutti i giorni dalle ore 10.00 alle 15.30\n\n"
+
+        "Le biglietterie chiudono 30 minuti prima\n\n"
+
+        "Il percorso chiude in caso di maltempo\n\n"
+
+        "Biglietti di ingresso\n\n"
+        "€ 3.00\n\n"
+
+        "€ 20.00 abbonamento mensile\n\n"
+
+        "€ 40.00 abbonamento annuale\n\n"
+
+        "Gratuito
+
+        gratuito per residenti, bambini fino a 8 anni, disabili con accompagnatore, guide turistiche /accompagnatori turistici
+
+        Didattica
+        € 2.00 Visite guidate da Torre Santa Maria ore 11.00 e ore 17.00
+
+        Accessibilità
+        Accesso per i visitatori diversamente abili presso Torre Piezometrica, Piazza delle Gondole e Torre di Legno.
+
+        Il percorso in quota è accessibile in autonomia dalla Torre di Legno alla Torre del Barbagianni e nell'intero tratto da Piazza Gondole a Porta Manin.
+
+        Percorso in quota parzialmente accessibile.
+
+        Informazioni
+        +39 050 0987480
+
+        tutti i giorni dalle ore 9.00 alle 19.00"
+    </string>
     <string name="action_settings">Settings</string>
 </resources>
