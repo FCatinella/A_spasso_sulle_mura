@@ -1,11 +1,14 @@
 package com.example.fabio.aspassosullemura
 
+import android.app.Notification
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.NotificationCompat
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBar
@@ -81,6 +84,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
                     startActivity(intent)
                 }
                 homeConstraintLayout.backgroundTintMode=PorterDuff.Mode.DARKEN
+
             }
 
             return viewlist.get(position)
@@ -135,7 +139,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
     }
 
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+       
     }
     //-------------------------------------------------------------------------------------------------------------
 
@@ -154,6 +158,8 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         initview()
         val frag = supportFragmentManager.findFragmentById(R.id.youtubeplayer) as YouTubePlayerSupportFragment
         frag.initialize("AIzaSyC6q0mq5it6hcS03_X1dThbl525KvNwXxI", this)
+
+
 
 
     }
