@@ -21,36 +21,42 @@ class Monu_detailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_monu_details)
 
-        //imposto la foto come sfondo della imageview (questa deve essere variabile in base al monumento)
+        /*imposto la foto come sfondo della imageview (questa deve essere variabile in base al monumento)
+
+          userò le informazioni passate nell'intent per scegliere l'immagine */
         image_scrolling_top.setImageDrawable(getDrawable(R.drawable.mura1))
         image_scrolling_top.imageAlpha=750
 
-        //questa cosa è allucinante!
+        //Imposto le informazioni in base al monumento scelto
         toolbar.title=intent.extras.getString(Intent.EXTRA_TEXT) //estraggo il nome del monumento dall'intent
         toolbar_layout.setExpandedTitleColor(resources.getColor(R.color.colorPrimary))
         setSupportActionBar(toolbar)
 
+
+        //listener del fab
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
 
-        //notifiche prova-------
+        //notifiche prova
+        //imposto il builder della notifica
         var builder= NotificationCompat.Builder(this,"tutte")
                 .setSmallIcon(R.drawable.ic_info_black_24dp)
                 .setContentTitle("Allarme")
                 .setContentText("Devi partire, anzi no è una burla")
-        var notification = builder.build()
+        var notification = builder.build() //creo la notifica
+        // ottengo il service delle notifiche
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val pri = NotificationManager.IMPORTANCE_LOW // Priorità
 
-        //Accidenti ad Oreo
+        //Riguardante Oreo+
+        // Creo il canale delle notifiche (spero di trovare un modo per farlo solo una volta)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val nch = NotificationChannel("tutte", "cazzo", NotificationManager.IMPORTANCE_DEFAULT)
             notificationManager.createNotificationChannel(nch)
         } else {
         }
-        notificationManager?.notify(3,notification)
+        notificationManager?.notify(3,notification) //invio la notifica vera e propria
         //---------------------------------
     }
 }

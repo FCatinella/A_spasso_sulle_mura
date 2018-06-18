@@ -1,13 +1,15 @@
 package com.example.fabio.aspassosullemura
 
-import android.app.Notification
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.app.NotificationCompat
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
@@ -33,19 +35,21 @@ import android.widget.TextView
 class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
     // variabili globali
     private lateinit var viewlist:ArrayList<View>
+    private var firsttime :Boolean = true
+    private var conta:Int =0
 
 
-    //Listener della navigation bar ( ritorna una funzione )--------------------------------------------
+
+    //Listener della navigation bar ( lamda ) --------------------------------------------
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                viewpager.currentItem=0
-
+                viewpager.currentItem=0 // cambia la "pagina"
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.navigation_info -> {
-                viewpager.currentItem=1
+                viewpager.currentItem=1 //cambia la "pagina"
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -54,7 +58,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
     //----------------------------------------------------
 
 
-    //Pageadapter----------------------------------------------------------
+    //Page Adapter ----------------------------------------------------------
     private val pagerAdapter = object : PagerAdapter() {
         override fun getCount(): Int {
             return viewlist.size
@@ -70,8 +74,9 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
 
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
             container.addView(viewlist.get(position))
-            //sennò NULLPOINTER EXCEPTION (questa devo segnarmela)
+            //sennò NULL POINTER EXCEPTION, non posso "toccare" view contenuti in layout non ancora instanziati
             if(position==0){
+                //listener bottoni (provvisori)
                 button?.setOnClickListener{ view ->
                     val intent = Intent(applicationContext,Monu_detailsActivity::class.java)
                     intent.putExtra(Intent.EXTRA_TEXT,"Bottone1")
@@ -83,6 +88,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
                     intent.putExtra(Intent.EXTRA_TEXT,"Bottone2")
                     startActivity(intent)
                 }
+                //imposto la trasparenza dell' immagine di sfondo
                 homeConstraintLayout.backgroundTintMode=PorterDuff.Mode.DARKEN
 
             }
@@ -101,47 +107,59 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
                 0 -> navigation.selectedItemId = R.id.navigation_home
                 1 -> navigation.selectedItemId = R.id.navigation_info
             }
+            // cambio il titolo in base a cosa è selezionato
             if(position==1){
                 mytext?.text="Info e Orari"
                 supportActionBar?.title="Info e Orari"
-                //supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorPrimary)))
-
-
             }
             else {
                 mytext?.text = resources.getString(R.string.app_name)
                 supportActionBar?.title=resources.getString(R.string.app_name)
-                //supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorAccent)))
             }
         }
 
     }
 
-    //BottomBar initializer------------------------------------------
+    //BottomBar initializer ------------------------------------------
     private fun initview(){
         //parte riguardante la bottombar
+        //creo i due layout da aggiungere all view pager
         var infoview=layoutInflater.inflate(R.layout.info_layout,null)
         var homeview=layoutInflater.inflate(R.layout.home_layout,null)
-        //var homeview
-        viewlist=ArrayList()
+
+        viewlist=ArrayList() // era lazy
         viewlist.add(homeview)
         viewlist.add(infoview)
-        viewpager.adapter=pagerAdapter
+        viewpager.adapter=pagerAdapter // gli assegno l'adapter
         viewpager.addOnPageChangeListener(pageChangeListener)
-        navigation.elevation=0F
+        navigation.elevation=0F // azzero "l'altezza" della bottombar
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
     //----------------------------------------------------------------
 
-    //parte playerYoutube ----------------------------------------------------------------------------------------
+
+    //parte playerYoutube----------------------------------------------------------------------------------------
+    // Funzioni da implementare perchè il main implementa l'interfaccia YouTubePlayer.OnInitializedListener
+
     override fun onInitializationSuccess(p0: YouTubePlayer.Provider?, p1: YouTubePlayer?, p2: Boolean) {
-        p1?.cueVideo("zgJ3mHPPxcI")
+        p1?.cueVideo("zgJ3mHPPxcI") //carica il video senza farlo partire
     }
 
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
-       
     }
     //-------------------------------------------------------------------------------------------------------------
+
+
+
+    // Controllare se siamo connessi ad internet--------------
+     fun isConnected () : Boolean{
+        var cm=getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager //ottengo il CONNECTIVITY SERVICE
+        if(cm.activeNetworkInfo!= null && cm.activeNetworkInfo.isConnectedOrConnecting) return true //è connesso
+        return false //non è connesso
+    }
+    //-------------------------------------------------------
+
+
 
 
 
@@ -156,12 +174,25 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         //------------------------
 
         initview()
+
+        // cose da fare al primo avvio ---------------------------
+        if(savedInstanceState?.getBoolean("Primo avvio")!=null){
+            firsttime=savedInstanceState.getBoolean("Primo avvio") //estraggo la  variabile dal bundle ( se esiste )
+        }
+        if(firsttime){
+            firsttime = false
+            savedInstanceState?.putBoolean("Primo avvio",firsttime) // salvo la variabile nel bundle
+            if(!isConnected()){
+                Snackbar.make(viewpager, "Connettiti ad Internet", Snackbar.LENGTH_LONG).show() //mostra avviso in caso non ci sia internet
+            }
+        }
+        //------------------------------------------------------
+
+        //inizializzo il fragment usando la api key
         val frag = supportFragmentManager.findFragmentById(R.id.youtubeplayer) as YouTubePlayerSupportFragment
-        frag.initialize("AIzaSyC6q0mq5it6hcS03_X1dThbl525KvNwXxI", this)
-
-
-
+        frag.initialize("AIzaSyC6q0mq5it6hcS03_X1dThbl525KvNwXxI", this) // dove this è inteso per YouTubePlayer.OnInitializedListener
 
     }
+
 
 }
