@@ -16,6 +16,8 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.appcompat.R.id.action_bar_title
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.youtube.player.YouTubeInitializationResult
@@ -191,8 +193,24 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         //inizializzo il fragment usando la api key
         val frag = supportFragmentManager.findFragmentById(R.id.youtubeplayer) as YouTubePlayerSupportFragment
         frag.initialize("AIzaSyC6q0mq5it6hcS03_X1dThbl525KvNwXxI", this) // dove this è inteso per YouTubePlayer.OnInitializedListener
+        //-------------------------------
 
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val mi = menuInflater?.inflate(R.menu.home_menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId) {
+            R.id.alarm_home -> {
+                val intent = Intent(applicationContext, AlarmActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }
