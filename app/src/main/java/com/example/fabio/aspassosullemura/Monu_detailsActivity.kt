@@ -43,15 +43,8 @@ class Monu_detailsActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
 
-        // ottengo il service delle notifiche
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        //Riguardante Oreo+
-        // Creo il canale delle notifiche (spero di trovare un modo per farlo solo una volta)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val nch = NotificationChannel("tutte", "Tutte", NotificationManager.IMPORTANCE_DEFAULT)
-            notificationManager.createNotificationChannel(nch)
-        }
-        //---------------------------------
+
+
     }
 }

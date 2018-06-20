@@ -25,7 +25,10 @@
             android:name=".Monu_detailsActivity"
             android:label="@string/title_activity_monu_details"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AlarmActivity"></activity>
+        <activity android:name=".AlarmActivity" />
+
+        <receiver android:name=".Receiver"/>
+
     </application>
 
 </manifest>

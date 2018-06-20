@@ -1,5 +1,6 @@
 package com.example.fabio.aspassosullemura
 
+import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
@@ -7,6 +8,7 @@ import android.content.res.Configuration
 import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.Snackbar
@@ -194,6 +196,16 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         val frag = supportFragmentManager.findFragmentById(R.id.youtubeplayer) as YouTubePlayerSupportFragment
         frag.initialize("AIzaSyC6q0mq5it6hcS03_X1dThbl525KvNwXxI", this) // dove this è inteso per YouTubePlayer.OnInitializedListener
         //-------------------------------
+
+        //Riguardante Oreo+
+        // ottengo il service delle notifiche
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        // Creo il canale delle notifiche (spero di trovare un modo per farlo solo una volta)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val nch = NotificationChannel("tutte", "Tutte", NotificationManager.IMPORTANCE_DEFAULT)
+            notificationManager.createNotificationChannel(nch)
+        }
+        //---------------------------------
 
     }
 
