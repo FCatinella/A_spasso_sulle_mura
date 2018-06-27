@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
     // variabili globali
     private lateinit var viewlist:ArrayList<View>
     private var firsttime :Boolean = true
+    private var justInstalled:Boolean = true
     private var conta:Int =0
 
 
@@ -178,6 +179,26 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         //------------------------
 
         initview()
+
+        //controllo se l'applicazione è stata appena installata
+        var pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE)
+        var editor = pref.edit()
+        justInstalled=pref.getBoolean("AppenaInstallata",true)
+        editor.putInt("Settato", 0)
+        editor.commit()
+
+        //splashscreen etc.
+        if(justInstalled){
+            editor.putBoolean("AppenaInstallata",false)
+            editor.commit()
+        }
+
+
+
+
+
+
+
 
         // cose da fare al primo avvio ---------------------------
         if(savedInstanceState?.getBoolean("Primo avvio")!=null){

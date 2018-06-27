@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ingr_TorreSmaria"
+        android:title="Torre Santa Maria" />
+
+    <item
+        android:id="@+id/ingr_TorrePiezo"
+        android:title="Torre Piezometrica" />
+    <item
+        android:id="@+id/ingr_PzzaGond"
+        android:title="Piazza delle Gondole" />
+    <item
+        android:id="@+id/ingr_TorreLegno"
+        android:title="Torre di Legno" />
+
+</menu>
