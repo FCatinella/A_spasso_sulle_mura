@@ -64,12 +64,12 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         }
 
         // chiamo il selettore di orario
-        TimePickerDialog(this, timepickerdialoglistener, 8, 0, true).show()
+        TimePickerDialog(this, timepickerdialoglistener, Calendar.getInstance().get(Calendar.HOUR_OF_DAY),  Calendar.getInstance().get(Calendar.MINUTE), true).show()
     }
     //-------------------------------------------------------
 
 
-    //Cosa succede alla modifica di un valore nelle SharedPreferences -----------------------
+    //Cosa succede alla modifica di un valore nelle SharedPreferences
     val msharedPreferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener{ sharedPreferences: SharedPreferences, s: String ->
         if(s.equals("Settato")) setSwitch() //Switcho il layout se il parametro "Settato" è stato cambiato nell preferenze
     }
@@ -85,30 +85,27 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         if(i<10) ora="0$i"
         if (i1<10) minuti="0$i1"
 
-
         //Cambio "Settato" in modo che cambi il layout
         var pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE)
         var editor = pref.edit()
-        editor.putInt("Settato",1)
+        editor.putInt("Settato",1) //va committato
 
-
-
-        //facciamo due conti
+        //calcolo la differenza che c'è tra l'orario attuale e l'orario scelto
         var quantomancaGiorno = chosenDateGiornodelMese - (Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
         var quantomancaOra= i - (Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
         var quantomancaMinuto = i1 - (Calendar.getInstance().get(Calendar.MINUTE))
-
+        //sommo e trasformo in millisecondi
         var delay= (quantomancaMinuto*60+quantomancaOra*60*60+quantomancaGiorno*24*60*60)*1000
 
 
-        //Visualizzo uno snackbar in caso di ora o data sbagliata e ritorno
+        //Visualizzo uno snackbar in caso di ora o data sbagliata ed esco
         if(delay<0) {
             Snackbar.make(addfab, "Non posso viaggiare nel tempo. Per ora.", Snackbar.LENGTH_LONG).show()
             return@OnTimeSetListener
         }
 
 
-        //aggiorno i valori nelle preferenze
+        //aggiorno i valori nelle preferenze. Mi servono nella setSwitch()
         editor.putInt("chosenDateAnno",chosenDateAnno)
         .putInt("chosenDateMese",chosenDateMese)
         .putInt("chosenDateGiornodelMese",chosenDateGiornodelMese)
@@ -118,31 +115,19 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                 .putString("chosenDateMinutoS",minuti)
         .commit()
 
-        /*
-        - guardo cosa ha selezionato l'utente come ingresso
-        - imposta la differenza di tempo come timer
-        - scade il timer ->
-            - se è più lontano di quanto manca, suona e avviso relativo ( sei in ritardo ). Tempo massimo 1 ora
-            - se è abbastanza vicino imposta la metà del tempo che manca fino a > 10 minuti
-            - ripeti
-         */
-
+        //recupero l'ingresso scelto  usando Json
         var locationGsonString = pref.getString("Ingresso scelto","")
         var chosenLocation = Gson().fromJson(locationGsonString,Location::class.java)
 
-
-        var distance = chosenLocation.distanceTo(position)
+        //calcolo il tempo che separa dove sono e dove devo andare
+        var distance = chosenLocation.distanceTo(position) //linea d'aria
         var distanceTime = distance*1000
 
-        Log.w("Ingresso scelto",distance.toString())
-
-
+        //imposto l'allarme che chiamerà Receiver.kt
         var intent = Intent(applicationContext,Receiver::class.java)
         var alarmmanager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         var pintent = PendingIntent.getBroadcast(this,1,intent,0)
         alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,SystemClock.elapsedRealtime()+(delay-(distanceTime.toLong()))/2,pintent)
-        lm.removeUpdates(this)
-
 
 
     }
@@ -152,9 +137,10 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
 
 
 
-
+    //imposta il layout in base alla "situazione"
     fun setSwitch() {
         var pref = getSharedPreferences("myprefs",Context.MODE_PRIVATE)
+                                                                // MODE_PRIVATE modo default di creare il file, può essere acceduto soltanto dall'applicazione che chiama il metodo
         setted = pref.getInt("Settato", 0)
         if (setted == 0) {
             //allarme da impostare
@@ -169,11 +155,12 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
 
 
             var ingrButton = findViewById<Button>(R.id.buttonIngr)
-            ingrButton.setOnClickListener { view ->
+            ingrButton.setOnClickListener { view ->  //listener del pulsante vero e proprio
                 var popup = PopupMenu(this,view)
-                popup.menuInflater.inflate(R.menu.ingressi,popup.menu)
-                popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item :MenuItem? ->
+                popup.menuInflater.inflate(R.menu.ingressi,popup.menu) // ""Gonfio"" il menù
+                popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item :MenuItem? -> //listener dei vari pulsanti del menu
                     when (item!!.itemId){
+                        //setto le coordinate degli ingressi e salvo tutto nelle preferenze (usando Json)
                         R.id.ingr_TorreSmaria -> {
                             ingrButton.text="Torre Santa Maria"
                             chosenIngress.latitude=43.72436654869315
@@ -201,7 +188,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                     editor.commit()
                     true
                 })
-                popup.show()
+                popup.show() // lo mostro ( questo fa parte del primo listener
             }
 
         } else {
@@ -236,14 +223,15 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
+        //cambio il titolo dell'activity
         supportActionBar?.title="Allarmi"
         supportActionBar?.elevation=0F
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         var pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE)
+        //registro un listener che scatti al variare di un elemento chiave-valore
         pref.registerOnSharedPreferenceChangeListener(msharedPreferenceChangeListener)
         setSwitch()
+        //nascondo il fab per aggiungere la sveglia, sarà di nuovo visibile quando l'applicazione avrà una posizione valida
         addfab.visibility=View.INVISIBLE
 
         //localizzazione
@@ -252,9 +240,10 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         crit.powerRequirement=Criteria.POWER_MEDIUM
         lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         locProv= lm.getBestProvider(crit,true) //location provvider
-
+        // se per qualche motivo non ho i permessi di localizzazione, termina male.
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_DENIED) finish()
         if(lm.getLastKnownLocation(locProv)!=null){
-            //devo aspettare il fix del gps
+            //devo avere una posizione valida
             updateLocation(lm.getLastKnownLocation(locProv))
             addfab.visibility=View.VISIBLE
         }
@@ -268,8 +257,10 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
     }
 
     override fun onLocationChanged(p0: Location?) {
+        //aggiorno la posizione globale
         updateLocation(p0!!)
         Log.w("POSIZIONE","cambiata")
+        //mostro il FAB
         addfab?.visibility=View.VISIBLE
     }
     override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {}
@@ -278,13 +269,17 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         finish()
     }
 
-    override fun onProviderEnabled(p0: String?) {}
-    //------------------------------------
+    override fun onProviderEnabled(p0: String?) {
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED)
+        lm.requestLocationUpdates(locProv,2000,10.toFloat(),this)
+    }
+    //------------------------------------------------------
 
 
     override fun onResume() {
         super.onResume()
-        lm.requestLocationUpdates(locProv,2000,10.toFloat(),this)
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_DENIED) finish()
+        lm.requestLocationUpdates(locProv,2000,10.toFloat(),this) //attivo il listener
 
     }
 
