@@ -23,6 +23,8 @@ import java.util.prefs.Preferences
 
 class Receiver : BroadcastReceiver(),LocationListener{
     lateinit var position : Location
+    lateinit var contextCpy : Context
+    lateinit var lm : LocationManager
 
 
 
@@ -36,17 +38,36 @@ class Receiver : BroadcastReceiver(),LocationListener{
         */
 
 
-        var pref= p0?.getSharedPreferences("myprefs",Context.MODE_PRIVATE) as SharedPreferences
-        var locationGsonString = pref.getString("Ingresso scelto","")
-        var chosenLocation = Gson().fromJson(locationGsonString, Location::class.java)
-
-        var lm = p0.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        contextCpy=p0!!
+        lm = p0.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         var crit = Criteria()
         crit.accuracy= Criteria.ACCURACY_FINE
         crit.powerRequirement= Criteria.POWER_MEDIUM
-        updateLocation(lm.getLastKnownLocation(lm.getBestProvider(crit,true)))
+        var locProv = lm.getBestProvider(crit,true)
+        lm.requestLocationUpdates(locProv,2000,10.toFloat(),this)
+        updateLocation(lm.getLastKnownLocation(locProv))
 
 
+
+
+    }
+
+
+
+    //Funzioni riguardanti l'interfaccia LocationListener
+    fun updateLocation (newLoc : Location){
+        position = Location(newLoc)
+    }
+
+
+    override fun onLocationChanged(p0: Location?) {
+        updateLocation(p0!!)
+
+        Log.w("POSITION","posizione cambiata"+p0.latitude.toString())
+        //estraggo l'ingresso scelto
+        var pref= contextCpy.getSharedPreferences("myprefs",Context.MODE_PRIVATE) as SharedPreferences
+        var locationGsonString = pref.getString("Ingresso scelto","")
+        var chosenLocation = Gson().fromJson(locationGsonString, Location::class.java)
 
         //facciamo due conti
         var quantomancaGiorno = pref.getInt("chosenDateGiornodelMese",0) - (Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
@@ -59,14 +80,14 @@ class Receiver : BroadcastReceiver(),LocationListener{
 
         var distanceTime = (chosenLocation.distanceTo(position))*1000
 
-        if(delay-distanceTime<=600000){
+        if(delay-distanceTime<=300000){
             //suona
-            val notification2 = NotificationCompat.Builder(p0!!,"tutte")
+            val notification2 = NotificationCompat.Builder(contextCpy!!,"tutte")
                     .setSmallIcon(R.drawable.ic_info_black_24dp)
                     .setContentTitle("E' ora!")
                     .setContentText("Incamminati verso le mura per non fare tardi.")
                     .build()
-            val nm= p0.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val nm= contextCpy.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nm.notify(3,notification2) //invio la notifica vera e propria
 
             var editor = pref.edit()
@@ -75,24 +96,15 @@ class Receiver : BroadcastReceiver(),LocationListener{
         }
         else {
             Log.w("Timer", "scattato e reimpostato")
-            var intent = Intent(p0,Receiver::class.java)
-            var alarmmanager = p0.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            var pintent = PendingIntent.getBroadcast(p0,1,intent,0)
+            var intent = Intent(contextCpy,Receiver::class.java)
+            var alarmmanager = contextCpy.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            var pintent = PendingIntent.getBroadcast(contextCpy,1,intent,0)
             alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+(delay-(distanceTime.toLong()))/2,pintent)
         }
         lm.removeUpdates(this)
 
-    }
 
 
-
-    //Funzioni riguardanti l'interfaccia LocationListener
-    fun updateLocation (newLoc : Location){
-        position = Location(newLoc)
-    }
-
-    override fun onLocationChanged(p0: Location?) {
-        updateLocation(p0!!)
     }
     override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {}
 

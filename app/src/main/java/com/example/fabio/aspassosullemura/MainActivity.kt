@@ -1,9 +1,11 @@
 package com.example.fabio.aspassosullemura
 
+import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
@@ -12,7 +14,9 @@ import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.Snackbar
+import android.support.v4.app.ActivityCompat
 import android.support.v4.app.NotificationCompat
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBar
@@ -172,11 +176,8 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //centro il titolo-----------
-        //supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
-        //supportActionBar?.setCustomView(R.layout.abs_layout) //uso un layout ad-hoc
         supportActionBar?.elevation= 0F // elimino l'ombra sotto l'action bar ( la "schiaccio a terra" )
-        //------------------------
+
 
         initview()
 
@@ -239,8 +240,17 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId) {
             R.id.alarm_home -> {
-                val intent = Intent(applicationContext, AlarmActivity::class.java)
-                startActivity(intent)
+                //gestione permessi per la localizzazione
+                if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_DENIED) {
+                    if(Build.VERSION.SDK_INT>=23){
+                        ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),0)
+                    }
+               }
+                else {
+                    //permesso avuto
+                    val intent = Intent(applicationContext, AlarmActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
         return super.onOptionsItemSelected(item)

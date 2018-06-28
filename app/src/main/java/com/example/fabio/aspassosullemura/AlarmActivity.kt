@@ -1,5 +1,6 @@
 package com.example.fabio.aspassosullemura
 
+import android.Manifest
 import android.app.*
 import android.app.AlarmManager.RTC
 import android.app.AlarmManager.RTC_WAKEUP
@@ -7,10 +8,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.location.Criteria
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -21,6 +24,8 @@ import kotlinx.android.synthetic.main.activity_alarm_set.*
 import android.os.CountDownTimer
 import android.os.SystemClock
 import android.support.design.widget.Snackbar
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.MenuItem
 import android.widget.*
@@ -136,7 +141,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         var alarmmanager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         var pintent = PendingIntent.getBroadcast(this,1,intent,0)
         alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,SystemClock.elapsedRealtime()+(delay-(distanceTime.toLong()))/2,pintent)
-
+        lm.removeUpdates(this)
 
 
 
@@ -161,6 +166,8 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                         .show()
 
             }
+
+
             var ingrButton = findViewById<Button>(R.id.buttonIngr)
             ingrButton.setOnClickListener { view ->
                 var popup = PopupMenu(this,view)
@@ -228,19 +235,29 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
         supportActionBar?.title="Allarmi"
         supportActionBar?.elevation=0F
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         var pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE)
         pref.registerOnSharedPreferenceChangeListener(msharedPreferenceChangeListener)
         setSwitch()
+        addfab.visibility=View.INVISIBLE
+
         //localizzazione
         var crit = Criteria()
         crit.accuracy=Criteria.ACCURACY_FINE
         crit.powerRequirement=Criteria.POWER_MEDIUM
         lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        locProv= lm.getBestProvider(crit,true)
-        updateLocation(lm.getLastKnownLocation(locProv))
+        locProv= lm.getBestProvider(crit,true) //location provvider
+
+        if(lm.getLastKnownLocation(locProv)!=null){
+            //devo aspettare il fix del gps
+            updateLocation(lm.getLastKnownLocation(locProv))
+            addfab.visibility=View.VISIBLE
+        }
 
     }
 
@@ -252,10 +269,14 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
 
     override fun onLocationChanged(p0: Location?) {
         updateLocation(p0!!)
+        Log.w("POSIZIONE","cambiata")
+        addfab?.visibility=View.VISIBLE
     }
     override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {}
 
-    override fun onProviderDisabled(p0: String?) {}
+    override fun onProviderDisabled(p0: String?) {
+        finish()
+    }
 
     override fun onProviderEnabled(p0: String?) {}
     //------------------------------------
@@ -264,6 +285,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
     override fun onResume() {
         super.onResume()
         lm.requestLocationUpdates(locProv,2000,10.toFloat(),this)
+
     }
 
     override fun onPause() {
