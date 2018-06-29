@@ -27,28 +27,20 @@ class Receiver : BroadcastReceiver(),LocationListener{
     lateinit var lm : LocationManager
 
 
-
+    //Quando ricevo l'allarme
     override fun onReceive(p0: Context?, p1: Intent?) {
-        /*- guardo cosa ha selezionato l'utente come ingresso
-        - imposta la differenza di tempo come timer
-        - scade il timer ->
-        - se è più lontano di quanto manca, suona e avviso relativo ( sei in ritardo ). Tempo massimo 1 ora
-        - se è abbastanza vicino imposta la metà del tempo che manca fino a > 10 minuti
-                - ripeti
-        */
 
+        contextCpy=p0!! //copio il contesto per usarlo dopo
 
-        contextCpy=p0!!
+        //recupero il location Manager
         lm = p0.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         var crit = Criteria()
         crit.accuracy= Criteria.ACCURACY_FINE
         crit.powerRequirement= Criteria.POWER_MEDIUM
         var locProv = lm.getBestProvider(crit,true)
+        //attivo gli aggiornamenti delle posizioni
         lm.requestLocationUpdates(locProv,2000,10.toFloat(),this)
         updateLocation(lm.getLastKnownLocation(locProv))
-
-
-
 
     }
 
@@ -59,29 +51,37 @@ class Receiver : BroadcastReceiver(),LocationListener{
         position = Location(newLoc)
     }
 
-
+    //appena ricevo una posizione più precisa
     override fun onLocationChanged(p0: Location?) {
         updateLocation(p0!!)
 
+        /*- guardo cosa ha selezionato l'utente come ingresso
+        - imposta la differenza di tempo come timer
+        - scade il timer ->
+        - se è più lontano di quanto manca, suona e avviso relativo ( sei in ritardo ).
+        - se è abbastanza vicino imposta la metà del tempo che manca fino a > 5 minuti
+                - ripeti
+        */
+
         Log.w("POSITION","posizione cambiata"+p0.latitude.toString())
-        //estraggo l'ingresso scelto
+
+        //estraggo l'ingresso scelto (JSon)
         var pref= contextCpy.getSharedPreferences("myprefs",Context.MODE_PRIVATE) as SharedPreferences
         var locationGsonString = pref.getString("Ingresso scelto","")
         var chosenLocation = Gson().fromJson(locationGsonString, Location::class.java)
 
-        //facciamo due conti
+        //calcolo la differenza che c'è tra l'orario attuale e l'orario scelto
         var quantomancaGiorno = pref.getInt("chosenDateGiornodelMese",0) - (Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
         var quantomancaOra= pref.getInt("chosenDateOra",0) - (Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
         var quantomancaMinuto = pref.getInt("chosenDateMinuto",0) - (Calendar.getInstance().get(Calendar.MINUTE))
-
-
-
+        //sommo e trasformo in millisecondi
         var delay= (quantomancaMinuto*60+quantomancaOra*60*60+quantomancaGiorno*24*60*60)*1000
 
+        //distanza in tempo ( linea d'aria)
         var distanceTime = (chosenLocation.distanceTo(position))*1000
 
-        if(delay-distanceTime<=300000){
-            //suona
+        if(delay-distanceTime<=300000){ //se la differenza è < di 5 minuti allora invia notifica
+            //creo la notifica
             val notification2 = NotificationCompat.Builder(contextCpy!!,"tutte")
                     .setSmallIcon(R.drawable.ic_info_black_24dp)
                     .setContentTitle("E' ora!")
@@ -90,18 +90,20 @@ class Receiver : BroadcastReceiver(),LocationListener{
             val nm= contextCpy.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nm.notify(3,notification2) //invio la notifica vera e propria
 
+            //siccome la notifica è stata mandanta, posso reimpostare un altro allarme
             var editor = pref.edit()
             editor.putInt("Settato",0)
             editor.commit()
         }
         else {
+            //reimposto l'allarme a mentà del tempo
             Log.w("Timer", "scattato e reimpostato")
             var intent = Intent(contextCpy,Receiver::class.java)
             var alarmmanager = contextCpy.getSystemService(Context.ALARM_SERVICE) as AlarmManager
             var pintent = PendingIntent.getBroadcast(contextCpy,1,intent,0)
             alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+(delay-(distanceTime.toLong()))/2,pintent)
         }
-        lm.removeUpdates(this)
+        lm.removeUpdates(this) //disattivo il listener della posizione
 
 
 
