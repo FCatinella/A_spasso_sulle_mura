@@ -42,6 +42,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
     lateinit var view : View
     lateinit var position : Location
     lateinit var locProv : String
+    lateinit var allarmIntent : Intent
     lateinit var lm : LocationManager
     var chosenIngress : Location = Location("Ingresso")
     var chosenDateAnno :Int = 2018
@@ -97,10 +98,11 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         //sommo e trasformo in millisecondi
         var delay= (quantomancaMinuto*60+quantomancaOra*60*60+quantomancaGiorno*24*60*60)*1000
 
-
+        Log.w("Delay","$delay")
         //Visualizzo uno snackbar in caso di ora o data sbagliata ed esco
         if(delay<0) {
-            Snackbar.make(addfab, "Non posso viaggiare nel tempo. Per ora.", Snackbar.LENGTH_LONG).show()
+            val addFab = findViewById<FloatingActionButton>(R.id.addfab)
+            Snackbar.make(addFab, "Non posso viaggiare nel tempo. Per ora.", Snackbar.LENGTH_LONG).show()
             return@OnTimeSetListener
         }
 
@@ -124,12 +126,14 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         var distanceTime = distance*1000
 
         //imposto l'allarme che chiamerà Receiver.kt
-        var intent = Intent(applicationContext,Receiver::class.java)
+
         var alarmmanager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        var pintent = PendingIntent.getBroadcast(this,1,intent,0)
-        alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,SystemClock.elapsedRealtime()+(delay-(distanceTime.toLong()))/2,pintent)
-
-
+        var pintent = PendingIntent.getService(this,1,intent,0)
+        allarmIntent = Intent(applicationContext,AllarmService::class.java)
+        startService(allarmIntent)
+        Log.w("Sono qui","qui")
+        //alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+2000,pintent)
+        //alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,SystemClock.elapsedRealtime()+(delay-(distanceTime.toLong()))/2,pintent)
     }
     //--------------------------------------------
 
@@ -152,8 +156,6 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                         .show()
 
             }
-
-
             var ingrButton = findViewById<Button>(R.id.buttonIngr)
             ingrButton.setOnClickListener { view ->  //listener del pulsante vero e proprio
                 var popup = PopupMenu(this,view)
@@ -186,6 +188,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                     var locationGsonString = Gson().toJson(chosenIngress)
                     editor.putString("Ingresso scelto",locationGsonString)
                     editor.commit()
+                    addfab.isClickable=true
                     true
                 })
                 popup.show() // lo mostro ( questo fa parte del primo listener
@@ -212,6 +215,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                 var pintent = PendingIntent.getBroadcast(this,1,intent,0)
                 alarmmanager.cancel(pintent)
                 var editor = pref.edit()
+                stopService(allarmIntent)
                 editor.putInt("Settato", 0)
                 editor.commit()
             }
@@ -222,17 +226,21 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         //cambio il titolo dell'activity
         supportActionBar?.title="Allarmi"
         supportActionBar?.elevation=0F
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        allarmIntent = Intent(applicationContext,AllarmService::class.java)
         var pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE)
         //registro un listener che scatti al variare di un elemento chiave-valore
         pref.registerOnSharedPreferenceChangeListener(msharedPreferenceChangeListener)
         setSwitch()
         //nascondo il fab per aggiungere la sveglia, sarà di nuovo visibile quando l'applicazione avrà una posizione valida
-        addfab.visibility=View.INVISIBLE
+        if((pref.getInt("Settato",0))!=1){
+            addfab.visibility=View.INVISIBLE
+            addfab.isClickable=false
+        }
+
 
         //localizzazione
         var crit = Criteria()
@@ -240,13 +248,14 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         crit.powerRequirement=Criteria.POWER_MEDIUM
         lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         locProv= lm.getBestProvider(crit,true) //location provvider
+        Log.w("PROVVIDER SCELTO",locProv)
+        if(locProv.equals(LocationManager.GPS_PROVIDER)==false) {
+            val toast = Toast.makeText(applicationContext, "Attiva il GPS (Alta Precisione o Solo Dispositivo) per usare questa funzionalità", Toast.LENGTH_LONG)
+            toast.show()
+            finish()
+        }
         // se per qualche motivo non ho i permessi di localizzazione, termina male.
         if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_DENIED) finish()
-        if(lm.getLastKnownLocation(locProv)!=null){
-            //devo avere una posizione valida
-            updateLocation(lm.getLastKnownLocation(locProv))
-            addfab.visibility=View.VISIBLE
-        }
 
     }
 
@@ -262,6 +271,8 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         Log.w("POSIZIONE","cambiata")
         //mostro il FAB
         addfab?.visibility=View.VISIBLE
+        lm.removeUpdates(this) //disattivo il listener
+        lm.requestLocationUpdates(locProv,5000,10.toFloat(),this)
     }
     override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {}
 
@@ -271,7 +282,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
 
     override fun onProviderEnabled(p0: String?) {
         if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED)
-        lm.requestLocationUpdates(locProv,2000,10.toFloat(),this)
+        lm.requestLocationUpdates(locProv,5000,0.toFloat(),this)
     }
     //------------------------------------------------------
 
@@ -279,7 +290,18 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
     override fun onResume() {
         super.onResume()
         if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_DENIED) finish()
-        lm.requestLocationUpdates(locProv,2000,10.toFloat(),this) //attivo il listener
+        lm.requestLocationUpdates(locProv,5000,1.toFloat(),this) //attivo il listener
+        if(lm.getLastKnownLocation(locProv)!=null){
+            //devo avere una posizione valida
+            updateLocation(lm.getLastKnownLocation(locProv))
+            var pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE) //TODO: "pref" globale
+            if((pref.getInt("Settato",0))!=1)
+                addfab.visibility=View.VISIBLE
+        }
+        else {
+            val toast = Toast.makeText(applicationContext, "Sto cercando la tua posizione...", Toast.LENGTH_LONG)
+            toast.show()
+        }
 
     }
 

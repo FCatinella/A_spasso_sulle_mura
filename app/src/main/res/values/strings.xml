@@ -135,6 +135,15 @@
 
     <string name="action_settings">Settings</string>
 
+    <string name="alarmDesctr">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Donec consequat ornare nisi, in suscipit elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+        Duis ut placerat enim. Duis ullamcorper, quam sed pellentesque condimentum, sapien ligula consectetur nisi,
+        vel vehicula elit risus id justo. Nam hendrerit pulvinar nisi in faucibus. Nulla vulputate placerat sapien vitae
+        fringilla. Ut ullamcorper semper diam at elementum. .</string>
+
+    <string name="alarmDesctrTit">
+        Dicci quando vuoi salire,\nal resto pensiamo noi.</string>
 
     <string name="descrizione_home">Il camminamento in quota delle Mura di Pisa ha riaperto al pubblico con un percorso di 3 km, da Piazza dei Miracoli a Piazzetta Del Rosso, e quattro punti di salita per offrire un inedito punto di vista.
         \n\nA terra 20.000 m² di verde restituiti alla città, una pista ciclopedonale e una suggestiva illuminazione che consentirà di ammirare anche di notte i tratti di mura e i bastioni mirabilmente recuperati.</string>

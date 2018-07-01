@@ -6,48 +6,79 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".AlarmActivity">
-        <android.support.design.widget.CoordinatorLayout
-            android:id="@+id/myCoordinatorLayout"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/addfab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="35dp"
-                android:layout_marginEnd="20dp"
-                android:layout_gravity="bottom|right"
-                app:srcCompat="@drawable/ic_add_white_24dp" />
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/myCoordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-        </android.support.design.widget.CoordinatorLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/addfab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="35dp"
+            android:layout_marginEnd="20dp"
+            app:srcCompat="@drawable/ic_add_white_24dp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="145dp"
-        android:text="Premi il tasto '+' per aggiungere una sveglia"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    </android.support.design.widget.CoordinatorLayout>
 
     <Button
         android:id="@+id/buttonIngr"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="89dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Torre Santa Maria"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:text="Scegli un ingresso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textViewAlarmDescrTit"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/alarmDesctrTit"
+        android:textSize="27dp"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/myCoordinatorLayout" />
+
+    <TextView
+        android:id="@+id/textViewAlarmDescr"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="15dp"
+        android:text="@string/alarmDesctr"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAlarmDescrTit" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text='Premi su "+" per impostare data e ora'
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAlarmDescr" />
 
 </android.support.constraint.ConstraintLayout>

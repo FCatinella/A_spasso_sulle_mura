@@ -1,9 +1,6 @@
 package com.example.fabio.aspassosullemura
 
-import android.app.AlarmManager
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.BroadcastReceiver
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -11,68 +8,78 @@ import android.location.Criteria
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
+import android.os.IBinder
 import android.os.SystemClock
 import android.support.v4.app.NotificationCompat
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.google.gson.Gson
 import java.util.*
-import java.util.prefs.Preferences
 
+class AllarmService : Service(),LocationListener {
 
-class Receiver : BroadcastReceiver(),LocationListener{
     lateinit var position : Location
     lateinit var contextCpy : Context
     lateinit var lm : LocationManager
+    lateinit var notification2 :Notification
 
+    override fun onLocationChanged(p0: Location?) {
+        updateLocation(position)
+        //devo passare la posizione al receiver
+        Log.w("AllarmService","posizione cambiata")
+        handler()
+        //stopForeground(true); //true will remove notification
+       // onDestroy()
+    }
 
-    //Quando ricevo l'allarme
-    override fun onReceive(p0: Context?, p1: Intent?) {
+    override fun onProviderDisabled(p0: String?) {
+    }
 
-        contextCpy=p0!! //copio il contesto per usarlo dopo
+    override fun onProviderEnabled(p0: String?) {
+    }
 
-        //recupero il location Manager
-        lm = p0.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
+    }
+
+    override fun onBind(intent: Intent): IBinder {
+        return null!!
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        contextCpy= applicationContext
+        lm = contextCpy.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         var crit = Criteria()
         crit.accuracy= Criteria.ACCURACY_FINE
         crit.powerRequirement= Criteria.POWER_MEDIUM
         var locProv = lm.getBestProvider(crit,true)
-        //attivo gli aggiornamenti delle posizioni
-        lm.requestLocationUpdates(locProv,2000,10.toFloat(),this)
+        lm.requestLocationUpdates(locProv,300000,0.toFloat(),this)
         updateLocation(lm.getLastKnownLocation(locProv))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notification2 = NotificationCompat.Builder(contextCpy!!,"tutte")
+                    .setSmallIcon(R.drawable.ic_location_searching_white_24dp)
+                    .setContentTitle("Servizio Posizione")
+                    .setContentText("Controllerò la tua posizione ogni 5 minuti")
+                    .build()
+            startForeground(2, notification2);
+        }
+        Log.w("AllarmService","partito")
 
+        return super.onStartCommand(intent, flags, startId)
     }
 
-
-
-    //Funzioni riguardanti l'interfaccia LocationListener
     fun updateLocation (newLoc : Location){
         position = Location(newLoc)
     }
 
-    //appena ricevo una posizione più precisa
-    override fun onLocationChanged(p0: Location?) {
-        updateLocation(p0!!)
-        Log.w("POSITION","posizione cambiata"+p0.latitude.toString())
-
-        handler()
-
-
-
-
-
-    }
-    override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {}
-
-    override fun onProviderDisabled(p0: String?) {}
-
-    override fun onProviderEnabled(p0: String?) {}
-
 
 
     fun handler(){
-
         /*- guardo cosa ha selezionato l'utente come ingresso
        - imposta la differenza di tempo come timer
        - scade il timer ->
@@ -105,24 +112,26 @@ class Receiver : BroadcastReceiver(),LocationListener{
                     .build()
             val nm= contextCpy.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nm.notify(3,notification2) //invio la notifica vera e propria
+            lm.removeUpdates(this)
+            stopForeground(true)
 
             //siccome la notifica è stata mandanta, posso reimpostare un altro allarme
             var editor = pref.edit()
             editor.putInt("Settato",0)
             editor.commit()
+            onDestroy()
+
         }
-        else {
-            //reimposto l'allarme a mentà del tempo
+       /* else {
+            //reimposto l'allarme + 5 minuti
             Log.w("Timer", "scattato e reimpostato")
-            var intent = Intent(contextCpy,Receiver::class.java)
+            var intent = Intent(contextCpy,AllarmService::class.java)
             var alarmmanager = contextCpy.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            var pintent = PendingIntent.getBroadcast(contextCpy,1,intent,0)
-            alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+(delay-(distanceTime.toLong()))/2,pintent)
+            var pintent = PendingIntent.getService(contextCpy,1,intent,0)
+            alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+60000,pintent)
+            //alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+(delay-(distanceTime.toLong()))/2,pintent)
         }
-        lm.removeUpdates(this) //disattivo il listener della posizione
+        lm.removeUpdates(this) //disattivo il listener della posizione*/
     }
-    //------------------------------------
-
-
 
 }
