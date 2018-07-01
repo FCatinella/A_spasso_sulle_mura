@@ -32,8 +32,9 @@
         <receiver android:name=".Receiver" />
 
         <service
-            android:name=".AllarmService"
+            android:name=".AlarmService"
             android:enabled="true"
+            android:stopWithTask="true"
             />
     </application>
 

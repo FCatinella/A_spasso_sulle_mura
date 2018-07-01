@@ -222,10 +222,12 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         //Riguardante Oreo+
         // ottengo il service delle notifiche
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        // Creo il canale delle notifiche (spero di trovare un modo per farlo solo una volta)
+        // Creo i canali delle notifiche (spero di trovare un modo per farlo solo una volta)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val nch = NotificationChannel("tutte", "Tutte", NotificationManager.IMPORTANCE_DEFAULT)
+            val posChan = NotificationChannel("posizione", "Posizione", NotificationManager.IMPORTANCE_LOW)
             notificationManager.createNotificationChannel(nch)
+            notificationManager.createNotificationChannel(posChan)
         }
         //---------------------------------
 
