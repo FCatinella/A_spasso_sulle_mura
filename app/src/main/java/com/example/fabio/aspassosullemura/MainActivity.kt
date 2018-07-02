@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
     private lateinit var viewlist:ArrayList<View>
     private var firsttime :Boolean = true
     private var justInstalled:Boolean = true
-    private var conta:Int =0
 
 
 
@@ -97,9 +96,6 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
                     intent.putExtra(Intent.EXTRA_TEXT,"Bottone2")
                     startActivity(intent)
                 }
-                //imposto la trasparenza dell' immagine di sfondo
-                homeConstraintLayout.backgroundTintMode=PorterDuff.Mode.DARKEN
-
             }
 
             return viewlist.get(position)

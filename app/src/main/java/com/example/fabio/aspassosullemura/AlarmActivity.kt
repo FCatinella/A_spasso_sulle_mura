@@ -6,10 +6,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.PorterDuff
 import android.location.Criteria
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -21,6 +23,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.*
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_alarm_set.*
 import java.util.*
 
 class AlarmActivity : AppCompatActivity(),LocationListener {
@@ -62,6 +65,16 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
     //Cosa succede alla modifica di un valore nelle SharedPreferences
     val msharedPreferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener{ sharedPreferences: SharedPreferences, s: String ->
         if(s.equals("Settato")) setSwitch() //Switcho il layout se il parametro "Settato" è stato cambiato nell preferenze
+        /*if(s.equals("Ingresso scelto")){
+            val aal= findViewById<View>(R.id.activity_alarm_layout)
+            val ingr=Gson().fromJson(sharedPreferences.getString("Ingresso scelto","null"),Location::class.java).provider
+            when(ingr){
+                "Piazza Gondole" -> aal.background=getDrawable(R.drawable.piazzagondole_bitmap)
+                "Torre Piezometrica" -> aal.background=getDrawable(R.drawable.torrepiezometrica_bitmap)
+                "Torre Santa Maria" -> aal.background=getDrawable(R.drawable.torresantamaria_bitmap)
+                "Torre di Legno" -> {} //TODO
+            }
+                }*/
     }
     //------------------------------
 
@@ -117,10 +130,13 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
 
     //imposta il layout in base alla "situazione"
     fun setSwitch() {
+        val ingressoNome = pref.getString("Ingresso scelto","null")
         setted = pref.getInt("Settato", 0)
         if (setted == 0) {  //allarme da impostare
             //imposto il layout "Allarme non settato"
             setContentView(R.layout.activity_alarm)
+            val aal= findViewById<View>(R.id.activity_alarm_layout)
+            aal.backgroundTintMode= PorterDuff.Mode.DARKEN
             val fb= findViewById<FloatingActionButton>(R.id.addfab) // usare la classica abbreviazione alla Kotlin non funziona
             //listener del FAB
             fb.setOnClickListener { view ->
@@ -130,13 +146,21 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
 
             }
             val ingrButton = findViewById<Button>(R.id.buttonIngr)
-            val ingressoNome = pref.getString("Ingresso scelto","null")
             // il FAB non si può premete finchè non è stato scelto un ingresso
             fb.isClickable=false
             if(ingressoNome.equals("null")==false){
                 // ingresso già scelto
                 ingrButton.text=Gson().fromJson(ingressoNome,Location::class.java).provider
                 fb.isClickable=true
+               /* when(ingrButton.text){
+                    "Piazza Gondole" -> aal.background=getDrawable(R.drawable.piazzagondole_bitmap)
+                    "Torre Piezometrica" -> aal.background=getDrawable(R.drawable.torrepiezometrica_bitmap)
+                    "Torre Santa Maria" -> aal.background=getDrawable(R.drawable.torresantamaria_bitmap)
+                    "Torre di Legno" -> {} //TODO
+
+                }*/
+
+
 
             }
             ingrButton.setOnClickListener { view ->  //listener del pulsante vero e proprio
@@ -183,9 +207,40 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         } else {
             //allarme impostato
             setContentView(R.layout.activity_alarm_set)
+           /* val aasl= findViewById<View>(R.id.activity_alarm_set_layout)
+            if(ingressoNome.equals("null")==false) {
+                // ingresso già scelto
+                val ingr = Gson().fromJson(ingressoNome, Location::class.java).provider
+                when (ingr) {
+                    "Piazza Gondole" -> aasl.background = getDrawable(R.drawable.piazzagondole_bitmap)
+                    "Torre Piezometrica" -> aasl.background = getDrawable(R.drawable.torrepiezometrica_bitmap)
+                    "Torre Santa Maria" -> aasl.background = getDrawable(R.drawable.torresantamaria_bitmap)
+                    "Torre di Legno" -> {
+                    } //TODO
+
+                }
+                aasl.backgroundTintMode= PorterDuff.Mode.DARKEN
+            }
+            */
+
             val bu= findViewById<Button>(R.id.disableAlarmButton)
             val avvisoTime = findViewById<TextView>(R.id.textViewTimeSet)
             val avvisoData = findViewById<TextView>(R.id.textViewDateSet)
+            val avvisoIngr = findViewById<TextView>(R.id.textViewIngressoScelto)
+            val avvisoIngrDesc = findViewById<TextView>(R.id.textViewDescIngr)
+
+            val ingrSceltoJson=Gson().fromJson(ingressoNome, Location::class.java)
+
+            if(ingressoNome.equals("null")==false) {
+                // ingresso già scelto
+                avvisoIngr.text = ingrSceltoJson.provider
+                when (avvisoIngr.text) {
+                    "Piazza Gondole" -> avvisoIngrDesc.text = resources.getString(R.string.PiazGondDesc)
+                    "Torre Piezometrica" -> avvisoIngrDesc.text = resources.getString(R.string.TorPiezoDesc)
+                    "Torre Santa Maria" -> avvisoIngrDesc.text = resources.getString(R.string.TorSanMarDesc)
+                    "Torre di Legno" -> avvisoIngrDesc.text = resources.getString(R.string.TorLegnDesc)
+                }
+            }
 
             val orasettata=pref.getString("chosenDateOraS","10")
             val minutosettato=pref.getString("chosenDateMinutoS","00")
@@ -196,6 +251,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
             //imposto i testi nelle Textview riguardanti l'orario e la data scelti
             avvisoTime.text=(orasettata+":"+minutosettato)
             avvisoData.text="$giornosettato/$mesesettato/$annosettato"
+
             bu.setOnClickListener { view -> //listener del tasto "annulla"
                 val alarmmanager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
                 val intent = Intent(applicationContext,AlarmService::class.java)
@@ -208,6 +264,12 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                 val editor = pref.edit()
                 editor.putInt("Settato", 0)
                 editor.commit()
+            }
+            val indButt= findViewById<Button>(R.id.buttonIndication)
+            indButt.setOnClickListener{view ->
+                val gmmIntentUri = Uri.parse("google.navigation:q="+ingrSceltoJson.latitude+","+ingrSceltoJson.longitude+"&mode=w")
+                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                startActivity(mapIntent)
             }
         }
     }

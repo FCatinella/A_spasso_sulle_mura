@@ -7,4 +7,5 @@
     <color name="gradient_start">#f000</color>
     <color name="gradient_end">#f000</color>
     <color name="colore_sfondohome">#cfc39f</color>
+    <color name="colore_testosfondo">#ffce77</color>
 </resources>

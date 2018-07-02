@@ -5,9 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity"
-    android:id="@+id/homeConstraintLayout"
-    android:background="@drawable/bitmapsfondo"
-    android:backgroundTint="#7d51473c">
+    android:background="@color/colorPrimary"
+    android:id="@+id/homeConstraintLayout">
 
     <Button
         android:id="@+id/button"
@@ -48,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Una camminata in quota sulle mura"
-                android:textColor="#ffce77"
+                android:textColor="@color/colorAccent"
                 android:textSize="27dp" />
 
             <TextView
@@ -57,7 +56,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/descrizione_home"
-                android:textColor="@color/colorPrimary"
                 android:textSize="15dp" />
 
             <fragment
