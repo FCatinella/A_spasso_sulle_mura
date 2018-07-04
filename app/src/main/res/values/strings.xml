@@ -155,11 +155,171 @@
     \nAccesso anche per disabili.</string>
 
     <string name="TorSanMarDesc">Si accede dal prato di Piazza dei Miracoli.
-    \nI disabili non possono alle Mure dalla Torre Santa Maria.</string>
+    \nI disabili non possono alle mura dalla Torre Santa Maria.</string>
 
     <string name="PiazGondDesc">La caratteristica principale della piazza è il bacino d’acqua tutt’ora visibile, chiamato Porto delle Gondole.
     \nAccesso anche per disabili.</string>
 
     <string name="TorLegnDesc">Si accede da Piazza del Rosso, attraverso una cancellata.
     \nAccesso anche per disabili.</string>
+
+    <string name="TorLegnDescFull">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Ut lacinia ultrices metus, non tincidunt dui imperdiet non. Duis vitae convallis neque. Pellentesque sodales diam nec varius vehicula. In hac habitasse platea dictumst.
+        Morbi non sem magna. Aliquam justo felis, commodo a vestibulum quis, iaculis at ipsum. Sed arcu mi, vulputate ut mi eu, porta convallis elit. Sed non diam non risus mollis finibus.
+        Fusce tristique mollis massa. Morbi finibus augue vitae auctor aliquet. Quisque porttitor massa non convallis gravida.
+        Mauris vel eleifend risus, vitae convallis massa. Phasellus rhoncus, purus vitae rhoncus mollis, metus dolor sodales ante, ultricies suscipit sapien orci eu metus.
+        Aenean suscipit tincidunt neque, et vestibulum sem rutrum quis. Sed a ipsum ex. Pellentesque sit amet eleifend ligula.
+        Phasellus facilisis tellus odio, in facilisis est venenatis et. Sed quis dolor ornare ante dapibus laoreet laoreet vel lorem. Nam a arcu diam. Sed venenatis ex ac nunc varius, id placerat neque commodo. Nulla ac lorem lectus. Cras eget fringilla leo, nec scelerisque est.
+    </string>
+
+    <string name="PiazGondDescFull">
+        Piccola e caratteristica piazza alla fine di Via Santa Marta, passa spesso inosservata all’occhio del passante Piazza delle Gondole è invece un luogo importante nella storia “fluviale”
+        di Pisa.
+        La caratteristica principale della piazza è il bacino d’acqua tutt’ora visibile, chiamato Porto delle Gondole: era il capolinea della fitta rete di canali che percorreva la
+        pianura pisana dove approdavano le barche che trasportavano merci e passeggeri fino a San Giuliano, navigando sul Canale Macinate che collegava Pisa e Ripafratta.
+        Il canale fu fatto costruire dal Granduca Cosimo I dei Medici nel 1564-1566 ed era conosciuto anche come Fosso dei Mulini perché azionava le macine dei mulini per la lavorazione
+        del grano e le spremitura delle olive. Illustri personaggi quali Montesquieu, Alfieri, Murat, Shelley, Bonaparte e molti reali e prelati si imbarcarono in questo punto sulle gondole,
+        caratteristiche barche coperte che trasportavano i bagnanti fino alla stazione termale di San Giuliano.
+        La Piazza delle Gondole è anche il punto di arrivo dell’Acquedotto Mediceo, popolarmente detto “i Condotti”, che da Asciano portava l’acqua a Pisa e che alimentava anche
+        la graziosa fontana incastonata nelle mura che danno sulla Piazza. L’acquedotto fu costruito dai Granduchi Ferdinando I° e Cosimo II° dei Medici tra il 1601 e il 1613 sul
+        modello degli acquedotti romani con condotta su archi, si snodava per 6 chilometri e si mantiene tutt’oggi in buono stato di conservazione.
+        Delimitano la piazza due antiche porte della città: il Portello e la Porta di Santa Marta, quest’ultima creata durante l’occupazione fiorentina nella metà del secolo XV per
+        raddoppiare il passaggio dei mezzi, il cui flusso era molto aumentato.
+    </string>
+
+    <string name="TorPiezoDescFull">
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
+        vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
+        voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui
+        in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui
+        blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
+        mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
+        minus id quod maxime placeat facerecommodo. Nulla ac lorem lectus. Cras eget fringilla leo, nec scelerisque est.
+    </string>
+
+    <string name="TorSanMarDescFull">
+        La torre di Santa Maria è la più nota delle torri dell"'"antica cerchia muraria di Pisa, poiché chiude il lato nord-ovest delle fortificazioni presso la celeberrima piazza del Duomo.
+        La sua costruzione risale al 1155-1161, con grossi conci di panchina livornese e un disegno leggermente digradante verso l"'"alto. Oltre la sommità delle mura fu usata invece la breccia
+        sedimentaria proveniente da Asciano, fino a un punto segnato da uno scalino, oltre il quale termina la parte antica, con la parte superiore, compreso il coronamento merlato,
+        risalente a interventi di sopraelevazione ottocenteschi. Si aprono nella struttura feritoie e aperture strombate, mentre le finestrelle più alte fanno parte del rifacimento.
+    </string>
+
+    <string name="CimiEbraDesc">Collocato nell’area adiacente alla Piazza dei Miracoli, in corrispondenza dell’antica Porta del Leone, il cimitero ebraico ospita dal 1674 le sepolture cittadine
+        degli israeliti. Di particolare interesse sono la varietà stilistica dei tumuli presenti (dalle classiche forme trapezoidali allo stile impero, fino al neogotico e al liberty),
+        le pietre tombali seicentesche qui trasferite da un precedente luogo sepolcrale e la differente provenienza geografica degli stessi inumati.
+        Quest’ultima caratteristica offre un ottimo esempio di quanto nei secoli la presenza ebraica a Pisa sia stata variegata, e testimonia anche la scelta fatta da alcuni forestieri di essere
+        sepolti proprio nel cimitero pisano, in virtù del contesto monumentale in cui è inserito.
+        Ma dove si trovavano le tombe ebraiche del periodo precedente al 1674? Le testimonianze materiali e la documentazione pubblica e privata provano che sono esistiti dal XIII secolo a oggi
+        almeno quattro, se non addirittura cinque, cimiteri ebraici nella zona compresa tra la Porta Nuova e la Cittadella.
+    </string>
+
+    <string name="BattDesc">Il Battistero è una delle quattro costruzioni architettoniche che costituiscono Piazza Duomo o Piazza dei Miracoli a Pisa. Progettato ed edificato per ricordare il
+        primo evento della vita da cristiano di ogni uomo, è dedicato a San Giovanni Battista. Il primo progetto è stato redatto da Diotisalvi, e la prima pietra posta circa a metà del XII secolo,
+        ma non fu mai realizzato completamente, e circa un secolo dopo l’interruzione dei lavori fu ripreso da Nicola e Giovanni Pisano. L’eterogeneità degli stili (romanico e gotico) è
+        dovuta proprio al fatto che l’edificio fosse realizzato a più riprese. I visitatori rimangono subito affascinati dall’interno del Battistero, completamente spoglio dal punto di vista
+        degli arredi e delle strutture architettoniche, tranne che per delle semplici file di colonne. Ciò contribuisce a conferire all’ambiente caratteristiche mistiche, a causa della particolare
+        eco che si percepisce quando si parla. La cupola del progetto iniziale ha una forma particolare, troncoconica, in quanto all’epoca non erano ancora note le tecniche di costruzione
+        della cupola emisferica o piramidale, successivamente costruita, a richiamare lo stile gotico. La prima cupola aveva un foro alla sommità, per illuminare il fonte battesimale e
+        permettere all’acqua piovana di entrare e riempire le vasche. L’assenza di canali di scolo, però, sta ad indicare come ciò fosse solo decorativo, in quanto la vecchia pratica
+        battesimale era stata abbandonata da tempo. In epoca più tarda fu costruita la piccola cupola che sovrasta quella maggiore, a chiudere il foro.
+        L’assenza di mattoni su tutta la cupola è stata spesso addebitata al poco denaro a disposizione per ultimare l’opera. In realtà pare che ciò fosse voluto,
+        e anche necessario: le città di mare, infatti, sfruttavano il riflesso lunare sui mattoni bianchi per permettere ai marinai di orientarsi.
+    </string>
+
+    <string name="CamSantDesc">Il cimitero della Cattedrale fu iniziato nel 1277, per opera di Giovanni di Simone, come ultimo degli edifici monumentali della piazza, a formare una quinta
+        scenica sul lato settentrionale.
+        L’edificio fu detto Campo Santo per una tradizione secondo la quale il terreno dove sorse sarebbe stato mescolato con terra giunta dalla Terrasanta con le navi pisane di ritorno dalla
+        III crociata. L’ampia struttura nacque comunque per uno scopo ben preciso: creare uno spazio adeguato per raccogliere i sarcofagi e le varie sepolture che da secoli affollavano l’area
+        attorno alla Cattedrale. Per questo nel 1277 l"'"arcivescovo Federico Visconti firmò l"'"atto di donazione del terreno per la costruzione di uno "spazio recintato" ad uso di cimitero,
+        che ebbe dapprima la forma di chiesa, dedicata alla Trinità. L’interruzione dei lavori, causata anche dalla sconfitta di Pisa nella battaglia della Meloria, e la ripresa nel
+        Trecento ridefinirono completamente la struttura, che ebbe la pianta all’incirca rettangolare con grande chiostro centrale.
+        L"'"esterno è in semplice marmo bianco, con 43 archi ciechi e due porte. L"'"accesso principale è quello ad oriente, ed è decorato da un tabernacolo gotico sopra il portale, opera
+        della seconda metà del XIV secolo, con statue della Vergine col Bambino e quattro santi. All"'"interno vi è un chiostro con arcate a sesto acuto particolarmente decorate, nei corridoi del
+        quale sono presenti numerosi sarcofagi romani, un tempo riutilizzati per le sepolture più prestigiose.
+        Nel 1360 iniziarono gli affreschi dei corridoi con soggetti legati al tema della vita e della morte, ai quali lavorarono Buonamico Buffalmacco e Francesco Traini, il primo autore del
+        celebre Trionfo della Morte, il secondo di una Crocefissione. Nella cappella Aulla è conservata la cosiddetta “lampada di Galileo”, un tempo in cattedrale, la cui osservazione dette
+        allo scienziato lo spunto per la teoria sull"'"isocronismo del pendolo. All'interno della struttura sono inoltre esposti alcuni anelli della grande catena di Porto Pisano che dopo la
+        sconfitta della Meloria (1284) fu spezzata e portata a Genova, fino alla restituzione dopo l"'"Unità d"'"Italia.
+    </string>
+
+    <string name="DuomoDesc">“Tempio di marmo bianco come la neve” (così recita un’epigrafe sulla facciata), la cattedrale pisana è uno dei massimi capolavori di architettura romanica, in cui si fondono elementi
+        stilistici lombardo-emiliani, classici, tardo-antichi, bizantini, ravennati e arabi. Iniziata da Buscheto nel 1064 e terminata a metà del 1100 da Rainaldo con il prolungamento dell’edificio e la facciata,
+        fu costruita come simbolo della potenza della Repubblica marinara pisana all’apice della sua potenza, grazie anche ai ricchi bottini delle battaglie navali nel Mediterraneo e a donazioni di privati e imperatori.
+         Fu consacrata nel 1118 e dedicata a Maria Assunta.
+        La facciata del Duomo di Pisa ha un primo ordine con arcate cieche sorrette da colonne e pilastri e decorate da losanghe e rosoni, e quattro ordini di loggette praticabili al cui apice si trovano una Madonna di
+        Andrea Pisano (al centro) e due Angeli di Tino da Camaino (sugli angoli). Nei tre portali bronzei, opera dalla bottega del Giambologna, sono raffigurate Storie del Redentore e della Vergine: il portale centrale originario,
+        perduto nell’incendio del 1595, era decorato da Bonanno Pisano, autore anche delle 24 formelle di bronzo con Storie dal Nuovo Testamento che si possono ammirare sulla Porta di San Ranieri, nel transetto destro (1180).
+        Alcune epigrafi sulla facciata celebrano imprese navali pisane e sulle fiancate è visibile del materiale di “riuso” proveniente da monumenti di epoca romana, trasportato dall’Oriente. Sull’abside campeggia la copia del grifone
+        bronzeo di fabbricazione islamica del secolo XI (originale al Museo dell’Opera), bottino di guerra in terra di Spagna.
+        La pianta della Cattedrale di Santa Maria Assunta è a croce latina con cinque navate nel corpo centrale e tre nel transetto, scandite da arcate a tutto sesto sorrette da colonne con capitelli.
+        La cupola ellittica, decorata da affreschi secenteschi, si affaccia sul bel pavimento sottostante in marmi policromi del XIII secolo. L’originaria copertura a capriate andò distrutta nell’incendio del 1595 e fu sostituita nel Seicento
+        dal soffitto a cassettoni.
+    </string>
+
+    <string name="TorPendDesc">La Torre di Pisa, posta su un terreno argilloso e sabbioso, sembra cominciò ad inclinarsi fin dall"'"edificazione del terzo piano tanto che si dovettero sospendere i lavori per poi riprenderli anni dopo,
+        costruendo i piani successivi con una curvatura in senso opposto alla pendenza.
+        Il progetto originale si pensa sia stato di Diotisalvi, che nello stesso periodo stava costruendo anche il Battistero.
+        La costruzione continuò fino al completamento nel 1350, raggiungendo un"'"altezza di circa 56 metri e un peso di 14.523 tonnellate, riuscendo a mantenerla in equilibrio perché la verticale che passa per il baricentro cade
+        all"'"interno della base di appoggio.
+        I piani complessivi sono 8, circondati da una loggetta con archi a tutto sesto, che riprendono il motivo della facciata della cattedrale e poichè la torre ne costituisce appunto il campanile, vennero collocate 7 campane: Assunta
+        (la più grande che pesa 3620 kg), Crocifisso, San Ranieri, Dal Pozzo, Pasquereccia, Terza, Vespruccio, le quali suonano ancora oggi prima delle messe in Duomo ed a mezzogiorno tramite un sistema elettronico e che un
+        tempo era adibite ognuna ad un momento della giornata liturgica. La campana Pasquareccia, la più antica, si chiamava originariamente Giustizia e si trovava nell'omonimo palazzo e veniva impiegata per avvisare della morte dei traditori.
+    </string>
+
+    <string name="BagnNeroneDesc">Le terme di Porta a Lucca, tradizionalmente note come terme o bagni di Nerone, sorgono in quello che doveva essere il settore nord-occidentale dell’abitato in epoca romana, immediatamente all’interno
+        delle mura medievali, fra l’abbazia di S. Zeno ed il Duomo. L’identificazione dei ruderi risale al 1548, quando per la prima volta furono definiti come laconicum, ambiente riservato ai bagni di sudore; l’attribuzione della struttura a
+        Nerone, invece, è del XIII secolo e rientra in una vasta tradizione che vede l’imperatore avere intensi rapporti con la città di Pisa.
+        Oggi, la lettura delle tecniche edilizie, delle caratteristiche strutturali e dei dati materiali, permette di datare l’edificio agli ultimi due decenni del I secolo d.C. e di metterlo in relazione con la famiglia dei
+        Venuleii, protagonisti nel territorio pisano tra il I ed il II secolo d.C. Attualmente, le terme sono scarsamente conservate in elevato e percepibili sono in parte in estensione. La sala ottagona, di cui è visibile parte
+        dell’alzato e della copertura, costituisce l’ambiente giuntoci nel migliore stato di conservazione anche grazie ai numerosi e consistenti restauri.
+        Al momento, è impossibile inserire le terme di Porta a Lucca in un quadro topografico ben definito perché i dati relativi alla configurazione urbana di Pisa romana sono molto scarsi; naturalmente, aggiungono ulteriori tasselli
+        conoscitivi i tanti scavi archeologici effettuati in città come nel caso delle indagini in via Galluppi – via Piave dove sono emersi i resti di un edificio di età imperiale costruito su strutture preesistenti e definitivamente
+        abbandonato tra la fine del II e la seconda metà del III secolo d.C., quando l’area, frequentata ormai solo sporadicamente allo scopo di recuperare materiale edilizio, fu adibita, a partire dal IV secolo d.C., a necropoli.
+    </string>
+
+    <string name="ChieSanTorpeDesc">La chiesa e l’attiguo convento, fondati tra il 1254 e il 1278, appartennero ai Frati Umiliati fino al 1584, anno in cui il complesso passò ai Frati di S. Francesco di Paola, che gestirono gli edifici
+        fino al sopraggiungere delle soppressioni, nel 1784. In seguito la proprietà appartenne ai Vallombrosani (fino al 1808) ed infine ai Certosini. Dal 1816 l’edificio è assegnato ai Carmelitani.
+        La facciata a intonaco, con copertura a capanna, è abbellita da una lunetta in pietra serena al centro della quale è inserito il rilievo marmoreo di S. Torpè realizzato dallo scultore contemporaneo Antonio Fascetti.
+        All’interno, la controfacciata, accoglie la cantoria e l’organo, mentre le pareti ospitano quattro confessionali in pietra (XVII secolo), sopra i quali sono collocate tele di autore ignoto, raffiguranti: San Simone Stock e Santa Teresa
+        (parete di sinistra) e San Giovanni della Croce e Sant’Andrea Corsini (parete di destra). Ornano le pareti i seicenteschi altari in pietra serena.
+        L’altare maggiore, costruito in marmo di Carrara nel 1619, è opera di Giuseppe Zucchetti. Entro una vetrina è conservato un prezioso busto reliquiario d’argento, donato nel 1667 dai fratelli Lanfranchi, che custodisce la testa del
+        Santo titolare della chiesa.
+        La ricchezza degli arredi prosegue nel Coro, ove si trovano tre dipinti della prima metà XVII secolo raffiguranti La conversione di San Giovanni Gualberto, la Madonna con Bambino e Santi Torpè, Anna e angeli e la Madonna con Bambino e
+        Santi Iacopo e Filippo. I due altari addossati alla parete destra, l’uno dedicato a San Francesco di Paola e l’altro a San Carlo Borromeo, ospitano i dipinti raffiguranti La Madonna in gloria tra San Giovanni della Croce e Santa Teresa (
+        1820 ca.) di Domenico Nani da Udine ed Il Santo ed episodi della sua vita di Giovanni Stefano Maruscelli (dopo 1631).
+    </string>
+
+    <string name="ChieSanZenDesc">La prima attestazione della chiesa di San Zeno è del 1029. L’edificio si trova in una zona della città di Pisa nota nel Medioevo con il toponimo “alle grotte” per la presenza di strutture più antiche usate come fonti
+        di approvvigionamento per materiale costruttivo. Anche nell’edificio in questione compaiono in effetti numerosi riutilizzi di età classica.
+        La chiesa che vediamo oggi, facente parte di un’abbazia retta inizialmente da benedettini, è il frutto di varie operazioni iniziate prima del X secolo. Gli scavi condotti negli anni ’60 del Novecento hanno infatti portato alla luce una struttura quadrangolare
+        divisa in tre navate cui vennero aggiunte in appoggio altrettante absidi. Parti degli elevati di queste costruzioni sono inglobate nell’edificio di XII secolo: la fase più antica è anteriore al X secolo mentre quella intermedia trova confronto con esempi urbani
+        databili intorno al Mille.
+        Oggi la chiesa risulta orientata in senso nordest-sudovest e all’interno è suddivisa in tre navate, scandite da colonne e da pilastri alternati, alcuni corredati da capitelli di reimpiego. La facciata, nel lato sud, è caratterizzata da un avancorpo affiancato dai
+        resti del campanile che introduce all’ingresso vero e proprio. Tale struttura al pianterreno è costituita da un loggiato aperto decorato da lacerti marmorei romani e da arcatelle cieche con losanghe e oculi. Il primo piano, a muratura piena, è alleggerito da bifore
+        anch’esse inquadrate da un’archeggiatura su peducci, caratterizzata dallo stesso decoro con circoli e rombi.
+        La chiesa nell’XI secolo era decorata da bacini marmorei oggi scarsamente conservati, di cui restano visibili gli alloggi circolari. Al di sopra, nella parte di facciata, frutto di interventi più recenti, è presente una grande apertura circolare sormontata da uno stemma
+        arcivescovile quattrocentesco.
+    </string>
+
+    <string name="FiboDesc">Il complesso Marzotto è un ex edificio industriale situato in via Filippo Buonarroti 2 a Pisa. Attualmente ospita il Polo Fibonacci, dimora della facoltà di Scienze Matematiche, Fisiche e Naturali, e le segreterie per gli studenti dell"'"Università di Pisa.
+        Nel 1936 Gaetano Marzotto rileva dalla famiglia Pontecorvo l"'"omonima fabbrica tessile, situata all"'"interno delle mura cittadine: la vetustà dell"'"impianto e la necessità di introdurre nuovi macchinari inducono il proprietario alla demolizione degli opifici e a un conseguente
+        nuovo progetto. L"'"incarico per la realizzazione della nuova fabbrica è affidato all"'"architetto veneziano Gildo Valconi: il progetto viene presentato alle autorità cittadine il 23 novembre del 1937 ed il 21 dicembre successivo viene concesso il nulla osta alla costruzione dei nuovi fabbricati,
+        nulla osta vincolato alla sistemazione urbanistica dell"'"area antistante il complesso e alla costruzione di fabbricati destinati ad abitazione per i dipendenti.
+        I lavori, avviati subito dopo e già in stato avanzato nella primavera del 1938, sono eseguiti dall'impresa Oberziner e Zampieri nel rispetto delle istruzioni 'autarchiche' impartite direttamente dal duce (uso del ferro esclusivamente per le strutture, materiali sintetici e autarchici ove possibile).
+        Il complesso è finalmente terminato nel 1939, dopo la morte del progettista. Nel 1944 la fabbrica viene gravemente danneggiata dai bombardamenti: la successiva ricostruzione, terminata nel 1948, comporta la riedificazione di buona parte della pilastratura.
+        Con la crisi nazionale della produzione del tessile, la fabbrica Marzotto riduce progressivamente la produzione sino a cessarla definitivamente nel giugno del 1968. Viene successivamente rilevata dal gruppo Forest, che riavvia l'attività sino al 1974, anno
+        in cui l"'"opificio conosce la definitiva chiusura.
+    </string>
+
+    <string name="ChieSanFranDesc">La prima attestazione di una chiesa dedicata a S. Francesco è del 1233. La comunità minorita pisana crebbe rapidamente, favorita dall"'"appoggio del Comune e da donazioni di privati: la chiesa divenne luogo di pubblica rilevanza, sede di uno studium, di una biblioteca e di uno scriptorium.
+        Nel 1261 l’arcivescovo Visconti, riconoscendo l’importante ruolo dei frati predicatori, inaugurò i lavori di ampliamento della chiesa sotto la guida di Giovanni di Simone. Di rilievo la costruzione del campanile, per l’ardito sistema di imposta su un arco sospeso. Le difficoltà finanziarie legate alle vicende belliche
+        negli anni finali del Duecento distolsero la città dall"'"impegno costruttivo; la chiesa risulta incompleta all’inizio del "'"300, come rivela la facciata, iniziata grazie ai marmi forniti dai Gualandi, ma completata solo in epoca medicea.
+        Nei secoli successivi la chiesa e il convento subirono numerose ristrutturazioni: nel XV secolo furono edificati due nuovi chiostri e la cappella di S. Bernardino. Tra Cinque e Seicento furono eretti gli altari controriformati e aperte le finestre nella navata, interventi che distrussero gli affreschi trecenteschi.
+        La maggior parte degli arredi fu dispersa in seguito alle Soppressioni lorenesi e napoleoniche: nel Museo di S. Matteo si conserva il dossale con S. Francesco e storie attribuito a Giunta, mentre la celebre Maestà di Cimabue e le Stimmate di Giotto passarono al Louvre. Sull’altare maggiore resta il dossale marmoreo
+        affigurante la Madonna col Bambino e santi di Tommaso Pisano. Nelle cappelle del transetto e in quella maggiore si trovano resti di importanti cicli ad affresco primotrecenteschi. Sul lato est della sacrestia si apre la cappella Sardi-Campiglia decorata dagli affreschi di Taddeo di Bartolo (1397), mentre nell’aula capitolare
+        si ammira il ciclo dipinto da Niccolò di Pietro Gerini (1392).
+    </string>
+
 </resources>

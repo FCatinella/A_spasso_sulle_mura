@@ -34,8 +34,9 @@
         <service
             android:name=".AlarmService"
             android:enabled="true"
-            android:stopWithTask="true"
-            />
+            android:stopWithTask="true" />
+
+        <activity android:name=".VisitActivity"></activity>
     </application>
 
 </manifest>

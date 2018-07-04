@@ -34,10 +34,7 @@ import kotlinx.android.synthetic.main.home_layout.*
 import java.util.ArrayList
 import com.google.android.youtube.player.YouTubePlayerSupportFragment
 import android.widget.TextView
-
-
-
-
+import com.google.gson.Gson
 
 
 class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
@@ -45,6 +42,8 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
     private lateinit var viewlist:ArrayList<View>
     private var firsttime :Boolean = true
     private var justInstalled:Boolean = true
+
+    private lateinit var interplacesList : ArrayList<InterPlaces>
 
 
 
@@ -85,14 +84,8 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
             //sennò NULL POINTER EXCEPTION, non posso "toccare" view contenuti in layout non ancora instanziati
             if(position==0){
                 //listener bottoni (provvisori)
-                button?.setOnClickListener{ view ->
-                    val intent = Intent(applicationContext,Monu_detailsActivity::class.java)
-                    intent.putExtra(Intent.EXTRA_TEXT,"Bottone1")
-                    startActivity(intent)
-                }
-
                 button2?.setOnClickListener{view ->
-                    val intent = Intent(applicationContext,Monu_detailsActivity::class.java)
+                    val intent = Intent(applicationContext,VisitActivity::class.java)
                     intent.putExtra(Intent.EXTRA_TEXT,"Bottone2")
                     startActivity(intent)
                 }
@@ -181,6 +174,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         var pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE)
         var editor = pref.edit()
         justInstalled=pref.getBoolean("AppenaInstallata",true)
+        //justInstalled=true  //DEBUG
         editor.putInt("Settato", 0)
         editor.commit()
 
@@ -188,6 +182,31 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         if(justInstalled){
             editor.putBoolean("AppenaInstallata",false)
             editor.commit()
+
+
+            //inserisco tutti i punti d'interesse nella lista
+            interplacesList = ArrayList()
+            interplacesList.add(InterPlaces("Torre Santa Maria",R.drawable.torresantamaria,resources.getString(R.string.TorSanMarDescFull),43.72442,10.3936933))
+            interplacesList.add(InterPlaces("Cimitero Ebraico",R.drawable.cimiteroebraico,resources.getString(R.string.CimiEbraDesc),43.7240329,10.393226))
+            interplacesList.add(InterPlaces("Battistero di San Giovanni",R.drawable.pisa_battistero,resources.getString(R.string.BattDesc),43.7232127,10.3940551))
+            interplacesList.add(InterPlaces("Camposanto Monumentale",R.drawable.camposanto,resources.getString(R.string.CamSantDesc),43.724005,10.3948948))
+            interplacesList.add(InterPlaces("Cattedrale di Santa Maria Assunta",R.drawable.duomo_pisa_torre,resources.getString(R.string.DuomoDesc),43.7233676,10.39557566))
+            interplacesList.add(InterPlaces("Torre Pendente",R.drawable.torrependente,resources.getString(R.string.TorPendDesc),43.72309347,10.39668073))
+            interplacesList.add(InterPlaces("Bagni di Nerone",R.drawable.bagnidinerone,resources.getString(R.string.BagnNeroneDesc),43.7222934,10.4019646))
+            interplacesList.add(InterPlaces("Chiesa e convento di San Torpè",R.drawable.chiesasantorpe,resources.getString(R.string.ChieSanTorpeDesc),43.72206459,10.4022598))
+            interplacesList.add(InterPlaces("Chiesa di San Zeno",R.drawable.chiesasanzeno,resources.getString(R.string.ChieSanZenDesc),43.72303073,10.40757626))
+            interplacesList.add(InterPlaces("Polo Fibonacci",R.drawable.fibonacci,resources.getString(R.string.FiboDesc),43.72112263,10.40778232))
+            interplacesList.add(InterPlaces("Torre Piezometrica",R.drawable.torrepiezometrica,resources.getString(R.string.TorPiezoDescFull),43.72002347,10.40882788))
+            interplacesList.add(InterPlaces("Chiesa di San Francesco",R.drawable.chiesasanfrancesco,resources.getString(R.string.ChieSanFranDesc),43.71881031,10.40716524))
+            interplacesList.add(InterPlaces("Piazza delle Gondole",R.drawable.piazzagondole,resources.getString(R.string.PiazGondDescFull),43.7166266,10.40917109999998))
+            interplacesList.add(InterPlaces("Torre di Legno",R.drawable.torresantamaria,resources.getString(R.string.TorLegnDescFull),43.7132137,10.410173))
+            var interPlacesJson = Gson().toJson(interplacesList)
+            editor.putString("InterPlacesJson",interPlacesJson).commit()
+
+
+
+
+
         }
 
 

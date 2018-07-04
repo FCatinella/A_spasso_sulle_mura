@@ -15,6 +15,7 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Build
 import android.widget.TimePicker
+import kotlinx.android.synthetic.main.content_scrolling.*
 import kotlinx.android.synthetic.main.timepicker_layout.*
 
 
@@ -26,10 +27,14 @@ class Monu_detailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_monu_details)
 
+        tv_scrolling.text=intent.extras.getString("Descrizione")
+
+
+
         /*imposto la foto come sfondo della imageview (questa deve essere variabile in base al monumento)
 
           userò le informazioni passate nell'intent per scegliere l'immagine */
-        image_scrolling_top.setImageDrawable(getDrawable(R.drawable.mura1))
+        image_scrolling_top.setImageResource(intent.extras.getInt("Immagine"))
         image_scrolling_top.imageAlpha=750
 
         //Imposto le informazioni in base al monumento scelto
