@@ -26,6 +26,9 @@ class Monu_detailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_monu_details)
+        supportActionBar?.elevation=0F
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
         tv_scrolling.text=intent.extras.getString("Descrizione")
 
@@ -51,5 +54,10 @@ class Monu_detailsActivity : AppCompatActivity() {
 
 
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

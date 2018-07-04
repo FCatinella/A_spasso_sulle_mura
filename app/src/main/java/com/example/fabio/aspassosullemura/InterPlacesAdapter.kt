@@ -76,4 +76,5 @@ class InterPlacesAdapter (lista : ArrayList<InterPlaces>,contextAr: Context): Re
         }
     }
 
+
 }

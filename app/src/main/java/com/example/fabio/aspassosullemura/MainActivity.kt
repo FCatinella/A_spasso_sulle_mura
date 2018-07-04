@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
+import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
@@ -34,6 +35,7 @@ import kotlinx.android.synthetic.main.home_layout.*
 import java.util.ArrayList
 import com.google.android.youtube.player.YouTubePlayerSupportFragment
 import android.widget.TextView
+import android.widget.Toast
 import com.google.gson.Gson
 
 
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
     private lateinit var viewlist:ArrayList<View>
     private var firsttime :Boolean = true
     private var justInstalled:Boolean = true
+    private lateinit var lm :LocationManager
 
     private lateinit var interplacesList : ArrayList<InterPlaces>
 
@@ -83,11 +86,22 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
             container.addView(viewlist.get(position))
             //sennò NULL POINTER EXCEPTION, non posso "toccare" view contenuti in layout non ancora instanziati
             if(position==0){
-                //listener bottoni (provvisori)
+                //listener bottone Guida
                 button2?.setOnClickListener{view ->
-                    val intent = Intent(applicationContext,VisitActivity::class.java)
-                    intent.putExtra(Intent.EXTRA_TEXT,"Bottone2")
-                    startActivity(intent)
+
+                    //controllo permessi
+                    if (ContextCompat.checkSelfPermission(applicationContext,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_DENIED) {
+                        if(Build.VERSION.SDK_INT>=23){
+                            ActivityCompat.requestPermissions(this@MainActivity,arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),0)
+                        }
+                    }
+                    else {
+                        if(!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) Toast.makeText(applicationContext,"Attiva il GPS (Alta Precisione o Solo Dispositivo) per usare questa funzionalità", Toast.LENGTH_LONG).show()
+                        else {
+                            val intent = Intent(applicationContext, VisitActivity::class.java)
+                            startActivity(intent)
+                        }
+                    }
                 }
             }
 
@@ -166,9 +180,9 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         setContentView(R.layout.activity_main)
 
         supportActionBar?.elevation= 0F // elimino l'ombra sotto l'action bar ( la "schiaccio a terra" )
-
-
         initview()
+
+        lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
         //controllo se l'applicazione è stata appena installata
         var pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE)
@@ -179,9 +193,22 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         editor.commit()
 
         //splashscreen etc.
+        //Tutto quello che riguarda il primissimo avvio dopo l'installazione
         if(justInstalled){
             editor.putBoolean("AppenaInstallata",false)
             editor.commit()
+
+
+            //Riguardante Oreo+
+            // ottengo il service delle notifiche
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            // Creo i canali delle notifiche (spero di trovare un modo per farlo solo una volta)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val nch = NotificationChannel("tutte", "Tutte", NotificationManager.IMPORTANCE_DEFAULT)
+                val posChan = NotificationChannel("posizione", "Posizione", NotificationManager.IMPORTANCE_LOW)
+                notificationManager.createNotificationChannel(nch)
+                notificationManager.createNotificationChannel(posChan)
+            }
 
 
             //inserisco tutti i punti d'interesse nella lista
@@ -216,7 +243,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
 
 
 
-        // cose da fare al primo avvio ---------------------------
+        // cose da fare una volta ---------------------------
         if(savedInstanceState?.getBoolean("Primo avvio")!=null){
             firsttime=savedInstanceState.getBoolean("Primo avvio") //estraggo la  variabile dal bundle ( se esiste )
         }
@@ -231,19 +258,10 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
 
         //inizializzo il fragment usando la api key
         val frag = supportFragmentManager.findFragmentById(R.id.youtubeplayer) as YouTubePlayerSupportFragment
-        frag.initialize("AIzaSyC6q0mq5it6hcS03_X1dThbl525KvNwXxI", this) // dove this è inteso per YouTubePlayer.OnInitializedListener
+        frag.initialize("YourKey", this) // dove this è inteso per YouTubePlayer.OnInitializedListener
         //-------------------------------
 
-        //Riguardante Oreo+
-        // ottengo il service delle notifiche
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        // Creo i canali delle notifiche (spero di trovare un modo per farlo solo una volta)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val nch = NotificationChannel("tutte", "Tutte", NotificationManager.IMPORTANCE_DEFAULT)
-            val posChan = NotificationChannel("posizione", "Posizione", NotificationManager.IMPORTANCE_LOW)
-            notificationManager.createNotificationChannel(nch)
-            notificationManager.createNotificationChannel(posChan)
-        }
+
         //---------------------------------
 
     }

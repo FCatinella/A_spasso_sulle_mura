@@ -240,7 +240,7 @@
         quale sono presenti numerosi sarcofagi romani, un tempo riutilizzati per le sepolture più prestigiose.
         Nel 1360 iniziarono gli affreschi dei corridoi con soggetti legati al tema della vita e della morte, ai quali lavorarono Buonamico Buffalmacco e Francesco Traini, il primo autore del
         celebre Trionfo della Morte, il secondo di una Crocefissione. Nella cappella Aulla è conservata la cosiddetta “lampada di Galileo”, un tempo in cattedrale, la cui osservazione dette
-        allo scienziato lo spunto per la teoria sull"'"isocronismo del pendolo. All'interno della struttura sono inoltre esposti alcuni anelli della grande catena di Porto Pisano che dopo la
+        allo scienziato lo spunto per la teoria sull"'"isocronismo del pendolo. All"'"interno della struttura sono inoltre esposti alcuni anelli della grande catena di Porto Pisano che dopo la
         sconfitta della Meloria (1284) fu spezzata e portata a Genova, fino alla restituzione dopo l"'"Unità d"'"Italia.
     </string>
 
@@ -265,7 +265,7 @@
         all"'"interno della base di appoggio.
         I piani complessivi sono 8, circondati da una loggetta con archi a tutto sesto, che riprendono il motivo della facciata della cattedrale e poichè la torre ne costituisce appunto il campanile, vennero collocate 7 campane: Assunta
         (la più grande che pesa 3620 kg), Crocifisso, San Ranieri, Dal Pozzo, Pasquereccia, Terza, Vespruccio, le quali suonano ancora oggi prima delle messe in Duomo ed a mezzogiorno tramite un sistema elettronico e che un
-        tempo era adibite ognuna ad un momento della giornata liturgica. La campana Pasquareccia, la più antica, si chiamava originariamente Giustizia e si trovava nell'omonimo palazzo e veniva impiegata per avvisare della morte dei traditori.
+        tempo era adibite ognuna ad un momento della giornata liturgica. La campana Pasquareccia, la più antica, si chiamava originariamente Giustizia e si trovava nell"'"omonimo palazzo e veniva impiegata per avvisare della morte dei traditori.
     </string>
 
     <string name="BagnNeroneDesc">Le terme di Porta a Lucca, tradizionalmente note come terme o bagni di Nerone, sorgono in quello che doveva essere il settore nord-occidentale dell’abitato in epoca romana, immediatamente all’interno
@@ -307,9 +307,9 @@
         Nel 1936 Gaetano Marzotto rileva dalla famiglia Pontecorvo l"'"omonima fabbrica tessile, situata all"'"interno delle mura cittadine: la vetustà dell"'"impianto e la necessità di introdurre nuovi macchinari inducono il proprietario alla demolizione degli opifici e a un conseguente
         nuovo progetto. L"'"incarico per la realizzazione della nuova fabbrica è affidato all"'"architetto veneziano Gildo Valconi: il progetto viene presentato alle autorità cittadine il 23 novembre del 1937 ed il 21 dicembre successivo viene concesso il nulla osta alla costruzione dei nuovi fabbricati,
         nulla osta vincolato alla sistemazione urbanistica dell"'"area antistante il complesso e alla costruzione di fabbricati destinati ad abitazione per i dipendenti.
-        I lavori, avviati subito dopo e già in stato avanzato nella primavera del 1938, sono eseguiti dall'impresa Oberziner e Zampieri nel rispetto delle istruzioni 'autarchiche' impartite direttamente dal duce (uso del ferro esclusivamente per le strutture, materiali sintetici e autarchici ove possibile).
+        I lavori, avviati subito dopo e già in stato avanzato nella primavera del 1938, sono eseguiti dall"'"impresa Oberziner e Zampieri nel rispetto delle istruzioni "'"autarchiche"'" impartite direttamente dal duce (uso del ferro esclusivamente per le strutture, materiali sintetici e autarchici ove possibile).
         Il complesso è finalmente terminato nel 1939, dopo la morte del progettista. Nel 1944 la fabbrica viene gravemente danneggiata dai bombardamenti: la successiva ricostruzione, terminata nel 1948, comporta la riedificazione di buona parte della pilastratura.
-        Con la crisi nazionale della produzione del tessile, la fabbrica Marzotto riduce progressivamente la produzione sino a cessarla definitivamente nel giugno del 1968. Viene successivamente rilevata dal gruppo Forest, che riavvia l'attività sino al 1974, anno
+        Con la crisi nazionale della produzione del tessile, la fabbrica Marzotto riduce progressivamente la produzione sino a cessarla definitivamente nel giugno del 1968. Viene successivamente rilevata dal gruppo Forest, che riavvia l"'"attività sino al 1974, anno
         in cui l"'"opificio conosce la definitiva chiusura.
     </string>
 
@@ -321,5 +321,8 @@
         affigurante la Madonna col Bambino e santi di Tommaso Pisano. Nelle cappelle del transetto e in quella maggiore si trovano resti di importanti cicli ad affresco primotrecenteschi. Sul lato est della sacrestia si apre la cappella Sardi-Campiglia decorata dagli affreschi di Taddeo di Bartolo (1397), mentre nell’aula capitolare
         si ammira il ciclo dipinto da Niccolò di Pietro Gerini (1392).
     </string>
+    
+    <string name="AppHomeDescr">Usa questa applicazione come guida turistica!
+        \nPotrai vedere quali monumenti hai vicino ed avere una descrizione testuale e audio di essi.</string>
 
 </resources>

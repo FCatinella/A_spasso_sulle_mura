@@ -8,16 +8,22 @@
     tools:context=".Monu_detailsActivity"
     tools:showIn="@layout/activity_monu_details">
 
-    <TextView
-        android:id="@+id/tv_scrolling"
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="26dp"
-        android:lineSpacingExtra="8dp"
-        android:text="@string/large_text"
-        android:textIsSelectable="true" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_scrolling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="26dp"
+            android:lineSpacingExtra="8dp"
+            android:text="@string/large_text"
+            android:textIsSelectable="true" />
+
+    </ScrollView>
+
 
 </android.support.v4.widget.NestedScrollView>
