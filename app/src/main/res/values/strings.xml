@@ -164,7 +164,7 @@
     \nAccesso anche per disabili.</string>
 
     <string name="TorLegnDescFull">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        \nLorem ipsum dolor sit amet, consectetur adipiscing elit.
         Ut lacinia ultrices metus, non tincidunt dui imperdiet non. Duis vitae convallis neque. Pellentesque sodales diam nec varius vehicula. In hac habitasse platea dictumst.
         Morbi non sem magna. Aliquam justo felis, commodo a vestibulum quis, iaculis at ipsum. Sed arcu mi, vulputate ut mi eu, porta convallis elit. Sed non diam non risus mollis finibus.
         Fusce tristique mollis massa. Morbi finibus augue vitae auctor aliquet. Quisque porttitor massa non convallis gravida.
@@ -174,7 +174,7 @@
     </string>
 
     <string name="PiazGondDescFull">
-        Piccola e caratteristica piazza alla fine di Via Santa Marta, passa spesso inosservata all’occhio del passante Piazza delle Gondole è invece un luogo importante nella storia “fluviale”
+        \nPiccola e caratteristica piazza alla fine di Via Santa Marta, passa spesso inosservata all’occhio del passante Piazza delle Gondole è invece un luogo importante nella storia “fluviale”
         di Pisa.
         La caratteristica principale della piazza è il bacino d’acqua tutt’ora visibile, chiamato Porto delle Gondole: era il capolinea della fitta rete di canali che percorreva la
         pianura pisana dove approdavano le barche che trasportavano merci e passeggeri fino a San Giuliano, navigando sul Canale Macinate che collegava Pisa e Ripafratta.
@@ -189,7 +189,7 @@
     </string>
 
     <string name="TorPiezoDescFull">
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
+        \nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
         vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
         Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
         voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui
@@ -200,13 +200,13 @@
     </string>
 
     <string name="TorSanMarDescFull">
-        La torre di Santa Maria è la più nota delle torri dell"'"antica cerchia muraria di Pisa, poiché chiude il lato nord-ovest delle fortificazioni presso la celeberrima piazza del Duomo.
+        \nLa torre di Santa Maria è la più nota delle torri dell"'"antica cerchia muraria di Pisa, poiché chiude il lato nord-ovest delle fortificazioni presso la celeberrima piazza del Duomo.
         La sua costruzione risale al 1155-1161, con grossi conci di panchina livornese e un disegno leggermente digradante verso l"'"alto. Oltre la sommità delle mura fu usata invece la breccia
         sedimentaria proveniente da Asciano, fino a un punto segnato da uno scalino, oltre il quale termina la parte antica, con la parte superiore, compreso il coronamento merlato,
         risalente a interventi di sopraelevazione ottocenteschi. Si aprono nella struttura feritoie e aperture strombate, mentre le finestrelle più alte fanno parte del rifacimento.
     </string>
 
-    <string name="CimiEbraDesc">Collocato nell’area adiacente alla Piazza dei Miracoli, in corrispondenza dell’antica Porta del Leone, il cimitero ebraico ospita dal 1674 le sepolture cittadine
+    <string name="CimiEbraDesc">\nCollocato nell’area adiacente alla Piazza dei Miracoli, in corrispondenza dell’antica Porta del Leone, il cimitero ebraico ospita dal 1674 le sepolture cittadine
         degli israeliti. Di particolare interesse sono la varietà stilistica dei tumuli presenti (dalle classiche forme trapezoidali allo stile impero, fino al neogotico e al liberty),
         le pietre tombali seicentesche qui trasferite da un precedente luogo sepolcrale e la differente provenienza geografica degli stessi inumati.
         Quest’ultima caratteristica offre un ottimo esempio di quanto nei secoli la presenza ebraica a Pisa sia stata variegata, e testimonia anche la scelta fatta da alcuni forestieri di essere
@@ -215,7 +215,7 @@
         almeno quattro, se non addirittura cinque, cimiteri ebraici nella zona compresa tra la Porta Nuova e la Cittadella.
     </string>
 
-    <string name="BattDesc">Il Battistero è una delle quattro costruzioni architettoniche che costituiscono Piazza Duomo o Piazza dei Miracoli a Pisa. Progettato ed edificato per ricordare il
+    <string name="BattDesc">\nIl Battistero è una delle quattro costruzioni architettoniche che costituiscono Piazza Duomo o Piazza dei Miracoli a Pisa. Progettato ed edificato per ricordare il
         primo evento della vita da cristiano di ogni uomo, è dedicato a San Giovanni Battista. Il primo progetto è stato redatto da Diotisalvi, e la prima pietra posta circa a metà del XII secolo,
         ma non fu mai realizzato completamente, e circa un secolo dopo l’interruzione dei lavori fu ripreso da Nicola e Giovanni Pisano. L’eterogeneità degli stili (romanico e gotico) è
         dovuta proprio al fatto che l’edificio fosse realizzato a più riprese. I visitatori rimangono subito affascinati dall’interno del Battistero, completamente spoglio dal punto di vista
@@ -228,7 +228,7 @@
         e anche necessario: le città di mare, infatti, sfruttavano il riflesso lunare sui mattoni bianchi per permettere ai marinai di orientarsi.
     </string>
 
-    <string name="CamSantDesc">Il cimitero della Cattedrale fu iniziato nel 1277, per opera di Giovanni di Simone, come ultimo degli edifici monumentali della piazza, a formare una quinta
+    <string name="CamSantDesc">\nIl cimitero della Cattedrale fu iniziato nel 1277, per opera di Giovanni di Simone, come ultimo degli edifici monumentali della piazza, a formare una quinta
         scenica sul lato settentrionale.
         L’edificio fu detto Campo Santo per una tradizione secondo la quale il terreno dove sorse sarebbe stato mescolato con terra giunta dalla Terrasanta con le navi pisane di ritorno dalla
         III crociata. L’ampia struttura nacque comunque per uno scopo ben preciso: creare uno spazio adeguato per raccogliere i sarcofagi e le varie sepolture che da secoli affollavano l’area
@@ -244,7 +244,7 @@
         sconfitta della Meloria (1284) fu spezzata e portata a Genova, fino alla restituzione dopo l"'"Unità d"'"Italia.
     </string>
 
-    <string name="DuomoDesc">“Tempio di marmo bianco come la neve” (così recita un’epigrafe sulla facciata), la cattedrale pisana è uno dei massimi capolavori di architettura romanica, in cui si fondono elementi
+    <string name="DuomoDesc">\n“Tempio di marmo bianco come la neve” (così recita un’epigrafe sulla facciata), la cattedrale pisana è uno dei massimi capolavori di architettura romanica, in cui si fondono elementi
         stilistici lombardo-emiliani, classici, tardo-antichi, bizantini, ravennati e arabi. Iniziata da Buscheto nel 1064 e terminata a metà del 1100 da Rainaldo con il prolungamento dell’edificio e la facciata,
         fu costruita come simbolo della potenza della Repubblica marinara pisana all’apice della sua potenza, grazie anche ai ricchi bottini delle battaglie navali nel Mediterraneo e a donazioni di privati e imperatori.
          Fu consacrata nel 1118 e dedicata a Maria Assunta.
@@ -258,7 +258,7 @@
         dal soffitto a cassettoni.
     </string>
 
-    <string name="TorPendDesc">La Torre di Pisa, posta su un terreno argilloso e sabbioso, sembra cominciò ad inclinarsi fin dall"'"edificazione del terzo piano tanto che si dovettero sospendere i lavori per poi riprenderli anni dopo,
+    <string name="TorPendDesc">\nLa Torre di Pisa, posta su un terreno argilloso e sabbioso, sembra cominciò ad inclinarsi fin dall"'"edificazione del terzo piano tanto che si dovettero sospendere i lavori per poi riprenderli anni dopo,
         costruendo i piani successivi con una curvatura in senso opposto alla pendenza.
         Il progetto originale si pensa sia stato di Diotisalvi, che nello stesso periodo stava costruendo anche il Battistero.
         La costruzione continuò fino al completamento nel 1350, raggiungendo un"'"altezza di circa 56 metri e un peso di 14.523 tonnellate, riuscendo a mantenerla in equilibrio perché la verticale che passa per il baricentro cade
@@ -268,7 +268,7 @@
         tempo era adibite ognuna ad un momento della giornata liturgica. La campana Pasquareccia, la più antica, si chiamava originariamente Giustizia e si trovava nell"'"omonimo palazzo e veniva impiegata per avvisare della morte dei traditori.
     </string>
 
-    <string name="BagnNeroneDesc">Le terme di Porta a Lucca, tradizionalmente note come terme o bagni di Nerone, sorgono in quello che doveva essere il settore nord-occidentale dell’abitato in epoca romana, immediatamente all’interno
+    <string name="BagnNeroneDesc">\nLe terme di Porta a Lucca, tradizionalmente note come terme o bagni di Nerone, sorgono in quello che doveva essere il settore nord-occidentale dell’abitato in epoca romana, immediatamente all’interno
         delle mura medievali, fra l’abbazia di S. Zeno ed il Duomo. L’identificazione dei ruderi risale al 1548, quando per la prima volta furono definiti come laconicum, ambiente riservato ai bagni di sudore; l’attribuzione della struttura a
         Nerone, invece, è del XIII secolo e rientra in una vasta tradizione che vede l’imperatore avere intensi rapporti con la città di Pisa.
         Oggi, la lettura delle tecniche edilizie, delle caratteristiche strutturali e dei dati materiali, permette di datare l’edificio agli ultimi due decenni del I secolo d.C. e di metterlo in relazione con la famiglia dei
@@ -279,7 +279,7 @@
         abbandonato tra la fine del II e la seconda metà del III secolo d.C., quando l’area, frequentata ormai solo sporadicamente allo scopo di recuperare materiale edilizio, fu adibita, a partire dal IV secolo d.C., a necropoli.
     </string>
 
-    <string name="ChieSanTorpeDesc">La chiesa e l’attiguo convento, fondati tra il 1254 e il 1278, appartennero ai Frati Umiliati fino al 1584, anno in cui il complesso passò ai Frati di S. Francesco di Paola, che gestirono gli edifici
+    <string name="ChieSanTorpeDesc">\nLa chiesa e l’attiguo convento, fondati tra il 1254 e il 1278, appartennero ai Frati Umiliati fino al 1584, anno in cui il complesso passò ai Frati di S. Francesco di Paola, che gestirono gli edifici
         fino al sopraggiungere delle soppressioni, nel 1784. In seguito la proprietà appartenne ai Vallombrosani (fino al 1808) ed infine ai Certosini. Dal 1816 l’edificio è assegnato ai Carmelitani.
         La facciata a intonaco, con copertura a capanna, è abbellita da una lunetta in pietra serena al centro della quale è inserito il rilievo marmoreo di S. Torpè realizzato dallo scultore contemporaneo Antonio Fascetti.
         All’interno, la controfacciata, accoglie la cantoria e l’organo, mentre le pareti ospitano quattro confessionali in pietra (XVII secolo), sopra i quali sono collocate tele di autore ignoto, raffiguranti: San Simone Stock e Santa Teresa
@@ -291,7 +291,7 @@
         1820 ca.) di Domenico Nani da Udine ed Il Santo ed episodi della sua vita di Giovanni Stefano Maruscelli (dopo 1631).
     </string>
 
-    <string name="ChieSanZenDesc">La prima attestazione della chiesa di San Zeno è del 1029. L’edificio si trova in una zona della città di Pisa nota nel Medioevo con il toponimo “alle grotte” per la presenza di strutture più antiche usate come fonti
+    <string name="ChieSanZenDesc">\nLa prima attestazione della chiesa di San Zeno è del 1029. L’edificio si trova in una zona della città di Pisa nota nel Medioevo con il toponimo “alle grotte” per la presenza di strutture più antiche usate come fonti
         di approvvigionamento per materiale costruttivo. Anche nell’edificio in questione compaiono in effetti numerosi riutilizzi di età classica.
         La chiesa che vediamo oggi, facente parte di un’abbazia retta inizialmente da benedettini, è il frutto di varie operazioni iniziate prima del X secolo. Gli scavi condotti negli anni ’60 del Novecento hanno infatti portato alla luce una struttura quadrangolare
         divisa in tre navate cui vennero aggiunte in appoggio altrettante absidi. Parti degli elevati di queste costruzioni sono inglobate nell’edificio di XII secolo: la fase più antica è anteriore al X secolo mentre quella intermedia trova confronto con esempi urbani
@@ -303,7 +303,7 @@
         arcivescovile quattrocentesco.
     </string>
 
-    <string name="FiboDesc">Il complesso Marzotto è un ex edificio industriale situato in via Filippo Buonarroti 2 a Pisa. Attualmente ospita il Polo Fibonacci, dimora della facoltà di Scienze Matematiche, Fisiche e Naturali, e le segreterie per gli studenti dell"'"Università di Pisa.
+    <string name="FiboDesc">\nIl complesso Marzotto è un ex edificio industriale situato in via Filippo Buonarroti 2 a Pisa. Attualmente ospita il Polo Fibonacci, dimora della facoltà di Scienze Matematiche, Fisiche e Naturali, e le segreterie per gli studenti dell"'"Università di Pisa.
         Nel 1936 Gaetano Marzotto rileva dalla famiglia Pontecorvo l"'"omonima fabbrica tessile, situata all"'"interno delle mura cittadine: la vetustà dell"'"impianto e la necessità di introdurre nuovi macchinari inducono il proprietario alla demolizione degli opifici e a un conseguente
         nuovo progetto. L"'"incarico per la realizzazione della nuova fabbrica è affidato all"'"architetto veneziano Gildo Valconi: il progetto viene presentato alle autorità cittadine il 23 novembre del 1937 ed il 21 dicembre successivo viene concesso il nulla osta alla costruzione dei nuovi fabbricati,
         nulla osta vincolato alla sistemazione urbanistica dell"'"area antistante il complesso e alla costruzione di fabbricati destinati ad abitazione per i dipendenti.
@@ -313,7 +313,7 @@
         in cui l"'"opificio conosce la definitiva chiusura.
     </string>
 
-    <string name="ChieSanFranDesc">La prima attestazione di una chiesa dedicata a S. Francesco è del 1233. La comunità minorita pisana crebbe rapidamente, favorita dall"'"appoggio del Comune e da donazioni di privati: la chiesa divenne luogo di pubblica rilevanza, sede di uno studium, di una biblioteca e di uno scriptorium.
+    <string name="ChieSanFranDesc">\nLa prima attestazione di una chiesa dedicata a S. Francesco è del 1233. La comunità minorita pisana crebbe rapidamente, favorita dall"'"appoggio del Comune e da donazioni di privati: la chiesa divenne luogo di pubblica rilevanza, sede di uno studium, di una biblioteca e di uno scriptorium.
         Nel 1261 l’arcivescovo Visconti, riconoscendo l’importante ruolo dei frati predicatori, inaugurò i lavori di ampliamento della chiesa sotto la guida di Giovanni di Simone. Di rilievo la costruzione del campanile, per l’ardito sistema di imposta su un arco sospeso. Le difficoltà finanziarie legate alle vicende belliche
         negli anni finali del Duecento distolsero la città dall"'"impegno costruttivo; la chiesa risulta incompleta all’inizio del "'"300, come rivela la facciata, iniziata grazie ai marmi forniti dai Gualandi, ma completata solo in epoca medicea.
         Nei secoli successivi la chiesa e il convento subirono numerose ristrutturazioni: nel XV secolo furono edificati due nuovi chiostri e la cappella di S. Bernardino. Tra Cinque e Seicento furono eretti gli altari controriformati e aperte le finestre nella navata, interventi che distrussero gli affreschi trecenteschi.

@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.android.synthetic.main.content_scrolling.*
 import kotlinx.android.synthetic.main.inte_places_layout.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -75,6 +76,8 @@ class VisitActivity : AppCompatActivity(),LocationListener {
         locProv= lm.getBestProvider(crit,true) //location provvider
         Log.w("VisitActivity","provvider scelto: $locProv")
 
+
+
     }
 
 
@@ -108,20 +111,7 @@ class VisitActivity : AppCompatActivity(),LocationListener {
         diffResult.dispatchUpdatesTo(rv.adapter)
         interplacesList.clear()
         interplacesList.addAll(newList)
-        rv.smoothScrollToPosition(0)
 
-
-
-        /*for(i in interplacesList.indices){
-            val element = interplacesList[i]
-            if( element.getRealIndex()!=i){
-                Collections.swap(this.interplacesList, i, element.getRealIndex())
-                rv.adapter.notifyItemMoved(i,element.getRealIndex())
-                element.setRealIndex(i)
-            }
-
-        }*/
-        //rv.adapter.notifyDataSetChanged()
     }
 
 
@@ -138,12 +128,6 @@ class VisitActivity : AppCompatActivity(),LocationListener {
     }
 
     override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
-        var crit = Criteria()
-        crit.accuracy = Criteria.ACCURACY_FINE
-        crit.powerRequirement = Criteria.POWER_MEDIUM
-        locProv = lm.getBestProvider(crit, true)
-        lm.removeUpdates(this)
-        lm.requestLocationUpdates(locProv, 30000, 10.toFloat(), this) //attivo il listener
-        Log.w("VisitActivity","provvider ha cambiato stato: $locProv")
+
     }
 }

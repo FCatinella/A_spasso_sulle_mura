@@ -10,4 +10,5 @@
     <color name="gradient_end">#f000</color>
     <color name="colore_sfondohome">#cfc39f</color>
     <color name="colore_testosfondo">#ffce77</color>
+    <color name="transparent">#00ffffff</color>
 </resources>

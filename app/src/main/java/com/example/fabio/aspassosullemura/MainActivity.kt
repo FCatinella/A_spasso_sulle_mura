@@ -23,6 +23,7 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.appcompat.R.id.action_bar_title
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -86,6 +87,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
             container.addView(viewlist.get(position))
             //sennò NULL POINTER EXCEPTION, non posso "toccare" view contenuti in layout non ancora instanziati
             if(position==0){
+
                 //listener bottone Guida
                 button2?.setOnClickListener{view ->
 
@@ -158,6 +160,8 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
     }
 
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
+        Log.w("YoutubePlayer",p1.toString())
+
     }
     //-------------------------------------------------------------------------------------------------------------
 
@@ -188,7 +192,9 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         var pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE)
         var editor = pref.edit()
         justInstalled=pref.getBoolean("AppenaInstallata",true)
+
         //justInstalled=true  //DEBUG
+
         editor.putInt("Settato", 0)
         editor.commit()
 
@@ -230,12 +236,13 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
             var interPlacesJson = Gson().toJson(interplacesList)
             editor.putString("InterPlacesJson",interPlacesJson).commit()
 
-
-
-
-
         }
 
+        //inizializzo il fragment usando la api key
+        val frag = supportFragmentManager.findFragmentById(R.id.youtubeplayer) as YouTubePlayerSupportFragment
+        frag.initialize(R.string.keyApiYoutube.toString(), this) // dove this è inteso per YouTubePlayer.OnInitializedListener
+
+        //-------------------------------
 
 
 
@@ -256,15 +263,10 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         }
         //------------------------------------------------------
 
-        //inizializzo il fragment usando la api key
-        val frag = supportFragmentManager.findFragmentById(R.id.youtubeplayer) as YouTubePlayerSupportFragment
-        frag.initialize("YourKey", this) // dove this è inteso per YouTubePlayer.OnInitializedListener
-        //-------------------------------
 
-
-        //---------------------------------
 
     }
+
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

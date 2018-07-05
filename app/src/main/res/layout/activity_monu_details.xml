@@ -10,9 +10,9 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
+        android:layout_height="300dp"
         android:fitsSystemWindows="true"
-        android:background="#000"
+        android:background="@color/transparent"
         android:theme="@style/AppTheme.NoActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -40,12 +40,16 @@
                 android:background="@color/colorPrimary"
                 android:alpha="0"
                 app:layout_collapseMode="pin"
+
+                app:logo="@drawable/ic_share_white_24dp"
                 app:popupTheme="@style/AppTheme.NoActionBar" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_scrolling" />
+    <include
+        layout="@layout/content_scrolling"
+        app:layout_scrollFlags="scroll|enterAlways"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
