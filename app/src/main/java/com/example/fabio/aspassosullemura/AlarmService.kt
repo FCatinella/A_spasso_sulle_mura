@@ -10,6 +10,7 @@ import android.location.Criteria
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
@@ -30,6 +31,7 @@ class AlarmService : Service(),LocationListener {
     lateinit var pref : SharedPreferences
     lateinit var editor : SharedPreferences.Editor
     lateinit var nm : NotificationManager
+    lateinit var mapPintent : PendingIntent
 
     override fun onLocationChanged(p0: Location?) {
         updateLocation(p0!!)
@@ -60,6 +62,16 @@ class AlarmService : Service(),LocationListener {
     }
 
     override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
+    }
+
+
+    override fun onCreate() {
+        super.onCreate()
+        val pref = getSharedPreferences("myprefs",Context.MODE_PRIVATE)
+        val ingrSceltoJson = Gson().fromJson<Location>((pref.getString("Ingresso scelto","")),Location::class.java)
+        val gmmIntentUri = Uri.parse("google.navigation:q="+ingrSceltoJson.latitude+","+ingrSceltoJson.longitude+"&mode=w")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapPintent = PendingIntent.getActivity(this,5,mapIntent,0)
     }
 
     override fun onBind(intent: Intent): IBinder {
@@ -157,6 +169,7 @@ class AlarmService : Service(),LocationListener {
                     .setSmallIcon(R.drawable.ic_info_white_24dp)
                     .setContentTitle("E' ora!")
                     .setContentText("Incamminati verso le mura per non fare tardi.")
+                    .addAction(R.drawable.navigation_empty_icon,"Indicazioni",mapPintent)
                     .build()
             nm.notify(3,notification2) //invio la notifica vera e propria
             lm.removeUpdates(this)

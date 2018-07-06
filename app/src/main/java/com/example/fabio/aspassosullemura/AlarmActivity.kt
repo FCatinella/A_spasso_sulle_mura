@@ -207,21 +207,6 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         } else {
             //allarme impostato
             setContentView(R.layout.activity_alarm_set)
-           /* val aasl= findViewById<View>(R.id.activity_alarm_set_layout)
-            if(ingressoNome.equals("null")==false) {
-                // ingresso già scelto
-                val ingr = Gson().fromJson(ingressoNome, Location::class.java).provider
-                when (ingr) {
-                    "Piazza Gondole" -> aasl.background = getDrawable(R.drawable.piazzagondole_bitmap)
-                    "Torre Piezometrica" -> aasl.background = getDrawable(R.drawable.torrepiezometrica_bitmap)
-                    "Torre Santa Maria" -> aasl.background = getDrawable(R.drawable.torresantamaria_bitmap)
-                    "Torre di Legno" -> {
-                    } //TODO
-
-                }
-                aasl.backgroundTintMode= PorterDuff.Mode.DARKEN
-            }
-            */
 
             val bu= findViewById<Button>(R.id.disableAlarmButton)
             val avvisoTime = findViewById<TextView>(R.id.textViewTimeSet)

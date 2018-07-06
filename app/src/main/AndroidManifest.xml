@@ -35,7 +35,8 @@
         <activity
             android:name=".Monu_detailsActivity"
             android:label="@string/title_activity_monu_details"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTask"/>
         <activity android:name=".AlarmActivity" />
 
         <receiver android:name=".Receiver" />
@@ -44,6 +45,11 @@
             android:name=".AlarmService"
             android:enabled="true"
             android:stopWithTask="true" />
+
+        <service
+            android:name=".AudioService"
+            android:enabled="true"
+            android:stopWithTask="true"/>
 
         <activity android:name=".VisitActivity"></activity>
     </application>

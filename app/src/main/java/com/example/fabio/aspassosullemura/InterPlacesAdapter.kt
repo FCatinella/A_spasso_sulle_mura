@@ -73,6 +73,8 @@ class InterPlacesAdapter (lista : ArrayList<InterPlaces>,contextAr: Context): Re
             intent.putExtra("Descrizione",luogo.getDescr())
             intent.putExtra("Immagine",luogo.getPhotoDraw())
             intent.putExtra("Posizione",luogo.getLoc())
+            intent.putExtra("Posizione",luogo.getLoc())
+            intent.putExtra("AudioId",luogo.getAudioId())
             contextCpy.startActivity(intent)
         }
     }

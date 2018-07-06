@@ -35,6 +35,7 @@ class VisitActivity : AppCompatActivity(),LocationListener {
     lateinit var rv : RecyclerView
     lateinit var locProv : String
     lateinit var lm : LocationManager
+    var locationupdated : Boolean = false
 
 
 
@@ -42,6 +43,7 @@ class VisitActivity : AppCompatActivity(),LocationListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.inte_places_layout)
+
 
         //sistemo l'actionbar ( titolo cambiato, pulsante back abilitato e 0 elevazione)
         supportActionBar?.title="Monumenti vicini"
@@ -129,5 +131,12 @@ class VisitActivity : AppCompatActivity(),LocationListener {
 
     override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val editor = pref.edit()
+        var interPlacesJson = Gson().toJson(interplacesList)
+        editor.putString("InterPlacesJson",interPlacesJson).commit()
     }
 }

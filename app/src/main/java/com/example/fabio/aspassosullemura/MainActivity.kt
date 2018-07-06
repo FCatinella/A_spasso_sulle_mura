@@ -193,7 +193,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         var editor = pref.edit()
         justInstalled=pref.getBoolean("AppenaInstallata",true)
 
-        //justInstalled=true  //DEBUG
+       // justInstalled=true  //DEBUG
 
         editor.putInt("Settato", 0)
         editor.commit()
@@ -212,27 +212,29 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val nch = NotificationChannel("tutte", "Tutte", NotificationManager.IMPORTANCE_DEFAULT)
                 val posChan = NotificationChannel("posizione", "Posizione", NotificationManager.IMPORTANCE_LOW)
+                val audioChan = NotificationChannel("AudioGuida", "AudioGuida", NotificationManager.IMPORTANCE_LOW)
                 notificationManager.createNotificationChannel(nch)
                 notificationManager.createNotificationChannel(posChan)
+                notificationManager.createNotificationChannel(audioChan)
             }
 
 
             //inserisco tutti i punti d'interesse nella lista
             interplacesList = ArrayList()
-            interplacesList.add(InterPlaces("Torre Santa Maria",R.drawable.torresantamaria,resources.getString(R.string.TorSanMarDescFull),43.72442,10.3936933))
-            interplacesList.add(InterPlaces("Cimitero Ebraico",R.drawable.cimiteroebraico,resources.getString(R.string.CimiEbraDesc),43.7240329,10.393226))
-            interplacesList.add(InterPlaces("Battistero di San Giovanni",R.drawable.pisa_battistero,resources.getString(R.string.BattDesc),43.7232127,10.3940551))
-            interplacesList.add(InterPlaces("Camposanto Monumentale",R.drawable.camposanto,resources.getString(R.string.CamSantDesc),43.724005,10.3948948))
-            interplacesList.add(InterPlaces("Cattedrale di Santa Maria Assunta",R.drawable.duomo_pisa_torre,resources.getString(R.string.DuomoDesc),43.7233676,10.39557566))
-            interplacesList.add(InterPlaces("Torre Pendente",R.drawable.torrependente,resources.getString(R.string.TorPendDesc),43.72309347,10.39668073))
-            interplacesList.add(InterPlaces("Bagni di Nerone",R.drawable.bagnidinerone,resources.getString(R.string.BagnNeroneDesc),43.7222934,10.4019646))
-            interplacesList.add(InterPlaces("Chiesa e convento di San Torpè",R.drawable.chiesasantorpe,resources.getString(R.string.ChieSanTorpeDesc),43.72206459,10.4022598))
-            interplacesList.add(InterPlaces("Chiesa di San Zeno",R.drawable.chiesasanzeno,resources.getString(R.string.ChieSanZenDesc),43.72303073,10.40757626))
-            interplacesList.add(InterPlaces("Polo Fibonacci",R.drawable.fibonacci,resources.getString(R.string.FiboDesc),43.72112263,10.40778232))
-            interplacesList.add(InterPlaces("Torre Piezometrica",R.drawable.torrepiezometrica,resources.getString(R.string.TorPiezoDescFull),43.72002347,10.40882788))
-            interplacesList.add(InterPlaces("Chiesa di San Francesco",R.drawable.chiesasanfrancesco,resources.getString(R.string.ChieSanFranDesc),43.71881031,10.40716524))
-            interplacesList.add(InterPlaces("Piazza delle Gondole",R.drawable.piazzagondole,resources.getString(R.string.PiazGondDescFull),43.7166266,10.40917109999998))
-            interplacesList.add(InterPlaces("Torre di Legno",R.drawable.torresantamaria,resources.getString(R.string.TorLegnDescFull),43.7132137,10.410173))
+            interplacesList.add(InterPlaces("Torre Santa Maria",R.drawable.torresantamaria,resources.getString(R.string.TorSanMarDescFull),43.72442,10.3936933,R.raw.torresantamaria))
+            interplacesList.add(InterPlaces("Cimitero Ebraico",R.drawable.cimiteroebraico,resources.getString(R.string.CimiEbraDesc),43.7240329,10.393226,R.raw.cimiteroebraico))
+            interplacesList.add(InterPlaces("Battistero di San Giovanni",R.drawable.pisa_battistero,resources.getString(R.string.BattDesc),43.7232127,10.3940551,R.raw.battistero))
+            interplacesList.add(InterPlaces("Camposanto Monumentale",R.drawable.camposanto,resources.getString(R.string.CamSantDesc),43.724005,10.3948948,R.raw.camposanto))
+            interplacesList.add(InterPlaces("Cattedrale di Santa Maria Assunta",R.drawable.duomo_pisa_torre,resources.getString(R.string.DuomoDesc),43.7233676,10.39557566,R.raw.duomo))
+            interplacesList.add(InterPlaces("Torre Pendente",R.drawable.torrependente,resources.getString(R.string.TorPendDesc),43.72309347,10.39668073,R.raw.torrependente))
+            interplacesList.add(InterPlaces("Bagni di Nerone",R.drawable.bagnidinerone,resources.getString(R.string.BagnNeroneDesc),43.7222934,10.4019646,R.raw.bagninerone))
+            interplacesList.add(InterPlaces("Chiesa e convento di San Torpè",R.drawable.chiesasantorpe,resources.getString(R.string.ChieSanTorpeDesc),43.72206459,10.4022598,R.raw.santorpe))
+            interplacesList.add(InterPlaces("Chiesa di San Zeno",R.drawable.chiesasanzeno,resources.getString(R.string.ChieSanZenDesc),43.72303073,10.40757626,R.raw.sanzeno))
+            interplacesList.add(InterPlaces("Polo Fibonacci",R.drawable.fibonacci,resources.getString(R.string.FiboDesc),43.72112263,10.40778232,R.raw.fibonacci))
+            interplacesList.add(InterPlaces("Torre Piezometrica",R.drawable.torrepiezometrica,resources.getString(R.string.TorPiezoDescFull),43.72002347,10.40882788,R.raw.piezometrica))
+            interplacesList.add(InterPlaces("Chiesa di San Francesco",R.drawable.chiesasanfrancesco,resources.getString(R.string.ChieSanFranDesc),43.71881031,10.40716524,R.raw.sanfrancesco))
+            interplacesList.add(InterPlaces("Piazza delle Gondole",R.drawable.piazzagondole,resources.getString(R.string.PiazGondDescFull),43.7166266,10.40917109999998,R.raw.gondole))
+            interplacesList.add(InterPlaces("Torre di Legno",R.drawable.torrelegno,resources.getString(R.string.TorLegnDescFull),43.7132137,10.410173,R.raw.torrelegno))
             var interPlacesJson = Gson().toJson(interplacesList)
             editor.putString("InterPlacesJson",interPlacesJson).commit()
 
@@ -291,6 +293,10 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 
 }

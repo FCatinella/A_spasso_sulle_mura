@@ -23,7 +23,6 @@
                 android:textSize="20dp"
                 android:layout_marginLeft="13dp"
                 android:textColor="@color/colorAccent"
-                android:layout_marginTop="15dp"
                 android:text="@string/punti_di_salita_title" />
 
             <TextView
