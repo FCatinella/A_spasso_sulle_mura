@@ -155,13 +155,14 @@ class Monu_detailsActivity : AppCompatActivity(), OnMapReadyCallback{
             mService = binder.getService()
             mBound = true
             mService.callerActivity=this@Monu_detailsActivity
-            mService.intentCpy=intent.clone() as Intent
+            mService.intentCpy=intent
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
             mBound = false
         }
     }
+
 
 
 

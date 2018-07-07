@@ -1,8 +1,11 @@
 package com.example.fabio.aspassosullemura
 
+import android.app.Activity
 import android.content.ContentProvider
 import android.content.Context
 import android.content.Intent
+import android.os.Environment
+import android.provider.MediaStore
 import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
@@ -14,14 +17,23 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import android.support.v4.app.ActivityCompat.startActivityForResult
+import android.support.v4.content.FileProvider
+import android.util.Log
+import java.io.File
+import java.nio.file.Files
+import java.text.SimpleDateFormat
+import java.util.*
 
-class InterPlacesAdapter (lista : ArrayList<InterPlaces>,contextAr: Context): RecyclerView.Adapter<InterPlacesAdapter.InterPlacesViewHolder>() {
+
+class InterPlacesAdapter (lista : ArrayList<InterPlaces>,contextAr: Activity): RecyclerView.Adapter<InterPlacesAdapter.InterPlacesViewHolder>() {
 
     class InterPlacesViewHolder internal constructor(itemView:View) : RecyclerView.ViewHolder(itemView) {
         internal var cd: CardView
         internal var placeName: TextView
         internal var placePhoto: ImageView
         internal var shareButt: ImageView
+
 
         init {
 
@@ -33,7 +45,9 @@ class InterPlacesAdapter (lista : ArrayList<InterPlaces>,contextAr: Context): Re
     }
 
     internal var interplaces : List <InterPlaces>
-    internal var contextCpy : Context
+    internal var contextCpy : Activity
+    lateinit var mCurrentPhotoPath : String
+
     init {
         interplaces = lista
         contextCpy = contextAr
@@ -77,6 +91,33 @@ class InterPlacesAdapter (lista : ArrayList<InterPlaces>,contextAr: Context): Re
             intent.putExtra("AudioId",luogo.getAudioId())
             contextCpy.startActivity(intent)
         }
+
+        //tasto condividi
+        holder.shareButt.setOnClickListener { view ->
+            val takePictureIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+            var photofile = createImageFile()
+            // controllare le eccezioni
+            val photoUri = FileProvider.getUriForFile(contextCpy,"com.example.android.fileprovider",photofile)
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,photoUri)
+            Log.w("PATH",mCurrentPhotoPath)
+            contextCpy.startActivityForResult(takePictureIntent,1)
+        }
+    }
+
+
+    //funzione per creare il file dove andrà la foto
+    //@Throws(IOException::class)
+    private fun createImageFile() : File {
+        val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        //val imageFileName = "JPEG_"+timestamp+"_"
+        val imageFileName="temp"
+        val storageDir= contextCpy.getExternalFilesDir (Environment.DIRECTORY_PICTURES)
+        val image = File.createTempFile(imageFileName,".jpg",storageDir)
+        mCurrentPhotoPath = image.absolutePath
+        val pref = contextCpy.getSharedPreferences("myprefs", Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putString("mCurrentPhotoPath",mCurrentPhotoPath).commit()
+        return image
     }
 
 

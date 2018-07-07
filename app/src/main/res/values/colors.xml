@@ -11,4 +11,6 @@
     <color name="colore_sfondohome">#cfc39f</color>
     <color name="colore_testosfondo">#ffce77</color>
     <color name="transparent">#00ffffff</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

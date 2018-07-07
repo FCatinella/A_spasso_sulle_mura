@@ -32,7 +32,7 @@ class AudioService : Service() {
 
 
    inner class LocalBinder: Binder() {
-        public fun getService () : AudioService {
+         fun getService () : AudioService {
             return this@AudioService
         }
 
@@ -63,11 +63,11 @@ class AudioService : Service() {
         song.setOnPreparedListener {
             songPrepared=true
             it.start()
-            pendingIntent = PendingIntent.getActivity(applicationContext,10,intentCpy,PendingIntent.FLAG_UPDATE_CURRENT)
+            pendingIntent = PendingIntent.getActivity(applicationContext,10,intentCpy,PendingIntent.FLAG_CANCEL_CURRENT)
 
             audioNotification = NotificationCompat.Builder(applicationContext,"AudioGuida")
                     .setSmallIcon(R.drawable.ic_audiotrack_white_24dp)
-                    .setContentTitle(intentCpy.getStringExtra("Titolo"))
+                    .setContentTitle(callerActivity.titolo)
                     .setContentText("Audio Descrizione")
                     .setContentIntent(pendingIntent)
                     .build()

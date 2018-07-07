@@ -1,13 +1,18 @@
 package com.example.fabio.aspassosullemura
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.location.Criteria
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -15,11 +20,15 @@ import android.util.Log
 import android.view.View
 import android.widget.ListView
 import android.widget.ArrayAdapter
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.content_scrolling.*
 import kotlinx.android.synthetic.main.inte_places_layout.*
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -35,7 +44,9 @@ class VisitActivity : AppCompatActivity(),LocationListener {
     lateinit var rv : RecyclerView
     lateinit var locProv : String
     lateinit var lm : LocationManager
-    var locationupdated : Boolean = false
+    var initialized : Boolean = false
+
+    lateinit var mCurrentPhotoPath : String
 
 
 
@@ -50,6 +61,10 @@ class VisitActivity : AppCompatActivity(),LocationListener {
         supportActionBar?.elevation=0F
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+
+
+
+
         //recupero il RecyclerView
         rv = findViewById(R.id.inter_places_recycler_view)
         rv.setHasFixedSize(true)
@@ -63,7 +78,8 @@ class VisitActivity : AppCompatActivity(),LocationListener {
         val interPlacesListType = object : TypeToken<List<InterPlaces>>(){}.type
         interplacesList = Gson().fromJson(pref.getString("InterPlacesJson",""),interPlacesListType)
 
-        rv.adapter= InterPlacesAdapter(interplacesList,this)
+        //rv.adapter= InterPlacesAdapter(interplacesList,this) //DEBUG
+
 
         for(i in interplacesList.indices) {
             interplacesList[i].setRealIndex(i)
@@ -109,17 +125,28 @@ class VisitActivity : AppCompatActivity(),LocationListener {
         interplacesList.sort()
         val newList = interplacesList.clone() as List<InterPlaces>
 
-        var diffResult = DiffUtil.calculateDiff(MyDiffCallback(newList,oldList))
-        diffResult.dispatchUpdatesTo(rv.adapter)
+       if(initialized){
+           var diffResult = DiffUtil.calculateDiff(MyDiffCallback(newList,oldList))
+           diffResult.dispatchUpdatesTo(rv.adapter)
+       }
+
         interplacesList.clear()
         interplacesList.addAll(newList)
+
+        if(!initialized){
+            progress_loader.visibility= View.INVISIBLE
+            textViewPosMess.visibility = View.INVISIBLE
+            rv.adapter= InterPlacesAdapter(interplacesList,this)
+            initialized = true
+            Toast.makeText(this,"Posizone aggiornata",Toast.LENGTH_LONG).show()
+
+        }
 
     }
 
 
     override fun onLocationChanged(p0: Location?) {
         updateDistAll(p0!!)
-        Toast.makeText(this,"Posizone aggiornata",Toast.LENGTH_LONG).show()
     }
 
     override fun onProviderDisabled(p0: String?) {
@@ -139,4 +166,38 @@ class VisitActivity : AppCompatActivity(),LocationListener {
         var interPlacesJson = Gson().toJson(interplacesList)
         editor.putString("InterPlacesJson",interPlacesJson).commit()
     }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.w("onActivityResult","arrivato")
+        if (requestCode==1){
+            val photoIntent = Intent()
+            photoIntent.setType("image/*")
+            photoIntent.action=Intent.ACTION_SEND
+            val photoPath = pref.getString("mCurrentPhotoPath","")
+            photoIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(photoPath))
+            startActivity(Intent.createChooser(photoIntent, "Condividi con:"))
+
+        }
+    }
+
+
+
+    //funzione per creare il file dove andrà la foto
+   @Throws(IOException::class)
+    private fun createImageFile() : File{
+        val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val imageFileName = "JPEG_"+timestamp+"_"
+        val storageDir= getExternalFilesDir (Environment.DIRECTORY_PICTURES)
+        val image = File.createTempFile(imageFileName,".jpg",storageDir)
+
+        mCurrentPhotoPath = image.absolutePath
+        return image
+    }
+
+
+
+
+
 }

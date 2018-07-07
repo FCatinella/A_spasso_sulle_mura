@@ -321,8 +321,12 @@
         affigurante la Madonna col Bambino e santi di Tommaso Pisano. Nelle cappelle del transetto e in quella maggiore si trovano resti di importanti cicli ad affresco primotrecenteschi. Sul lato est della sacrestia si apre la cappella Sardi-Campiglia decorata dagli affreschi di Taddeo di Bartolo (1397), mentre nell’aula capitolare
         si ammira il ciclo dipinto da Niccolò di Pietro Gerini (1392).
     </string>
-    
+
     <string name="AppHomeDescr">Usa questa applicazione come guida turistica!
         \nPotrai vedere quali monumenti hai vicino ed avere una descrizione testuale e audio di essi.</string>
+
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>
