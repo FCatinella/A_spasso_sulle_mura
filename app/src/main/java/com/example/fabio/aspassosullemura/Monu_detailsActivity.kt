@@ -58,6 +58,8 @@ class Monu_detailsActivity : AppCompatActivity(), OnMapReadyCallback{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_monu_details)
+
+        setSupportActionBar(toolbar)
         supportActionBar?.elevation=0F
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

@@ -3,7 +3,7 @@ package com.example.fabio.aspassosullemura
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Bitmap
+import android.graphics.*
 import android.location.Criteria
 import android.location.Location
 import android.location.LocationListener
@@ -26,6 +26,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.content_scrolling.*
 import kotlinx.android.synthetic.main.inte_places_layout.*
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -171,12 +172,22 @@ class VisitActivity : AppCompatActivity(),LocationListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.w("onActivityResult","arrivato")
-        if (requestCode==1){
+        if (requestCode==1 && resultCode!=0){
             val photoIntent = Intent()
             photoIntent.setType("image/*")
             photoIntent.action=Intent.ACTION_SEND
             val photoPath = pref.getString("mCurrentPhotoPath","")
-            photoIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(photoPath))
+
+
+            val waterBitmap = BitmapFactory.decodeResource(resources,R.drawable.watermark)
+
+
+
+            val photoNew = addWaterMark(photoPath,waterBitmap)
+            val bitmapPath = MediaStore.Images.Media.insertImage(contentResolver, photoNew,"title", null);
+
+
+            photoIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(bitmapPath))
             startActivity(Intent.createChooser(photoIntent, "Condividi con:"))
 
         }
@@ -184,17 +195,56 @@ class VisitActivity : AppCompatActivity(),LocationListener {
 
 
 
-    //funzione per creare il file dove andrà la foto
-   @Throws(IOException::class)
-    private fun createImageFile() : File{
-        val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val imageFileName = "JPEG_"+timestamp+"_"
-        val storageDir= getExternalFilesDir (Environment.DIRECTORY_PICTURES)
-        val image = File.createTempFile(imageFileName,".jpg",storageDir)
+    fun addWaterMark(ImageSrcPath: String, watermarkBitmap: Bitmap): Bitmap? {
+        val bitmapOptions = BitmapFactory.Options()
+        bitmapOptions.inSampleSize = 1
+        var imageSet = false
 
-        mCurrentPhotoPath = image.absolutePath
-        return image
+
+        while (!imageSet) {
+            try {
+                val photoBitmap = BitmapFactory.decodeFile(ImageSrcPath, bitmapOptions)
+
+                val w = photoBitmap.width
+                val h = photoBitmap.height
+
+                val result = Bitmap.createBitmap(w, h, Bitmap.Config.RGB_565)
+
+                val canvas = Canvas(result)
+
+                canvas.drawBitmap(photoBitmap, Rect(0, 0, photoBitmap.width, photoBitmap.height),
+                        Rect(0, 0, w, h), null)
+
+
+                val paint = Paint()
+                paint.color=Color.WHITE
+                paint.textSize=150.toFloat()
+                paint.typeface= Typeface.SERIF
+                paint.textAlign=Paint.Align.RIGHT
+                paint.isAntiAlias=true
+
+
+                val monuName = pref.getString("ShareButtonName","")
+                canvas.drawBitmap(watermarkBitmap, 50f,( canvas.height-watermarkBitmap.height).toFloat(), null)
+                canvas.drawText(monuName,(canvas.width).toFloat()-125,canvas.height.toFloat()-250,paint)
+
+
+                imageSet = true
+
+                return result
+
+            } catch (E: OutOfMemoryError) {
+                bitmapOptions.inSampleSize *= 2
+            }
+
+        }
+        return null
     }
+
+
+
+
+
 
 
 

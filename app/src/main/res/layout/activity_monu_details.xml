@@ -37,12 +37,10 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                android:alpha="0"
-                app:layout_collapseMode="pin"
+                app:layout_collapseMode="pin"/>
 
-                app:logo="@drawable/ic_share_white_24dp"
-                app:popupTheme="@style/AppTheme.NoActionBar" />
+                <!--app:logo="@drawable/ic_share_white_24dp"
+                app:popupTheme="@style/AppTheme.NoActionBar" -->
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
