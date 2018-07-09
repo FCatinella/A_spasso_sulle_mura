@@ -112,7 +112,7 @@ class InterPlacesAdapter (lista : ArrayList<InterPlaces>,contextAr: Activity): R
                 editor.putString("ShareButtonName", luogo.getName()).apply()
                 var photofile = createImageFile()
                 // controllare le eccezioni
-                val photoUri = FileProvider.getUriForFile(contextCpy, "com.example.android.fileprovider", photofile)
+                val photoUri = FileProvider.getUriForFile(contextCpy, "com.example.fabio.fileprovider", photofile)
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
                 Log.w("PATH", mCurrentPhotoPath)
                 contextCpy.startActivityForResult(takePictureIntent, 1)
@@ -121,7 +121,7 @@ class InterPlacesAdapter (lista : ArrayList<InterPlaces>,contextAr: Activity): R
 
 
         holder.shareButt.setOnLongClickListener { view ->
-            Toast.makeText(contextCpy,"Scatta e condividi una foto",Toast.LENGTH_SHORT).show()
+            Toast.makeText(contextCpy,contextCpy.resources.getText(R.string.ScatteCond),Toast.LENGTH_SHORT).show()
             return@setOnLongClickListener true
         }
     }
@@ -135,7 +135,7 @@ class InterPlacesAdapter (lista : ArrayList<InterPlaces>,contextAr: Activity): R
         val storageDir= contextCpy.getExternalFilesDir (Environment.DIRECTORY_PICTURES)
         val image = File.createTempFile(imageFileName,".jpg",storageDir)
         mCurrentPhotoPath = image.absolutePath
-        editor.putString("mCurrentPhotoPath",mCurrentPhotoPath).commit()
+        editor.putString("mCurrentPhotoPath",mCurrentPhotoPath).apply()
         return image
     }
 

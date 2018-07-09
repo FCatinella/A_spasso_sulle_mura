@@ -46,15 +46,15 @@ class AlarmService : Service(),LocationListener {
         //in caso di disattivazione del GSP mentre è attivo il servizio, invio una notifica e lo termino
         notification2 = NotificationCompat.Builder(contextCpy,"posizione")
             .setSmallIcon(R.drawable.ic_location_searching_white_24dp)
-            .setContentTitle("Servizio Posizione")
-            .setContentText("GPS non attivo! Mi sono disattivato")
+            .setContentTitle(resources.getText(R.string.AlarmServiceNot))
+            .setContentText(resources.getText(R.string.MisonoDis))
             .build()
         nm.notify(3,notification2)
         lm.removeUpdates(this)
         stopForeground(true)
         //trigghero il listener delle preferenze per ripristinare il layout e quindi poter reimpostare un allarme
         editor.putInt("Settato",0)
-        editor.commit()
+        editor.apply()
         stopSelf()
     }
 
@@ -93,26 +93,26 @@ class AlarmService : Service(),LocationListener {
             // se il GPS è stato disattivato invio una notifica e termino
             notification2 = NotificationCompat.Builder(contextCpy,"posizione")
                     .setSmallIcon(R.drawable.ic_location_searching_white_24dp)
-                    .setContentTitle("Servizio Posizione")
-                    .setContentText("GPS non attivo! Mi sono disattivato")
+                    .setContentTitle(resources.getText(R.string.AlarmServiceNot))
+                    .setContentText(resources.getText(R.string.MisonoDis))
                     .build()
             nm.notify(3,notification2)
             stopForeground(true)
             editor.putInt("Settato",0)
-            editor.commit()
+            editor.apply()
             stopSelf()
         }
         //controllo i permessi
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_DENIED){
             notification2 = NotificationCompat.Builder(contextCpy,"posizione")
                     .setSmallIcon(R.drawable.ic_location_searching_white_24dp)
-                    .setContentTitle("Servizio Posizione")
-                    .setContentText("Permessi GPS non disponibili! Mi sono disattivato")
+                    .setContentTitle(resources.getText(R.string.AlarmServiceNot))
+                    .setContentText(resources.getText(R.string.MisonoDis))
                     .build()
             nm.notify(3,notification2)
             stopForeground(true)
             editor.putInt("Settato",0)
-            editor.commit()
+            editor.apply()
             stopSelf()
         }
         //inizio a richiedere aggiornamenti sulla posizione (1 solo in realtà -> guardare la onLocationChanged)
@@ -122,8 +122,8 @@ class AlarmService : Service(),LocationListener {
             //per via delle restrizioni che Google ha inserito
             notification2 = NotificationCompat.Builder(contextCpy,"posizione")
                     .setSmallIcon(R.drawable.ic_location_searching_white_24dp)
-                    .setContentTitle("Servizio Posizione")
-                    .setContentText("Cerco la tua posizione...")
+                    .setContentTitle(resources.getText(R.string.AlarmServiceNot))
+                    .setContentText(resources.getText(R.string.StocercandoPos))
                     .build()
             startForeground(2, notification2)
         }
@@ -167,9 +167,9 @@ class AlarmService : Service(),LocationListener {
             //creo la notifica
             val notification2 = NotificationCompat.Builder(contextCpy,"tutte")
                     .setSmallIcon(R.drawable.ic_info_white_24dp)
-                    .setContentTitle("E' ora!")
-                    .setContentText("Incamminati verso le mura per non fare tardi.")
-                    .addAction(R.drawable.navigation_empty_icon,"Indicazioni",mapPintent)
+                    .setContentTitle(resources.getText(R.string.EOra))
+                    .setContentText(contextCpy.resources.getText(R.string.Incammi))
+                    .addAction(R.drawable.navigation_empty_icon,resources.getText(R.string.Indicazioni),mapPintent)
                     .build()
             nm.notify(3,notification2) //invio la notifica vera e propria
             lm.removeUpdates(this)
@@ -177,7 +177,7 @@ class AlarmService : Service(),LocationListener {
 
             //siccome la notifica è stata mandanta, posso reimpostare un altro allarme
             editor.putInt("Settato",0)
-            editor.commit()
+            editor.apply()
 
         }
        else {

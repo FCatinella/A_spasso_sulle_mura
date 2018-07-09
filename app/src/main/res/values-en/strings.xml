@@ -1,0 +1,189 @@
+<resources>
+    <string name="app_name">A Spasso sulle Mura</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_info">Info</string>
+    <string name="title_activity_monu_details">monu_details</string>
+
+
+    <string name="punti_di_salita_title">Points of ascent</string>
+    <string name="punti_di_salita">Torre Santa Maria, Torre Piezometrica, Piazza delle Gondole, Torre di Legno.</string>
+    <string name="orari_title">Opening time</string>
+    <string name="orari">
+        <b>From Monday before Easter to the first Sunday of November.</b>
+        \nevery day from 9.00 to 19.00
+        <b>\n\nJune, July, August</b>
+        \n\n<i>Thursday, Friday, Saturday</i>
+        \nfrom 9.00 to 21.00
+        \n\n<i>Sunday, Monday, Tuesday, Wednesday</i>
+        \nfrom 9.00 to 19.00
+        <b>\n\nFrom November to Sunday before Easter</b>
+        \nevery day from 10.00 to 15.30
+        \n\nThe ticket offices close 30 minutes before.
+        \nThe route closes in case of bad weather.
+    </string>
+    <string name="biglietti_title">Entrance tickets</string>
+    <string name="biglietti">
+        <b>Full price: € 3.00</b>
+        \n<b>Monthly season ticket: € 20.00</b>
+        \n<b>Annual season ticket: € 40.00</b>
+        \n\n<b>Free</b> for residents, children up to 8 years, disabled with a guide, tour guides / tour leaders.
+    </string>
+    <string name="accessibilita_title">Accessibility
+        </string>
+    <string name="accessibilita">Access for disabled visitors at Torre Piezometrica, Piazza delle Gondole and Torre di Legno.
+        \n\nThe path at high altitude is accessible independently from the Torre di Legno to the Torre del Barbagianni and in the entire section from Piazza Gondole to Porta Manin.
+        \n\nPath partially accessible.
+        </string>
+    <string name="didattica_title">Teaching</string>
+    <string name="didattica">Guided tours from Torre Santa Maria at 11.00 and 17.00
+        \n<b>€ 2.00</b>
+            </string>
+    <string name="informazioni_title">Information</string>
+    <string name="informazioni"><b>+39 050 0987480</b>
+        \n<b>every day from 9.00 to 19.00</b>
+    </string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="alarmDesctr">
+        First of all choose an input among those available, and then choose a time.
+        \nEnd. You do not have to do anything else.
+        \nSHowever, you know you can only choose dates in the current month. Occasionally a notification will appear that will warn you of the fact that we are looking for your position, this we need to warn you in the best possible moment. We will try not to abuse this permission. We will only check when necessary.
+        \nSaid this; why do not you take a ride around Pisa while you wait?
+        \n\nPS: I recommend not turning off the GPS or the alarm will skip.
+        </string>
+
+    <string name="alarmDesctrTit">
+        Tell us when you want to go up,\n we’ll take care of the rest.</string>
+
+    <string name="descrizione_home">The walkway at the height of the Walls of Pisa has reopened to the public with a journey of 3 km, from Piazza dei Miracoli to Piazzetta Del Rosso, and four points of ascent to offer an unprecedented point of view.
+        \n\nOn the ground 20,000 m² of green returned to the city, a cycle path and a suggestive lighting that will allow you to admire even at night the stretches of the walls and the bastions admirably recovered.
+    </string>
+
+    <string name="TorPiezoDesc">It is accessed from the door on the walls, immediately next to the tower.
+    \nAccess also for the disabled.</string>
+
+    <string name="TorSanMarDesc">It is accessed from the lawn of Piazza dei Miracoli.
+    \nDisabled people can not access the walls from the Santa Maria Tower.</string>
+
+    <string name="PiazGondDesc">The main feature of the square is the still visible water basin, called Porto delle Gondole.
+    \nAccess also for the disabled.</string>
+
+    <string name="TorLegnDesc">It is accessed from Piazza del Rosso, through a gate.
+    \nAccess also for the disabled.</string>
+
+    <string name="TorLegnDescFull">
+        \nLorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Ut lacinia ultrices metus, non tincidunt dui imperdiet non. Duis vitae convallis neque. Pellentesque sodales diam nec varius vehicula. In hac habitasse platea dictumst.
+        Morbi non sem magna. Aliquam justo felis, commodo a vestibulum quis, iaculis at ipsum. Sed arcu mi, vulputate ut mi eu, porta convallis elit. Sed non diam non risus mollis finibus.
+        Fusce tristique mollis massa. Morbi finibus augue vitae auctor aliquet. Quisque porttitor massa non convallis gravida.
+        Mauris vel eleifend risus, vitae convallis massa. Phasellus rhoncus, purus vitae rhoncus mollis, metus dolor sodales ante, ultricies suscipit sapien orci eu metus.
+        Aenean suscipit tincidunt neque, et vestibulum sem rutrum quis. Sed a ipsum ex. Pellentesque sit amet eleifend ligula.
+        Phasellus facilisis tellus odio, in facilisis est venenatis et. Sed quis dolor ornare ante dapibus laoreet laoreet vel lorem. Nam a arcu diam. Sed venenatis ex ac nunc varius, id placerat neque commodo. Nulla ac lorem lectus. Cras eget fringilla leo, nec scelerisque est.
+    </string>
+
+    <string name="PiazGondDescFull">
+        \nSmall and characteristic square at the end of Via Santa Marta, it often goes unnoticed by the eye of the passing Piazza delle Gondole
+        is instead an important place in the "fluvial" history of Pisa. The main feature of the square is the still visible water basin, called Porto delle Gondole: it was the terminus of the dense network of canals that ran along the Pisan plain where the boats that transported goods and passengers to San Giuliano landed, sailing on the Canale Macinate that connected Pisa and Ripafratta. The canal was built by Grand Duke Cosimo I dei Medici in 1564-1566 and was also known as Fosso dei Mulini because it operated the millstones for the processing of wheat and the pressing of the olives. Distinguished figures such as Montesquieu, Alfieri, Murat, Shelley, Bonaparte and many royals and prelates embarked on this point on the gondolas, characteristic covered boats that transported the swimmers to the San Giuliano thermal spa.
+        The Piazza delle Gondole is also the point of arrival of the Medicean Aqueduct, popularly called "i Condotti", which from Asciano
+        brought water to Pisa and which also fed the pretty fountain set in the walls that overlook the square. The aqueduct was built by the
+        Grand Dukes Ferdinando I and Cosimo II of the Medici between 1601 and 1613 on the model of the Roman aqueducts with conduct on arches,
+        it ran for 6 kilometers and is still in good condition. Two ancient gates of the city border the square: the Portello and the Porta di
+        Santa Marta, the latter created during the Florentine occupation in the mid-fifteenth century to double the passage of vehicles, whose
+        flow was greatly increased.
+    </string>
+
+    <string name="TorPiezoDescFull">
+        \nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
+        vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
+        voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui
+        in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui
+        blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
+        mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
+        minus id quod maxime placeat facerecommodo. Nulla ac lorem lectus. Cras eget fringilla leo, nec scelerisque est.
+    </string>
+
+    <string name="TorSanMarDescFull">
+        \nThe tower of Santa Maria is the most famous of the towers of the "ancient circle of walls of Pisa, because it closes the north-west side of the fortifications at the famous Piazza del Duomo. Its construction dates back to 1155-1161, with large blocks of Livorno bench and a slightly sloping design towards the upper. Beyond the top of the walls was used instead the sedimentary breccia coming from Asciano, up to a point marked by a step, beyond which the old part ends, with the upper part, including the crenellated crowning, dating back to nineteenth-century elevation works. In the structure loopholes and splayed openings are opened, while the tallest windows are part of the reconstruction.</string>
+
+    <string name="CimiEbraDesc">\nLocated in the area adjacent to the Piazza dei Miracoli, in correspondence of the ancient Porta del Leone, the Jewish cemetery houses since 1674 the city burials of the Israelites. Of particular interest are the stylistic variety of the mounds present (from the classic trapezoidal shapes to the Empire style, up to the neo-Gothic and liberty), the seventeenth-century tombstones transferred here from a former burial site and the different geographic origin of the inhumates themselves. This last feature offers an excellent example of how the centuries in the presence of Jews in Pisa has been varied, and also testifies to the choice made by some strangers to be buried right in the Pisan cemetery, in virtue of the monumental context in which it is inserted. But where were the Jewish graves of the period before 1674? The material testimonies and the public and private documentation prove that at least four, if not five, Jewish cemeteries existed in the area between the Porta Nuova and the Cittadella.</string>
+
+    <string name="BattDesc">\nThe Baptistery is one of the four architectural constructions that make up Piazza Duomo or Piazza dei Miracoli in Pisa. Designed and built to commemorate the first event of every man’s Christian life, it is dedicated to St. John the Baptist. The first project was drafted by Diotisalvi, and the first stone placed around the middle of the twelfth century, but it was never completely realized, and about a century after the interruption of the work was taken over by Nicola and Giovanni Pisano. The heterogeneity of the styles (Romanesque and Gothic) is due precisely to the fact that the building was made several times. Visitors are immediately fascinated by the interior of the Baptistery, completely bare from the point of view of furnishings and architectural structures, except for simple rows of columns. This contributes to giving mystical characteristics to the environment, due to the particular echo that is perceived when speaking. The dome of the initial project has a particular shape, truncated cone, since at that time the techniques of construction of the hemispheric or pyramidal dome, subsequently built, to recall the Gothic style were not yet known. The first dome had a hole at the top, to illuminate the baptismal font and allow rainwater to enter and fill the tanks. The absence of drains, however, indicates that this was only decorative, since the old baptismal practice had been abandoned for some time. In a later period the small dome was built, which overhangs the main one, to close the hole. The absence of bricks throughout the dome has often been charged to the little money available to complete the work. In reality it seems that this was wanted, and also necessary: ​​the seaside towns, in fact, exploited the moon reflection on the white bricks to allow sailors to orient themselves.</string>
+
+    <string name="CamSantDesc">\nThe cemetery of the Cathedral was begun in 1277, by Giovanni di Simone, as the last of the monumental buildings of the square, to form a scenic backdrop on the northern side.The building was called Campo Santo for a tradition according to which the land where it would have been mixed with earth from the Holy Land with the Pisan ships returning from the III crusade. The ample structure was born for a specific purpose: to create an adequate space to collect the sarcophagi and the various burials that for centuries crowded the area around the Cathedral. For this reason, in 1277 the "Archbishop Federico Visconti signed the" act of donating the land for the construction of a "fenced area" for use as a cemetery, which first had the form of a church dedicated to the Trinity. The interruption of the works, also caused by the defeat of Pisa in the battle of Meloria, and the recovery in the fourteenth century completely redefined the structure, which had the plant roughly rectangular with large central cloister. The exterior is in simple white marble, with 43 blind arches and two doors. The main entrance is to the east, and is decorated by a gothic tabernacle above the portal, a work of the second half of the fourteenth century, with statues of the Virgin with the Child and four saints. All ’’ inside there is a cloister with pointed arches particularly decorated, in the corridors of which there are numerous Roman sarcophagi, once reused for the most prestigious burials.
+            In 1360 the frescoes of the corridors began with subjects linked to the theme of life and death, to which Buonamico Buffalmacco and Francesco Traini worked, the first author of the famous Triumph of Death, the second of a Crucifixion. In the Aulla chapel is preserved the so-called "lamp of Galileo", once in the cathedral, whose observation gave the scientist the idea for the theory of "’isochronism of the pendulum. Inside the structure there are also some rings of the great chain of Porto Pisano that after the defeat of Meloria (1284) was broken and taken to Genoa, until the return after the "Unification of Italy".</string>
+
+    <string name="DuomoDesc">\n"Temple of snow-white marble" (this is an epigraph on the facade), the Pisan cathedral is one of the greatest masterpieces of Romanesque architecture, combining Lombard-Emilian stylistic elements, classical, late-antique, Byzantine, Ravenna and Arabs. Started by Buscheto in 1064 and finished in the middle of 1100 by Rainaldo with the extension of the building and the façade, it was built as a symbol of the power of the Pisan sea Republic at the height of its power, thanks to the rich booties of the naval battles in the Mediterranean and donations from private individuals and emperors. It was consecrated in 1118 and dedicated to Maria Assunta. The facade of the Cathedral of Pisa has a first order with blind arches supported by columns and pillars and decorated with lozenges and rosettes, and four orders of practicable loggias at the top of which are a Madonna by Andrea Pisano (in the center) and two Angels by Tino from Camaino (on the corners). Stories of the Redeemer and the Virgin are depicted in the three bronze portals, the work of Giambologna: the original central portal, lost in the fire of 1595, was decorated by Bonanno Pisano, also the author of the 24 bronze panels with Stories from the New Testament that can be admired on the Porta di San Ranieri, in the right transept (1180). Some epigraphs on the façade celebrate Pisan naval enterprises and on the sides there is visible material of "reuse" coming from Roman monuments, transported from the East. On the apse there is a copy of the bronze Islamic griffin of the XI century (original to the Museo dell’Opera), war booty in the land of Spain. The plan of the Cathedral of Santa Maria Assunta is a Latin cross with five naves in the central body and three in the transept, marked by round arches supported by columns with capitals. The elliptical dome, decorated with seventeenth-century frescoes, overlooks the beautiful floor below in polychrome marble from the 13th century. The original trussed roof was destroyed in the fire of 1595 and was replaced in the seventeenth century by the coffered ceiling.
+    </string>
+
+    <string name="TorPendDesc">\nThe Tower of Pisa, placed on a clayey and sandy ground, seems to have begun to incline since the "construction of the third floor so that the works had to be suspended and then resumed years later, building the subsequent floors with a curvature in the opposite direction slope. The original project is thought to have been Diotisalvi, which at the same time was also building the Baptistery. The construction continued until completion in 1350, reaching a height of about 56 meters and weighing 14.523 tons, managing to keep it in equilibrium because the vertical passing through the center of gravity falls to the inside of the support base. The overall floors are 8, surrounded by a loggia with round arches, which reflect the motif of the facade of the cathedral and as the tower is the bell tower, were placed 7 bells: Assunta (the largest weighing 3620 kg), Crucifix, San Ranieri, Dal Pozzo, Pasquereccia, Terza, Vespruccio, which still today play before the masses in the Duomo and at midday through an electronic system that was once used for a moment of the liturgical day. The bell Pasquareccia, the oldest, was originally called Justice and was located in the "homonymous palace and was used to warn of the death of traitors.</string>
+
+    <string name="BagnNeroneDesc">\nThe Porta di Lucca thermal baths, traditionally known as the thermal baths or baths of Nero, arise in what was to be the north-western area of ​​the town in Roman times, immediately inside the medieval walls, between the abbey of S. Zeno and the Duomo. The identification of the ruins dates back to 1548, when for the first time they were defined as laconicum, an area reserved for sweat baths; the attribution of the structure to Nero, however, dates back to the XIII century and is part of a vast tradition that sees the emperor have intense relations with the city of Pisa. Today, the reading of building techniques, structural features and material data allows the building to be dated to the last two decades of the first century AD. and to relate it to the Venuleii family, protagonists in the Pisan territory between the 1st and 2nd century AD Currently, the spas are poorly preserved in high and perceptible are partly in extension. The octagonal room, of which part of the elevation and of the roof is visible, is the environment that has reached its best state of conservation thanks to the numerous and consistent restorations. At the moment, it is impossible to insert the Porta di Lucca thermal baths into a well-defined topographical framework because the data relating to the urban configuration of Roman Pisa are very poor; of course, they add more pieces
+        know the many archaeological excavations carried out in the city as in the case of investigations in via Galluppi - via Piave where the remains of a building of the imperial age have been built on pre-existing structures and finally abandoned between the end of the second and second half of the third century AD , when the area, frequented only sporadically for the purpose of recovering building material, was used, starting from the 4th century AD, in a necropolis.</string>
+
+    <string name="ChieSanTorpeDesc">\nThe church and the adjoining convent, founded between 1254 and 1278, belonged to the Frati Umiliati until 1584, when the complex passed to the friars of S. Francesco di Paola, who managed the buildings until the suppressions 1784. Later the property belonged to the Vallombrosani (until 1808) and finally to the Certosini. Since 1816 the building has been assigned to the Carmelites. The plastered façade, with a gabled roof, is embellished by a serene stone lunette in the center of which is inserted the marble relief of S. Torpè made by the contemporary sculptor Antonio Fascetti. Inside, the counter-façade houses the choir and the organ, while the walls are home to four stone confessionals (17th century), above which are placed paintings by unknown artist, depicting: San Simone Stock and Santa Teresa (left wall) ) and San Giovanni della Croce and Sant’Andrea Corsini (right wall). The seventeenth-century serene stone altars adorn the walls. The high altar, built in Carrara marble in 1619, is the work of Giuseppe Zucchetti. Inside a window there is a precious silver reliquary bust, donated in 1667 by the Lanfranchi brothers, which houses the head of the church’s titular saint.
+        The wealth of furnishings continues in the choir, where there are three paintings from the first half of the seventeenth century depicting the conversion of St. John Gualberto, the Madonna and Child with Saints Torpè, Anna and angels and the Madonna with Child and Saints Jacopo and Philip. The two altars leaning against the right wall, one dedicated to San Francesco di Paola and the other to San Carlo Borromeo, host the paintings depicting the Madonna in glory between San Giovanni della Croce and Santa Teresa (1820 ca.) by Domenico Nani from Udine and Il Santo and episodes of his life by Giovanni Stefano Maruscelli (after 1631).</string>
+
+    <string name="ChieSanZenDesc">\nThe first attestation of the church of San Zeno is 1029. The building is located in an area of ​​the city of Pisa known in the Middle Ages with the toponym "to the caves" due to the presence of older structures used as sources of supply for construction material. Also in the building in question appear numerous reuses of classical age. The church that we see today, part of an abbey initially run by Benedictines, is the result of various operations begun before the tenth century. The excavations conducted in the ’60s of the twentieth century have in fact brought to light a quadrangular structure divided into three naves which were added in support of as many apses. Parts of the elevated buildings are incorporated into the 12th century building: the oldest phase is before the 10th century, while the intermediate phase is compared with urban examples dating back to around the year one thousand. Today the church is oriented in a northeastern-southwest direction and inside it is divided into three naves, punctuated by columns and alternating pillars, some accompanied by capitals of re-employment. The façade, on the south side, is characterized by a forepart flanked by the remains of the bell tower that leads to the actual entrance. This ground floor structure consists of an open loggia decorated with Roman marble fragments and blind arcades with lozenges and oculi. The first floor, with solid walls, is lightened by mullioned windows, also framed by a carving on pediments, characterized by the same decoration with circles and rhombs. The church in the eleventh century was decorated with poorly preserved marble basins, of which the circular rooms remain visible. Above, in the part of the façade, the result of more recent interventions, there is a large circular opening surmounted by a fifteenth-century archiepiscopal coat of arms.
+    </string>
+
+    <string name="FiboDesc">\nThe Marzotto complex is a former industrial building located in Via Filippo Buonarroti 2 in Pisa. Currently it houses the Polo Fibonacci, home of the Faculty of Mathematical, Physical and Natural Sciences, and the secretariats for the students of the "University of Pisa. In 1936 Gaetano Marzotto took over from the Pontecorvo family the "homonymous textile factory, located inside the city walls: the age of the plant and the need to introduce new machinery induced the owner to demolish the factories and a consequent new project. The "appointment" for the construction of the new factory is entrusted to the "Venetian architect Gildo Valconi: the project is presented to the city authorities on November 23rd 1937 and the following December 21st the authorization for the construction of the new buildings is granted. clearances linked to the urban planning of the "area in front of the complex and to the construction of buildings intended for use by employees. The works, started immediately afterwards and already in an advanced state in the spring of 1938, are carried out by the Oberziner and Zampieri company in compliance with the "autarkic" instructions given directly by the leader (use of iron exclusively for the structures, synthetic and autarkic materials where possible). The complex is finally finished in 1939, after the designer’s death. In 1944 the factory was seriously damaged by bombing: the subsequent reconstruction, completed in 1948, involves the rebuilding of a good part of the pillar. With the national crisis in the production of textiles, the Marzotto factory gradually reduced production until it was definitively ceased in June 1968. It was subsequently taken over by the Forest group, which restarted the "activity until 1974, when the" factory knows the definitive closure.</string>
+
+    <string name="ChieSanFranDesc">\nThe first attestation of a church dedicated to St. Francis dates back to 1233. The minority community of Pisa grew rapidly, favored by the "support" of the Municipality and by private donations: the church became a place of public relevance, the seat of a studium, of a library and a scriptorium. In 1261, Archbishop Visconti, recognizing the important role of the preaching friars, inaugurated the church’s extension work under the guidance of Giovanni di Simone. The construction of the bell tower is particularly important for the daring tax system on a suspended arch. The financial difficulties related to the war events in the final years of the thirteenth century distracted the city from the "constructive engagement; the church is incomplete at the beginning of the "300", as revealed by the façade, begun thanks to the marble supplied by Gualandi, but completed only in the Medici period. In the following centuries the church and the convent underwent numerous renovations: in the fifteenth century two new cloisters and the chapel of S. Bernardino were built. Between the 17th and 17th centuries, the counter-reformed altars were erected and the windows in the nave were opened, works that destroyed the fourteenth-century frescoes. Most of the furnishings were lost following the Lorraine and Napoleonic suppressions: in the Museum of S. Matteo the dossal with St. Francis and stories attributed to Giunta is preserved, while the famous Majesty of Cimabue and Giotto’s Stimmate passed to the Louvre. On the main altar there is the marble dossal showing the Madonna and Child with Saints by Tommaso Pisano. In the chapels of the transept and in the main one there are remains of important fresco cycles dating back to the beginning of the eighteenth century. On the east side of the sacristy opens the Sardi-Campiglia chapel decorated by the frescoes by Taddeo di Bartolo (1397), while in the chapter hall one can admire the cycle painted by Niccolò di Pietro Gerini (1392).
+    </string>
+
+    <string name="AppHomeDescr">Use this app as a tour guide!
+        \nYou will be able to see which monuments you have near and have a textual and audio description of them.</string>
+
+    <string name="Unacamminata">A hike on the walls</string>
+
+    <string name="LatuaGuida">Your virtual tour guide</string>
+
+    <string name="Inizia">Begin</string>
+
+    <string name="AttivaGPS">Activate GPS (High Accuracy or Device Only) to use this feature</string>
+
+    <string name="InfoeOrari">Info and Timetables</string>
+
+    <string name="Allarmi">Alarms</string>
+
+    <string name="StocercandoPos">I’m looking for your position</string>
+
+    <string name="MonumentiVicini">Nearby monuments</string>
+
+    <string name="VisualizzaMonu">Show the monuments now</string>
+
+    <string name="PosizioneAgg">Position updated</string>
+
+    <string name="AudioDescr">Audio Description</string>
+
+    <string name="ScatteCond">Take and share a photo</string>
+
+    <string name="Annulla">Cancel</string>
+
+    <string name="VuoiSalire">Want to get up at:</string>
+
+    <string name="Indicazioni">Indications</string>
+
+    <string name="MisonoDis">GPS off I turned off</string>
+
+    <string name="AlarmServiceNot">Alarm Service</string>
+
+    <string name="EOra">It’s time to leave!</string>
+
+    <string name="Incammi">Walk towards the walls so as not to be late</string>
+
+    <string name="ScegliIng">Choose an entrance</string>
+
+    <string name="PremiAdd">Press on "+" to set date and time</string>
+
+    <string name="CondCon">Share with</string>
+
+
+
+
+
+
+</resources>

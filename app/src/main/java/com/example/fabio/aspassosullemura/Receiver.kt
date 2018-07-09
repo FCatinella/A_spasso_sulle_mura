@@ -100,8 +100,8 @@ class Receiver : BroadcastReceiver(),LocationListener{
             //creo la notifica
             val notification2 = NotificationCompat.Builder(contextCpy!!,"tutte")
                     .setSmallIcon(R.drawable.ic_info_black_24dp)
-                    .setContentTitle("E' ora!")
-                    .setContentText("Incamminati verso le mura per non fare tardi.")
+                    .setContentTitle(contextCpy.getText(R.string.EOra))
+                    .setContentText(contextCpy.getText(R.string.Incammi))
                     .build()
             val nm= contextCpy.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nm.notify(3,notification2) //invio la notifica vera e propria
@@ -109,7 +109,7 @@ class Receiver : BroadcastReceiver(),LocationListener{
             //siccome la notifica è stata mandanta, posso reimpostare un altro allarme
             var editor = pref.edit()
             editor.putInt("Settato",0)
-            editor.commit()
+            editor.apply()
         }
         else {
             //reimposto l'allarme a mentà del tempo

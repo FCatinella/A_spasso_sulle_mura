@@ -1,0 +1,193 @@
+<resources>
+    <string name="app_name">A Spasso sulle Mura</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_info">Info</string>
+    <string name="title_activity_monu_details">monu_details</string>
+
+
+    <string name="punti_di_salita_title">Points d’ascension</string>
+    <string name="punti_di_salita">Torre Santa Maria, Torre Piezometrica, Piazza delle Gondole, Torre di Legno.</string>
+    <string name="orari_title">Heures d’ouverture</string>
+    <string name="orari">
+        <b>Du lundi avant Pâques au premier dimanche de novembre.</b>
+        \ntous les jours de 9h00 à 19h00
+        <b>\n\nJuin, Juillet, Août</b>
+        \n\n<i>Jeudi, vendredi, samedi</i>
+        \nde 9h00 à 21h00
+        \n\n<i>Dimanche, lundi, mardi, mercredi</i>
+        \nde 9h00 à 19h00
+        <b>\n\nDe novembre à dimanche avant Pâques</b>
+        \ntous les jours de 10h00 à 15h30
+        \n\nLes guichets ferment 30 minutes avant.
+        \nL’itinéraire se ferme en cas de mauvais temps.
+    </string>
+    <string name="biglietti_title">Billets d’entrée</string>
+    <string name="biglietti">
+        <b>Plein tarif: 3,00 €</b>
+        \n<b>Abonnement mensuel: 20,00 €</b>
+        \n<b>Abonnement annuel: 40,00 €</b>
+        \n\n<b>Gratuit</b> pour les résidents, les enfants jusqu’à 8 ans, les personnes handicapées avec un guide, les guides touristiques / accompagnateurs.
+    </string>
+    <string name="accessibilita_title">Accessibilité
+        </string>
+    <string name="accessibilita">Accès pour les visiteurs handicapés à Torre Piezometrica, Piazza delle Gondole et Torre di Legno.
+        \n\nLe sentier à haute altitude est accessible indépendamment de la Torre di Legno à la Torre del Barbagianni et dans toute la section de la Piazza Gondole à Porta Manin.
+        \n\nChemin partiellement accessible.
+        </string>
+    <string name="didattica_title">Enseignement</string>
+    <string name="didattica">Visites guidées de Torre Santa Maria à 11h00 et 17h00
+        \n<b>€ 2.00</b>
+            </string>
+    <string name="informazioni_title">Information</string>
+    <string name="informazioni"><b>+39 050 0987480</b>
+        \n<b>tous les jours de 9h00 à 19h00</b>
+    </string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="alarmDesctr">
+        Tout d’abord, choisissez une entrée parmi celles disponibles, puis choisissez un temps.
+        \nTerminer. Vous n’avez rien d’autre à faire.
+        \nCependant, vous savez que vous ne pouvez choisir que les dates du mois en cours. De temps en temps une notification apparaîtra qui vous avertira du fait que nous recherchons votre position, cette Nous devons vous avertir dans le meilleur moment possible. Nous essaierons de ne pas abuser de cette permission. Nous ne vérifierons que lorsque cela sera nécessaire.
+        \nCela dit; pourquoi ne pas faire un tour autour de Pise pendant que vous attendez?
+        \n\nPS: Je vous recommande de ne pas éteindre le GPS ou l’alarme va sauter.
+        </string>
+
+    <string name="alarmDesctrTit">
+        Dites-nous quand vous voulez monter,\nnous nous occupons du reste.</string>
+
+    <string name="descrizione_home">La passerelle à la hauteur des murs de Pise a rouvert au public avec un voyage de 3 km, de la Piazza dei Miracoli à Piazzetta Del Rosso, et quatre points d’ascension pour offrir un point de vue sans précédent.
+        \n\nAu sol 20 000 m² de verdure sont revenus à la ville, une piste cyclable et un éclairage suggestif qui vous permettra d’admirer même la nuit les tronçons des remparts et les bastions admirablement récupérés.
+    </string>
+
+    <string name="TorPiezoDesc">Il est accessible depuis la porte sur les murs, immédiatement à côté de la tour.
+    \nAccès également pour les personnes handicapées.</string>
+
+    <string name="TorSanMarDesc">Il est accessible depuis la pelouse de la Piazza dei Miracoli.
+    \nLes personnes handicapées ne peuvent pas accéder aux murs de la tour de Santa Maria.</string>
+
+    <string name="PiazGondDesc">La caractéristique principale de la place est le bassin d’eau encore visible, appelé Porto delle Gondole.
+    \nAccès également pour les personnes handicapées.</string>
+
+    <string name="TorLegnDesc">Il est accessible depuis la Piazza del Rosso, à travers une porte.
+    \nAccès également pour les personnes handicapées.</string>
+
+    <string name="TorLegnDescFull">
+        \nLorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Ut lacinia ultrices metus, non tincidunt dui imperdiet non. Duis vitae convallis neque. Pellentesque sodales diam nec varius vehicula. In hac habitasse platea dictumst.
+        Morbi non sem magna. Aliquam justo felis, commodo a vestibulum quis, iaculis at ipsum. Sed arcu mi, vulputate ut mi eu, porta convallis elit. Sed non diam non risus mollis finibus.
+        Fusce tristique mollis massa. Morbi finibus augue vitae auctor aliquet. Quisque porttitor massa non convallis gravida.
+        Mauris vel eleifend risus, vitae convallis massa. Phasellus rhoncus, purus vitae rhoncus mollis, metus dolor sodales ante, ultricies suscipit sapien orci eu metus.
+        Aenean suscipit tincidunt neque, et vestibulum sem rutrum quis. Sed a ipsum ex. Pellentesque sit amet eleifend ligula.
+        Phasellus facilisis tellus odio, in facilisis est venenatis et. Sed quis dolor ornare ante dapibus laoreet laoreet vel lorem. Nam a arcu diam. Sed venenatis ex ac nunc varius, id placerat neque commodo. Nulla ac lorem lectus. Cras eget fringilla leo, nec scelerisque est.
+    </string>
+
+    <string name="PiazGondDescFull">
+        \nPetite place caractéristique au bout de la Via Santa Marta, elle passe souvent inaperçue à l’œil de la Piazza delle Gondole
+        qui passe est une place importante dans l’histoire "fluviale" de Pise. La principale caractéristique de la place est encore bassin
+        d’eau visible, appelée Port de télécabines: il était le terminus du réseau de canaux qui traversait la plaine de Pise, où il a débarqué
+        les bateaux qui transportaient des marchandises et des passagers à San Giuliano, surfer sur le Canale Macinate qui a connecté Pisa et
+        Ripafratta. Le canal a été construit par le Grand Duc Cosimo I dei Medici en 1564-1566 et était également connu comme Fosso dei Mulini
+        parce qu’il a opéré les meules pour le traitement du blé et le pressage des olives. personnalités telles que Montesquieu, Alfieri, Murat,
+        Shelley, Bonaparte et bien réels et les prélats se sont lancés sur ce point les gondoles, bateaux caractéristiques couvertes transport
+        baigneurs à San Giuliano Spa.
+        La Piazza delle Gondole est l’aboutissement aqueduc Medici, appelé communément « le Condotti », qui a l’eau de Asciano
+        à Pise et qui alimente la fontaine assez noyé dans les parois donnant sur la Piazza. L’aqueduc a été construit par
+        le grand-duc Ferdinando I et II de Médicis Cosimo » entre 1601 et 1613 sur le modèle de conduite avec aqueducs romains de cordes,
+        serpentait 6 kilomètres et reste encore en bon état. Deux anciennes portes de la ville bordent la place: le Portello et la Porta
+        di Santa Marta, cette dernière créée pendant l’occupation florentine au milieu du XVe siècle pour doubler le passage des véhicules,
+        dont le débit a été considérablement augmenté.
+    </string>
+
+    <string name="TorPiezoDescFull">
+        \nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
+        vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
+        voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui
+        in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui
+        blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
+        mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
+        minus id quod maxime placeat facerecommodo. Nulla ac lorem lectus. Cras eget fringilla leo, nec scelerisque est.
+    </string>
+
+    <string name="TorSanMarDescFull">
+        \nLa tour de Santa Maria est la plus célèbre des tours de l’ancien cercle de Pise, car elle ferme le côté nord-ouest des fortifications sur la célèbre Piazza del Duomo. Banc Livorno et un design légèrement incliné vers le haut. Au-delà du haut des murs, on a utilisé la brèche sédimentaire provenant d’Asciano, jusqu’à un point marqué par un escalier, au-delà duquel la partie ancienne se termine, avec la partie supérieure, y compris le couronnement crénelé, datant des travaux d’élévation du XIXe siècle. Dans la structure, des meurtrières et des ouvertures évasées s’ouvrent, tandis que les fenêtres les plus hautes font partie de la reconstruction.</string>
+
+    <string name="CimiEbraDesc">\nSitué dans la zone adjacente à la Piazza dei Miracoli, en correspondance de l’ancienne Porta del Leone, le cimetière juif abrite depuis 1674 les sépultures de la ville des Israélites. D’un intérêt particulier sont la variété stylistique des monticules présents (trapèzes classiques au style Empire, le néo-gothique et Art Nouveau), les pierres tombales du XVIIe siècle déplacé ici d’un lieu de sépulture précédent et les origines géographiques différentes du même enterré. Ce dernier trait offre un excellent exemple de la variabilité des siècles en présence de Juifs à Pise et témoigne également du choix fait par certains étrangers d’être enterrés dans le cimetière pisan, en vertu du contexte monumental dans lequel il est inséré. Mais où étaient les tombes juives de la période avant 1674? Les témoignages matériels et la documentation publique et privée prouvent qu’au moins quatre, sinon cinq, cimetières juifs existaient dans la zone comprise entre la Porta Nuova et la Cittadella.</string>
+
+    <string name="BattDesc">\nLe Baptistère est l’une des quatre constructions architecturales qui composent Piazza Duomo ou Piazza dei Miracoli à Pise. Conçu et construit pour commémorer le premier événement de la vie chrétienne de chaque homme, il est dédié à Saint Jean-Baptiste. Le premier projet a été préparé par Diotisalvi, et la première pierre placée près de la moitié du XIIe siècle, mais n’a jamais été pleinement réalisé, et environ un siècle après l’interruption du travail a été repris par Nicola et Giovanni Pisano. L’hétérogénéité des styles (roman et gothique) est précisément due au fait que le bâtiment a été fait plusieurs fois. Les visiteurs sont immédiatement fascinés par l’intérieur du Baptistère, complètement dépouillé du point de vue du mobilier et des structures architecturales, à l’exception de simples rangées de colonnes. Cela contribue à donner des caractéristiques mystiques à l’environnement, en raison de l’écho particulier qui est perçu en parlant. Le dôme du projet initial a une forme particulière, un cône tronqué, comme à l’époque ne sont pas encore connues les techniques de construction du dôme hémisphérique ou pyramidale, construit plus tard, de rappeler le style gothique. Le premier dôme avait un trou au sommet, pour éclairer les fonts baptismaux et permettre à l’eau de pluie d’entrer et de remplir les réservoirs. L’absence de drains, cependant, indique que ce n’était que décoratif, puisque l’ancienne pratique du baptême avait été abandonnée depuis un certain temps. Dans une période ultérieure, le petit dôme a été construit, qui surplombe le principal, pour fermer le trou. L’absence de briques dans tout le dôme a souvent été imputée au peu d’argent disponible pour terminer le travail. En fait, il semble que ce qu’on voulait, et même nécessaire: la ville de la mer, en fait, l’exploitation le reflet de la lune sur la brique blanche pour permettre les marins de naviguer.</string>
+
+    <string name="CamSantDesc">\nLe cimetière de la cathédrale a débuté en 1277, à travers l’œuvre de Giovanni di Simone, comme le dernier des bâtiments monumentaux de la place, pour former une toile de fond pittoresque sur le côté settentrionale.L’edificio a été appelé Campo Santo pour une tradition que la terre où il a été construit il aurait été mélangé avec de la terre de la Terre Sainte avec les navires pisan revenant de la croisade III. La structure ample est née dans un but précis: créer un espace adéquat pour recueillir les sarcophages et les diverses sépultures qui, pendant des siècles, ont envahi la zone autour de la cathédrale. Voilà pourquoi en 1277 le « « » archevêque Federico Visconti a signé le « » » acte de donation de terrain pour la construction d’un « espace clos » pour l’utilisation du cimetière, qui fut la première forme d’église dédiée à la Trinité. L’interruption des travaux, également causée par la défaite de Pise dans la bataille de Meloria, et la récupération au XIVe siècle ont complètement redéfini la structure, qui avait la plante à peu près rectangulaire avec un grand cloître central. L’extérieur est en marbre blanc simple, avec 43 arcs aveugles et deux portes. L’entrée principale est à l’est, et est décorée par un tabernacle gothique au-dessus du portail, une œuvre de la seconde moitié du XIVe siècle, avec des statues de la Vierge à l’Enfant et quatre saints. Tout à l’intérieur se trouve un cloître à arcades en pointe particulièrement décoré, dans les couloirs duquel se trouvent de nombreux sarcophages romains, autrefois réutilisés pour les sépultures les plus prestigieuses.
+        En 1360 a commencé les fresques des couloirs avec des sujets liés au thème de la vie et la mort, qui a travaillé buonamico buffalmacco et Francesco Traini, le premier auteur du célèbre Triomphe de la Mort, le deuxième d’une Crucifixion. Dans la chapelle Aulla est conservée la soi-disant "lampe de Galilée", une fois dans la cathédrale, dont l’observation a donné au savant l’idée de la théorie de l’isochronisme du pendule. À l’intérieur de la structure il y a aussi quelques anneaux de la grande chaîne de Porto Pisano qu’après la défaite de Meloria (1284) il a été cassé et porté à Gênes, jusqu’au retour après la "Unification de l’Italie".</string>
+
+    <string name="DuomoDesc">\n« Temple de marbre blanc comme la neige » (lit une inscription sur la façade), la cathédrale de Pise est l’un des plus grands chefs-d’œuvre de l’architecture romane, qui combinent des éléments de style lombard-émilien, classique, fin ancienne, byzantine, Ravenne et les Arabes. Commencé par Buscheto en 1064 et achevé à la mi-1100 Rainaldo avec l’extension du bâtiment et la façade, il a été construit comme un symbole de la puissance de la République maritime de Pise hauteur de sa puissance, grâce aux riches dépouilles des batailles navales en Méditerranée et des dons de particuliers et d’empereurs. Il a été consacré en 1118 et dédié à Maria Assunta. La façade de la cathédrale de Pise a un premier ordre avec des arcs aveugles soutenus avec des colonnes et piliers et orné de losanges et rosettes et quatre rangées de loggias praticables au sommet de laquelle sont une Madonna par Andrea Pisano (centre) et deux anges Tino de Camaino (aux coins). Dans les trois portes de bronze, le travail de l’atelier de Giambologna, sont des histoires représentées du Rédempteur et de la Vierge: la porte principale d’origine, perdu dans l’incendie de 1595, a été décoré par Bonanno Pisano, auteur de 24 panneaux de bronze avec Histoires du Nouveau Testament qui peut être admiré sur la Porta di San Ranieri, dans le transept droit (1180). Quelques épigraphes sur la façade célèbrent les entreprises navales pisanes et sur les côtés il y a des matériaux visibles de "réutilisation" provenant des monuments romains, transportés de l’Est. L’abside se trouve une copie du griffon de bronze de fabrication islamique du XIe siècle (d’origine dans le Museo dell’Opera), le butin de guerre dans le pays de l’Espagne. Le plan de la cathédrale de Santa Maria Assunta est une croix latine avec cinq nefs dans le corps central et trois dans le transept, marquée par des arcs en plein cintre soutenus par des colonnes avec des chapiteaux. Le dôme elliptique, décoré de fresques du XVIIe siècle, domine le bel étage en marbre polychrome du XIIIe siècle. Le toit original a été détruit dans l’incendie de 1595 et a été remplacé au XVIIe siècle par le plafond à caissons.
+    </string>
+
+    <string name="TorPendDesc">\nLa Tour de Pise, située sur un argileuse et un sol sablonneux, il semble a commencé à se pencher à droite du bâtiment « « » au troisième étage de sorte que nous avons dû suspendre les travaux, puis les reprendre ans plus tard, la construction d’étages ultérieurs avec une courbure dans la direction opposée à la pente. On pense que le projet original a été Diotisalvi, qui en même temps était également en train de construire le baptistère. La construction s’est poursuivie jusqu’à l’achèvement en 1350, atteignant une hauteur d’environ 56 mètres et pesant 14.523 tonnes, réussissant à maintenir l’équilibre car la verticale passant par le centre de gravité tombe à l’intérieur de la base de support. Les plans d’ensemble sont 8, entouré d’une loggia avec arcades en plein cintre, qui comprennent le motif de la façade de la cathédrale et depuis la tour elle constitue précisément la cloche, 7 cloches ont été placés: l’Assomption (la plus grande qui pèse 3620 kg), crucifix, San Ranieri, Dal Pozzo, Pasquereccia, troisième, Vespruccio, qui sonne encore aujourd’hui devant les masses dans la cathédrale et à midi par un système électronique qui a été une fois engagé à chaque moment de la journée liturgique. La cloche Pasquareccia, la plus ancienne, s’appelait à l’origine Justice et se trouvait dans le "palais homonyme" et servait à avertir de la mort des traîtres.</string>
+
+    <string name="BagnNeroneDesc">\nLe Spa Porta a Lucca, traditionnellement connu comme les spas ou les bains de Nero, sont situés dans ce qui doit être le secteur nord-ouest de la ville à l’époque romaine, à l’intérieur des murs médiévaux, entre l’abbaye de Saint-Zénon et le Duomo. L’identification des ruines remonte à 1548, quand pour la première fois ils ont été définis comme laconicum, une zone réservée aux bains de sueur; l’attribution de la structure à Néron, cependant, remonte au XIIIe siècle et fait partie d’une vaste tradition qui voit l’empereur avoir des relations intenses avec la ville de Pise. Aujourd’hui, la lecture des techniques de construction, des caractéristiques structurelles et des données matérielles permet de dater le bâtiment des deux dernières décennies du premier siècle après JC. et de le rapporter à la famille Venuleii, protagonistes dans le territoire pisan entre le 1er et le 2ème siècle après JC Actuellement, les spas sont mal conservés en hauteur et perceptibles sont en partie en extension. La pièce octogonale, dont une partie de l’élévation et du toit est visible, est l’environnement qui a atteint son meilleur état de conservation grâce aux restaurations nombreuses et conséquentes. Pour le moment, il est impossible d’insérer les thermes de Porta di Lucca dans un cadre topographique bien défini car les données relatives à la configuration urbaine de Pise romaine sont très pauvres; bien sûr, ils ajoutent plus de pièces
+        Cognitive les nombreuses fouilles archéologiques menées dans la ville comme dans le cas des enquêtes via Galuppi - via Piave où les restes d’un bâtiment d’époque impériale sur des structures existantes et finalement abandonnées sont apparues entre la fin du deuxième et la seconde moitié du IIIe siècle après JC , lorsque la zone, fréquentée sporadiquement dans le but de récupérer des matériaux de construction, a été utilisée, à partir du 4ème siècle après JC, dans une nécropole.</string>
+
+    <string name="ChieSanTorpeDesc">\nL’église et le couvent voisin, fondé entre 1254 et 1278, appartenaient aux Frères Humilié jusqu’à 1584, lorsque le complexe passé aux Frères de Saint-François de Paule, qui dirigeait les bâtiments jusqu’à l’arrivée de la suppression, dans 1784. Plus tard, la propriété appartenait à la Vallombrosani (jusqu’en 1808) et enfin à la Certosini. Depuis 1816, le bâtiment a été attribué aux Carmélites. La façade en plâtre, avec un toit à pignon, est ornée d’une lunette de pierre sereine au centre de laquelle est inséré le relief de marbre de S. Torpè faite par le sculpteur contemporain Antonio Fascetti. A l’intérieur, il accueille le chœur et l’orgue, tandis que les murs abritent quatre pierre confessionnaux (XVIIe siècle), où les peintures ont été placés par un artiste inconnu, représentant: Saint Simon Stock et Santa Teresa (mur gauche ) et San Giovanni della Croce et Sant’Andrea Corsini (mur de droite). Les autels de pierre sereins du XVIIe siècle ornent les murs. Le maître-autel, construit en marbre de Carrare en 1619, est l’œuvre de Giuseppe Zucchetti. À l’intérieur d’une fenêtre se trouve un précieux buste reliquaire en argent, offert en 1667 par les frères Lanfranchi, qui abrite la tête du saint titulaire de l’église.
+        La richesse du mobilier va dans le chœur, où il y a trois tableaux de la première moitié du XVIIe siècle représentant la conversion de saint Jean Gualbert, la Vierge et l’Enfant avec les Saints Torpoint, Anna et les anges et la Vierge et l’Enfant avec des saints Jacques et Philippe. Les deux autels appuyés contre le mur de droite, celle dédiée à San Francesco di Paola et l’autre à San Carlo Borromeo, qui abrite les peintures de la Vierge en gloire avec saint Jean de la Croix et sainte Thérèse (vers 1820) par Domenico Nani d’Udine et Il Santo et des épisodes de sa vie par Giovanni Stefano Maruscelli (après 1631).</string>
+
+    <string name="ChieSanZenDesc">\nLa première attestation de l’église de San Zeno est 1029. Le bâtiment est situé dans une zone de la ville de Pise connue au Moyen Âge avec le toponyme "aux grottes" en raison de la présence d’anciennes structures utilisées comme sources d’approvisionnement en matériaux de construction. Aussi dans le bâtiment en question apparaissent de nombreuses réutilisations de l’âge classique. L’église que nous voyons aujourd’hui, partie d’une abbaye initialement dirigée par des Bénédictins, est le résultat de diverses opérations commencées avant le Xe siècle. Les fouilles menées dans les années 60 du XXe siècle ont en effet mis au jour une structure quadrangulaire divisée en trois nefs qui ont été ajoutées à l’appui d’autant d’absides. Des parties des bâtiments élevés sont incorporées dans le bâtiment du 12ème siècle: la phase la plus ancienne est avant le 10ème siècle, tandis que la phase intermédiaire est comparée à des exemples urbains datant de l’an mil. Aujourd’hui, l’église est orientée dans une direction nord-est-sud-ouest et à l’intérieur elle est divisée en trois nefs, ponctuées de colonnes et de piliers alternés, certains accompagnés de chapiteaux de réemploi. La façade, du côté sud, est caractérisée par une partie avant flanquée par les restes du clocher qui mène à l’entrée réelle. Cette structure de rez-de-chaussée se compose d’une loggia ouverte ornée de fragments de marbre romain et d’arcatures aveugles avec des losanges et des oculi. Le premier étage, aux murs massifs, est éclairé par des fenêtres à meneaux, également encadrées par une sculpture sur frontons, caractérisée par la même décoration avec des cercles et des losanges. L’église du XIe siècle était décorée de bassins en marbre mal conservés, dont les salles circulaires restent visibles. Au-dessus, dans la partie de la façade, résultat d’interventions plus récentes, se trouve une large ouverture circulaire surmontée d’un blason archiépiscopal du XVe siècle.</string>
+
+    <string name="FiboDesc">\nLe complexe Marzotto est un ancien bâtiment industriel situé à Via Filippo Buonarroti 2 à Pise. abrite actuellement le Polo Fibonacci, la maison de la Faculté des Sciences Mathématiques, physiques et naturelles, et les secrétariats pour les étudiants de « « » Université de Pise. En 1936, Gaetano Marzotto succède à la famille Pontecorvo, l’usine textile homonyme, située à l’intérieur des murs de la ville: l’âge de la plante et la nécessité d’introduire de nouvelles machines incitent le propriétaire à démolir les usines et une conséquence nouveau projet. Le "rendez-vous" pour la construction de la nouvelle usine est confié à "l’architecte vénitien Gildo Valconi: le projet est présenté aux autorités de la ville le 23 novembre 1937 et le 21 décembre suivant l’autorisation pour la construction des nouveaux bâtiments. des autorisations liées à l’aménagement urbain de la zone située en face du complexe et à la construction de bâtiments destinés à l’usage des salariés. Les travaux ont commencé peu après et déjà à un stade avancé au printemps 1938, sont effectuées par « « » entreprise Oberziner et Zampieri conformément aux instructions « » » autarcique " « donnée directement par Mussolini (utilisation du fer exclusivement pour les installations, matériaux synthétiques et autarciques si possible). Le complexe est finalement terminé en 1939, après la mort du concepteur. En 1944, l’usine a été gravement endommagée par les bombardements: la reconstruction ultérieure, achevée en 1948, elle implique la reconstruction d’une grande partie des piliers. Avec la crise nationale dans la production de textiles, l’usine de Marzotto a progressivement réduit la production jusqu’à ce qu’elle soit définitivement arrêtée en juin 1968. Elle a ensuite été reprise par le groupe Forest, qui a relancé «l’activité jusqu’en 1974, lorsque le l’usine connaît la fermeture définitive.
+    </string>
+
+    <string name="ChieSanFranDesc">\nLa première mention d’une église dédiée à saint François de 1233. La communauté Minorite de Pise a augmenté rapidement, favorisée par " « le soutien du conseil municipal et des dons privés, l’église est devenue un lieu d’une importance publique, qui abrite un studium, la une bibliothèque et un scriptorium. En 1261, Mgr Visconti, reconnaissant le rôle important des frères prêcheurs, a inauguré le travail d’extension de l’église sous la direction de Giovanni di Simone. La construction du clocher est particulièrement importante pour le système fiscal audacieux d’une arche suspendue. Les difficultés financières liées aux événements de guerre dans les dernières années du treizième siècle ont détourné la ville de «l’engagement constructif; l’église est incomplète au début du "300", comme le révèle la façade, commencée grâce au marbre fourni par Gualandi, mais achevée seulement à l’époque des Médicis. Dans les siècles suivants l’église et le couvent ont subi de nombreuses rénovations: au XVe siècle, deux nouveaux cloîtres et la chapelle de S. Bernardino ont été construits. Entre les XVIIe et XVIIe siècles, les autels contre-réformés ont été érigés et les fenêtres de la nef ont été ouvertes, ce qui a détruit les fresques du XIVe siècle. La plupart des meubles se dispersa suivent les répressions napoléoniennes et la Lorraine: le Musée de Saint-Matthieu conserve le retable de saint François et des histoires attribuées à Giunta, tandis que le célèbre Maestà de Cimabue et Giotto passa les stigmates du Louvre. Sur l’autel principal se trouve le dossal en marbre représentant la Vierge et l’Enfant aux Saints de Tommaso Pisano. Dans les chapelles du transept et dans la chapelle principale se trouvent des vestiges d’importants cycles de fresques datant du début du XVIIIe siècle. Du côté est de la sacristie ouvre la chapelle Sardes-Campiglia décorée de fresques de Taddeo di Bartolo (1397), alors que dans le chapitre admire le cycle de peinture de Niccolò di Pietro Gerini (1392).</string>
+
+    <string name="AppHomeDescr">Utilisez cette application comme un guide touristique!
+        \nVous pourrez voir les monuments que vous avez à proximité et en avoir une description textuelle et sonore.</string>
+    <string name="Unacamminata">Une randonnée sur les murs</string>
+
+    <string name="LatuaGuida">Votre guide touristique virtuel</string>
+
+    <string name="Inizia">Commence</string>
+
+    <string name="AttivaGPS">Activer le GPS (haute précision ou périphérique uniquement) pour utiliser cette fonctionnalité</string>
+
+    <string name="InfoeOrari">Infos et Horaires</string>
+
+    <string name="Allarmi">Alarmes</string>
+
+    <string name="StocercandoPos">Je cherche ta position</string>
+
+    <string name="MonumentiVicini">Monuments à proximité</string>
+
+    <string name="VisualizzaMonu">Voir les monuments tout de suite</string>
+
+    <string name="PosizioneAgg">Position mise à jour</string>
+
+    <string name="AudioDescr">Description audio</string>
+
+    <string name="ScatteCond">Prenez et partagez une photo</string>
+
+    <string name="Annulla">Annuler</string>
+
+    <string name="VuoiSalire">Voulez-vous vous lever à:</string>
+
+    <string name="Indicazioni">Indications</string>
+
+    <string name="MisonoDis">GPS éteint je me suis éteint</string>
+
+    <string name="AlarmServiceNot">Service d’alarme</string>
+
+    <string name="EOra">Il est temps de partir!</string>
+
+    <string name="Incammi">Marcher vers les murs pour ne pas être en retard</string>
+
+    <string name="ScegliIng">Choisissez une entrée</string>
+
+    <string name="PremiAdd">Appuyez sur "+" pour régler la date et l’heure</string>
+
+    <string name="CondCon">Partager avec</string>
+
+
+
+
+
+
+</resources>

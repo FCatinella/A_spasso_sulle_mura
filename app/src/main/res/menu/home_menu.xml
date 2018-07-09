@@ -5,7 +5,7 @@
         <item
             android:id="@+id/alarm_home"
             android:icon="@drawable/ic_access_alarm_black_24dp"
-            android:title="Allarmi"
+            android:title="@string/Allarmi"
             app:showAsAction="always"/>
 
         <item

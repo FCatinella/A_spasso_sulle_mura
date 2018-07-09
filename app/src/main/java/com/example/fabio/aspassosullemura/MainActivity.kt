@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
     private var firsttime :Boolean = true
     private var justInstalled:Boolean = true
     private lateinit var lm :LocationManager
-
     private lateinit var interplacesList : ArrayList<InterPlaces>
 
 
@@ -98,7 +97,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
                         }
                     }
                     else {
-                        if(!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) Toast.makeText(applicationContext,"Attiva il GPS (Alta Precisione o Solo Dispositivo) per usare questa funzionalità", Toast.LENGTH_LONG).show()
+                        if(!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) Toast.makeText(applicationContext,resources.getText(R.string.AttivaGPS), Toast.LENGTH_LONG).show()
                         else {
                             val intent = Intent(applicationContext, VisitActivity::class.java)
                             startActivity(intent)
@@ -123,8 +122,8 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
             }
             // cambio il titolo in base a cosa è selezionato
             if(position==1){
-                mytext?.text="Info e Orari"
-                supportActionBar?.title="Info e Orari"
+                mytext?.text=resources.getText(R.string.InfoeOrari)
+                supportActionBar?.title=resources.getText(R.string.InfoeOrari)
             }
             else {
                 mytext?.text = resources.getString(R.string.app_name)
@@ -193,16 +192,16 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         var editor = pref.edit()
         justInstalled=pref.getBoolean("AppenaInstallata",true)
 
-       // justInstalled=true  //DEBUG
+       justInstalled=true  //DEBUG
 
         editor.putInt("Settato", 0)
-        editor.commit()
+        editor.apply()
 
         //splashscreen etc.
         //Tutto quello che riguarda il primissimo avvio dopo l'installazione
         if(justInstalled){
             editor.putBoolean("AppenaInstallata",false)
-            editor.commit()
+            editor.apply()
 
 
             //Riguardante Oreo+
@@ -236,7 +235,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
             interplacesList.add(InterPlaces("Piazza delle Gondole",R.drawable.piazzagondole,resources.getString(R.string.PiazGondDescFull),43.7166266,10.40917109999998,R.raw.gondole))
             interplacesList.add(InterPlaces("Torre di Legno",R.drawable.torrelegno,resources.getString(R.string.TorLegnDescFull),43.7132137,10.410173,R.raw.torrelegno))
             var interPlacesJson = Gson().toJson(interplacesList)
-            editor.putString("InterPlacesJson",interPlacesJson).commit()
+            editor.putString("InterPlacesJson",interPlacesJson).apply()
 
         }
 

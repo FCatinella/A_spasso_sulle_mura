@@ -65,16 +65,6 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
     //Cosa succede alla modifica di un valore nelle SharedPreferences
     val msharedPreferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener{ sharedPreferences: SharedPreferences, s: String ->
         if(s.equals("Settato")) setSwitch() //Switcho il layout se il parametro "Settato" è stato cambiato nell preferenze
-        /*if(s.equals("Ingresso scelto")){
-            val aal= findViewById<View>(R.id.activity_alarm_layout)
-            val ingr=Gson().fromJson(sharedPreferences.getString("Ingresso scelto","null"),Location::class.java).provider
-            when(ingr){
-                "Piazza Gondole" -> aal.background=getDrawable(R.drawable.piazzagondole_bitmap)
-                "Torre Piezometrica" -> aal.background=getDrawable(R.drawable.torrepiezometrica_bitmap)
-                "Torre Santa Maria" -> aal.background=getDrawable(R.drawable.torresantamaria_bitmap)
-                "Torre di Legno" -> {} //TODO
-            }
-                }*/
     }
     //------------------------------
 
@@ -116,7 +106,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                 .putInt("chosenDateMinuto",i1)
                 .putString("chosenDateOraS",ora)
                 .putString("chosenDateMinutoS",minuti)
-                .commit()
+                .apply()
 
         allarmIntent = Intent(applicationContext,AlarmService::class.java)
         //avvio il servizio che si occuperà del resto (AlarmService)
@@ -152,16 +142,6 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                 // ingresso già scelto
                 ingrButton.text=Gson().fromJson(ingressoNome,Location::class.java).provider
                 fb.isClickable=true
-               /* when(ingrButton.text){
-                    "Piazza Gondole" -> aal.background=getDrawable(R.drawable.piazzagondole_bitmap)
-                    "Torre Piezometrica" -> aal.background=getDrawable(R.drawable.torrepiezometrica_bitmap)
-                    "Torre Santa Maria" -> aal.background=getDrawable(R.drawable.torresantamaria_bitmap)
-                    "Torre di Legno" -> {} //TODO
-
-                }*/
-
-
-
             }
             ingrButton.setOnClickListener { view ->  //listener del pulsante vero e proprio
                 val popup = PopupMenu(this,view)
@@ -197,7 +177,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                     val editor =pref.edit()
                     val locationGsonString = Gson().toJson(chosenIngress)
                     editor.putString("Ingresso scelto",locationGsonString)
-                    editor.commit()
+                    editor.apply()
                     fb.isClickable=true
                     true
                 })
@@ -248,7 +228,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                 alarmmanager.cancel(pintent)
                 val editor = pref.edit()
                 editor.putInt("Settato", 0)
-                editor.commit()
+                editor.apply()
             }
             val indButt= findViewById<Button>(R.id.buttonIndication)
             indButt.setOnClickListener{view ->
@@ -264,7 +244,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //cambio il titolo dell'activity
-        supportActionBar?.title="Allarmi"
+        supportActionBar?.title=resources.getText(R.string.Allarmi)
         supportActionBar?.elevation=0F
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         allarmIntent = Intent(applicationContext,AlarmService::class.java)
@@ -275,7 +255,8 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         setSwitch()
         //nascondo il fab per aggiungere la sveglia, sarà di nuovo visibile quando l'applicazione avrà una posizione valida
         if((pref.getInt("Settato",0))!=1){
-            addfab.visibility=View.INVISIBLE
+            val fb = findViewById<FloatingActionButton>(R.id.addfab)
+            fb.visibility=View.INVISIBLE
         }
 
 
@@ -289,7 +270,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         //se il providder migliore in quel momento non è il GPS, questa funzione non si può usare
         if(locProv.equals(LocationManager.GPS_PROVIDER)==false) {
             //avviso con un messaggio toast
-            val toast = Toast.makeText(applicationContext, "Attiva il GPS (Alta Precisione o Solo Dispositivo) per usare questa funzionalità", Toast.LENGTH_LONG)
+            val toast = Toast.makeText(applicationContext,resources.getText(R.string.AttivaGPS), Toast.LENGTH_LONG)
             toast.show()
             finish()
         }
@@ -335,12 +316,14 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
             //devo avere una posizione valida
             updateLocation(lm.getLastKnownLocation(locProv))
             pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE)
-            if((pref.getInt("Settato",0))!=1) // se ho gìa una posizione valida rendo visibile il FAB fin da subito
+            if((pref.getInt("Settato",0)==1)){ // se ho gìa una posizione valida rendo visibile il FAB fin da subito
                 addfab.visibility=View.VISIBLE
+            }
+            else  Toast.makeText(applicationContext, resources.getText(R.string.StocercandoPos), Toast.LENGTH_LONG).show()
         }
         else {
             //cerco la posizione altrimenti
-            val toast = Toast.makeText(applicationContext, "Sto cercando la tua posizione...", Toast.LENGTH_LONG)
+            val toast = Toast.makeText(applicationContext, resources.getText(R.string.StocercandoPos), Toast.LENGTH_LONG)
             toast.show()
         }
 

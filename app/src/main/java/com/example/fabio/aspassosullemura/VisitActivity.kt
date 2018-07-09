@@ -58,7 +58,7 @@ class VisitActivity : AppCompatActivity(),LocationListener {
 
 
         //sistemo l'actionbar ( titolo cambiato, pulsante back abilitato e 0 elevazione)
-        supportActionBar?.title="Monumenti vicini"
+        supportActionBar?.title=resources.getText(R.string.MonumentiVicini)
         supportActionBar?.elevation=0F
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -69,6 +69,7 @@ class VisitActivity : AppCompatActivity(),LocationListener {
         //recupero il RecyclerView
         rv = findViewById(R.id.inter_places_recycler_view)
         rv.setHasFixedSize(true)
+        rv.visibility=View.INVISIBLE
         viewManager =LinearLayoutManager(this)
 
         rv.layoutManager=viewManager
@@ -79,7 +80,16 @@ class VisitActivity : AppCompatActivity(),LocationListener {
         val interPlacesListType = object : TypeToken<List<InterPlaces>>(){}.type
         interplacesList = Gson().fromJson(pref.getString("InterPlacesJson",""),interPlacesListType)
 
-        //rv.adapter= InterPlacesAdapter(interplacesList,this) //DEBUG
+        showNowButton.setOnClickListener {
+            progress_loader.visibility= View.INVISIBLE
+            textViewPosMess.visibility = View.INVISIBLE
+            rv.adapter= InterPlacesAdapter(interplacesList,this)
+            initialized = true
+            showNowButton.visibility=View.INVISIBLE
+            rv.visibility=View.VISIBLE
+
+        }
+
 
 
         for(i in interplacesList.indices) {
@@ -139,7 +149,8 @@ class VisitActivity : AppCompatActivity(),LocationListener {
             textViewPosMess.visibility = View.INVISIBLE
             rv.adapter= InterPlacesAdapter(interplacesList,this)
             initialized = true
-            Toast.makeText(this,"Posizone aggiornata",Toast.LENGTH_LONG).show()
+            rv.visibility=View.VISIBLE
+            Toast.makeText(this,resources.getText(R.string.PosizioneAgg),Toast.LENGTH_LONG).show()
 
         }
 
@@ -165,7 +176,7 @@ class VisitActivity : AppCompatActivity(),LocationListener {
         super.onDestroy()
         val editor = pref.edit()
         var interPlacesJson = Gson().toJson(interplacesList)
-        editor.putString("InterPlacesJson",interPlacesJson).commit()
+        editor.putString("InterPlacesJson",interPlacesJson).apply()
     }
 
 
@@ -188,7 +199,7 @@ class VisitActivity : AppCompatActivity(),LocationListener {
 
 
             photoIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(bitmapPath))
-            startActivity(Intent.createChooser(photoIntent, "Condividi con:"))
+            startActivity(Intent.createChooser(photoIntent, resources.getText(R.string.CondCon)))
 
         }
     }
