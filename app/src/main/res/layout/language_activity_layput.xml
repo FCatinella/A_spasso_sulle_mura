@@ -91,7 +91,7 @@
         android:layout_marginTop="8dp"
         android:text="A spasso sulle Mura"
         android:textColor="@color/colorAccent"
-        android:textSize="33dp"
+        android:textSize="33sp"
         android:typeface="serif"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"

@@ -51,6 +51,11 @@ class InterPlaces (name:String, photoDrawAr :Int, descrAr : String, lat: Double,
         distance = new
     }
 
+    fun getDistance() : Float{
+        return distance
+    }
+
+
     fun setNewPhotoDraw (photoDraw2 : Int){
         photoDraw = photoDraw2
     }

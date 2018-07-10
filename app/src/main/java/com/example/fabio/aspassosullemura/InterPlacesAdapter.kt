@@ -36,6 +36,7 @@ class InterPlacesAdapter (lista : ArrayList<InterPlaces>,contextAr: Activity): R
         internal var placeName: TextView
         internal var placePhoto: ImageView
         internal var shareButt: ImageView
+        internal var distanceText : TextView
 
 
         init {
@@ -44,6 +45,8 @@ class InterPlacesAdapter (lista : ArrayList<InterPlaces>,contextAr: Activity): R
             placeName = itemView.findViewById(R.id.cv_place_name)
             placePhoto = itemView.findViewById(R.id.cv_place_photo)
             shareButt = itemView.findViewById(R.id.cv_share_imageview)
+            distanceText = itemView.findViewById(R.id.textViewDistanceTo)
+
         }
     }
 
@@ -78,6 +81,8 @@ class InterPlacesAdapter (lista : ArrayList<InterPlaces>,contextAr: Activity): R
         val luogo = interplaces[position]
         holder.placePhoto.setImageDrawable(null)
         holder.placeName.text = luogo.getName()
+        val distanzatesto = luogo.getDistance().toInt().toString()
+        holder.distanceText.text = "- "+ distanzatesto+"m"
 
         //Glide rende il caricamento delle immagini molto più efficente
         Glide.with(contextCpy)
@@ -125,6 +130,9 @@ class InterPlacesAdapter (lista : ArrayList<InterPlaces>,contextAr: Activity): R
             return@setOnLongClickListener true
         }
     }
+
+
+
 
 
     //funzione per creare il file dove andrà la foto

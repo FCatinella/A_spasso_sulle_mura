@@ -261,7 +261,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
 
 
         //localizzazione
-        var crit = Criteria()
+        val crit = Criteria()
         crit.accuracy=Criteria.ACCURACY_FINE
         crit.powerRequirement=Criteria.POWER_MEDIUM
         lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -316,7 +316,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
             //devo avere una posizione valida
             updateLocation(lm.getLastKnownLocation(locProv))
             pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE)
-            if((pref.getInt("Settato",0)==1)){ // se ho gìa una posizione valida rendo visibile il FAB fin da subito
+            if((pref.getInt("Settato",0)!=1)){ // se ho gìa una posizione valida rendo visibile il FAB fin da subito
                 addfab.visibility=View.VISIBLE
             }
             else  Toast.makeText(applicationContext, resources.getText(R.string.StocercandoPos), Toast.LENGTH_LONG).show()

@@ -129,15 +129,19 @@ class VisitActivity : AppCompatActivity(),LocationListener {
 
 
     fun updateDistAll(currentPos : Location){
-        for (place in interplacesList){
+        for (i in interplacesList.indices){
+            val place = interplacesList[i]
             place.updateDist(place.getLoc().distanceTo(currentPos))
+            if(initialized){
+                rv.adapter.notifyItemChanged(i)
+            }
         }
         val oldList = interplacesList.clone() as List<InterPlaces>
         interplacesList.sort()
         val newList = interplacesList.clone() as List<InterPlaces>
 
        if(initialized){
-           var diffResult = DiffUtil.calculateDiff(MyDiffCallback(newList,oldList))
+           val diffResult = DiffUtil.calculateDiff(MyDiffCallback(newList,oldList))
            diffResult.dispatchUpdatesTo(rv.adapter)
        }
 
@@ -175,7 +179,7 @@ class VisitActivity : AppCompatActivity(),LocationListener {
     override fun onDestroy() {
         super.onDestroy()
         val editor = pref.edit()
-        var interPlacesJson = Gson().toJson(interplacesList)
+        val interPlacesJson = Gson().toJson(interplacesList)
         editor.putString("InterPlacesJson",interPlacesJson).apply()
     }
 
@@ -229,15 +233,15 @@ class VisitActivity : AppCompatActivity(),LocationListener {
 
                 val paint = Paint()
                 paint.color=Color.WHITE
-                paint.textSize=150.toFloat()
+                paint.textSize=100.toFloat()
                 paint.typeface= Typeface.SERIF
-                paint.textAlign=Paint.Align.RIGHT
+                paint.textAlign=Paint.Align.LEFT
                 paint.isAntiAlias=true
 
 
                 val monuName = pref.getString("ShareButtonName","")
                 canvas.drawBitmap(watermarkBitmap, 50f,( canvas.height-watermarkBitmap.height).toFloat(), null)
-                canvas.drawText(monuName,(canvas.width).toFloat()-125,canvas.height.toFloat()-250,paint)
+                canvas.drawText(monuName,480f,canvas.height.toFloat()-120,paint)
 
 
                 imageSet = true
