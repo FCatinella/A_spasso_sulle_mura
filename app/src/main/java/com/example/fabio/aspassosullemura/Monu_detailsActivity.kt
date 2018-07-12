@@ -40,19 +40,33 @@ class Monu_detailsActivity : AppCompatActivity(), OnMapReadyCallback{
     var mBound : Boolean = false
     var aaaaaahhhh : Boolean = false
 
+    //gestisco le riprese della mappa
     override fun onMapReady(p0: GoogleMap?) {
-        var location = this.intent.getParcelableExtra("Posizione") as Location
-        var latlng = LatLng(location.latitude,location.longitude)
+        //recupero le coordinate dall'intent
+        val location = this.intent.getParcelableExtra("Posizione") as Location
+        val latlng = LatLng(location.latitude,location.longitude)
 
         val cameraPosition = CameraPosition.builder()
-                .target(latlng)
-                .zoom(17f)
-                .tilt(50f)
+                .target(latlng) // dove deve inquadrare
+                .zoom(17f) // il livello di zoom
+                .tilt(50f) // l'inclinazione della mapppa (per la visualizzazione 3D)
                 .build()
+
+        try{
+            p0?.isMyLocationEnabled=true
+        }
+        catch (e : SecurityException){
+            finish()
+        }
+        p0?.isBuildingsEnabled=true
+        //aggiungo il marker sulla mappa
         p0?.addMarker(MarkerOptions().position(latlng))?.title=titolo
+
+        //animo la camera
         p0?.moveCamera(CameraUpdateFactory.newLatLng(latlng))
         p0?.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
     }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,14 +77,11 @@ class Monu_detailsActivity : AppCompatActivity(), OnMapReadyCallback{
         supportActionBar?.elevation=0F
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
         tv_scrolling.text=intent.extras.getString("Descrizione")
 
+        // imposto la foto come sfondo della imageview (questa deve essere variabile in base al monumento)
+        // userò le informazioni passate nell'intent per scegliere l'immagine
 
-
-        /*imposto la foto come sfondo della imageview (questa deve essere variabile in base al monumento)
-
-          userò le informazioni passate nell'intent per scegliere l'immagine */
         image_scrolling_top.setImageResource(intent.extras.getInt("Immagine"))
         image_scrolling_top.imageAlpha=750
 
@@ -80,18 +91,17 @@ class Monu_detailsActivity : AppCompatActivity(), OnMapReadyCallback{
         toolbar_layout.setExpandedTitleColor(resources.getColor(R.color.colorPrimary))
         setSupportActionBar(toolbar)
 
-
-
-
+        //creo l'intent per il servizio audio
         val audioIntent = Intent(applicationContext,AudioService::class.java)
         audioIntent.putExtra("Titolo",titolo)
-
-        bindService(audioIntent, mConnection, Context.BIND_AUTO_CREATE);
+        //avvio il servizio e la comunicazione con esso
+        bindService(audioIntent, mConnection, Context.BIND_AUTO_CREATE)
 
         //listener del fab
-        fab.setOnClickListener { view ->
-
+        fab.setOnClickListener {
+            //se il servizio è bindato
             if(mBound) {
+                //se la traccia è pronta
                 if(mService.songPrepared){
                     if(mService.song.isPlaying){
                         fab.setImageDrawable(resources.getDrawable(R.drawable.ic_play_arrow_white_24dp))
@@ -100,31 +110,32 @@ class Monu_detailsActivity : AppCompatActivity(), OnMapReadyCallback{
                     else {
                          mService.song.start()
                         fab.setImageDrawable(resources.getDrawable(R.drawable.ic_pause_white_24dp))
-
                         mService.showNotification()
                     }
                 }
                 else {
                     mService.prepareAndPlayMusic(intent.extras.getInt("AudioId",0))
+                    //easter egg AAAAAAAAAHHHHH
                     if(titolo=="Polo Fibonacci" ) image_scrolling_top.setImageResource(R.drawable.aaaaahhhh)
                     fab.setImageDrawable(resources.getDrawable(R.drawable.ic_pause_white_24dp))
                 }
-
 
             }
 
         }
 
 
-        map_overlay.setOnTouchListener { v, event ->
-            val action = event.action
+        //WorkAround per la mappa
+        map_overlay.setOnTouchListener { _, _ ->
             //uso una imageview invisibile per interagire con la mappa
-            mainScrollView.requestDisallowInterceptTouchEvent(true) // disabilito la ricezione dei tocchi sulla scrollview
+            // disabilito la ricezione dei tocchi sulla scrollview in modo che solo la mappa acquisisca i tocchi
+            mainScrollView.requestDisallowInterceptTouchEvent(true)
             false
         }
 
+        //recupero la mappa
         val mapFragment = supportFragmentManager.findFragmentById(R.id.monumap) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        mapFragment.getMapAsync(this) //-> chiamerà onMapReady
 
     }
 
@@ -152,7 +163,7 @@ class Monu_detailsActivity : AppCompatActivity(), OnMapReadyCallback{
     private val mConnection = object : ServiceConnection {
 
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            // Recupero la connessione con il servizio avviato
             val binder = service as AudioService.LocalBinder
             mService = binder.getService()
             mBound = true

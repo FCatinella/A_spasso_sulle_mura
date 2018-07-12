@@ -2,16 +2,18 @@ package com.example.fabio.aspassosullemura
 
 import android.location.Location
 
-class InterPlaces (name:String, photoDrawAr :Int, descrAr : String, lat: Double, longi: Double, audioRawId : Int): Comparable<InterPlaces> {
-    private var name : String = name
+
+//Luogo di interesse
+class InterPlaces (nameAr:String, photoDrawAr :Int, descrAr : String, lat: Double, longi: Double, audioRawId : Int): Comparable<InterPlaces> {
+    private var name : String
     private var photoDraw : Int = photoDrawAr
     private  var descr : String  = descrAr
     private  var locat : Location
     private var distance : Float
-    private var realIndex : Int = -1
     private var audioId : Int = audioRawId
 
     init {
+        name=nameAr
         locat = Location(name)
         locat.latitude=lat
         locat.longitude=longi
@@ -25,14 +27,6 @@ class InterPlaces (name:String, photoDrawAr :Int, descrAr : String, lat: Double,
 
     fun getName () : String {
         return this.name
-    }
-
-    fun getRealIndex() : Int{
-        return realIndex
-    }
-
-    fun setRealIndex(new : Int){
-        realIndex = new
     }
 
     fun getPhotoDraw() : Int {

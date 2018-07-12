@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.PorterDuff
@@ -47,10 +48,11 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
     private var justInstalled:Boolean = true
     private lateinit var lm :LocationManager
     private lateinit var interplacesList : ArrayList<InterPlaces>
+    lateinit var editor : SharedPreferences.Editor
 
 
 
-    //Listener della navigation bar ( lamda ) --------------------------------------------
+    //Listener della navigation bar
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
@@ -65,7 +67,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         }
         false
     }
-    //----------------------------------------------------
+
 
 
     //Page Adapter ----------------------------------------------------------
@@ -82,12 +84,13 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
             container.removeView(viewlist.get(position))
         }
 
+        //cosa succede quando instanzio una pagina del pageadapter
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
             container.addView(viewlist.get(position))
             //sennò NULL POINTER EXCEPTION, non posso "toccare" view contenuti in layout non ancora instanziati
             if(position==0){
 
-                //listener bottone Guida
+                //listener bottone Inizia
                 button2?.setOnClickListener{view ->
 
                     //controllo permessi
@@ -111,10 +114,15 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
     }
     //-----------------------------------------------------------------------------------------------
 
+
     //PageChangeListener ( cosa succede quando cambiamo pagina nella home )
     private val pageChangeListener: ViewPager.OnPageChangeListener = object : ViewPager.OnPageChangeListener {
+
+        //------------
         override fun onPageScrollStateChanged(state: Int) {}
         override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+        //---------------
+
         override fun onPageSelected(position: Int) {
             when (position) {
                 0 -> navigation.selectedItemId = R.id.navigation_home
@@ -133,25 +141,26 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
 
     }
 
-    //BottomBar initializer ------------------------------------------
-    private fun initview(){
+    //BottomBar initializer
+    private fun initBottomView(){
         //parte riguardante la bottombar
         //creo i due layout da aggiungere all view pager
-        var infoview=layoutInflater.inflate(R.layout.info_layout,null)
-        var homeview=layoutInflater.inflate(R.layout.home_layout,null)
+        val infoview=layoutInflater.inflate(R.layout.info_layout,container)
+        val homeview=layoutInflater.inflate(R.layout.home_layout,container)
 
-        viewlist=ArrayList() // era lazy
+        viewlist=ArrayList()
         viewlist.add(homeview)
         viewlist.add(infoview)
         viewpager.adapter=pagerAdapter // gli assegno l'adapter
         viewpager.addOnPageChangeListener(pageChangeListener)
+
         navigation.elevation=0F // azzero "l'altezza" della bottombar
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
-    //----------------------------------------------------------------
 
 
-    //parte playerYoutube----------------------------------------------------------------------------------------
+
+    // Parte playerYoutube----------------------------------------------------------------------------------------
     // Funzioni da implementare perchè il main implementa l'interfaccia YouTubePlayer.OnInitializedListener
 
     override fun onInitializationSuccess(p0: YouTubePlayer.Provider?, p1: YouTubePlayer?, p2: Boolean) {
@@ -166,9 +175,9 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
 
 
 
-    // Controllare se siamo connessi ad internet--------------
+    // Controlla se siamo connessi ad internet--------------
      fun isConnected () : Boolean{
-        var cm=getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager //ottengo il CONNECTIVITY SERVICE
+        val cm=getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager //ottengo il CONNECTIVITY SERVICE
         if(cm.activeNetworkInfo!= null && cm.activeNetworkInfo.isConnectedOrConnecting) return true //è connesso
         return false //non è connesso
     }
@@ -182,27 +191,24 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportActionBar?.elevation= 0F // elimino l'ombra sotto l'action bar ( la "schiaccio a terra" )
-        initview()
+        supportActionBar?.elevation= 0F // elimino l'ombra sotto l'action bar
+
+        initBottomView()
 
         lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
         //controllo se l'applicazione è stata appena installata
-        var pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE)
-        var editor = pref.edit()
+        val pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE)
+        editor = pref.edit()
         justInstalled=pref.getBoolean("AppenaInstallata",true)
-
-       justInstalled=true  //DEBUG
 
         editor.putInt("Settato", 0)
         editor.apply()
 
-        //splashscreen etc.
         //Tutto quello che riguarda il primissimo avvio dopo l'installazione
-        if(justInstalled){
-            editor.putBoolean("AppenaInstallata",false)
+        if(justInstalled) {
+            editor.putBoolean("AppenaInstallata", false)
             editor.apply()
-
 
             //Riguardante Oreo+
             // ottengo il service delle notifiche
@@ -217,27 +223,9 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
                 notificationManager.createNotificationChannel(audioChan)
             }
 
-
-            //inserisco tutti i punti d'interesse nella lista
-            interplacesList = ArrayList()
-            interplacesList.add(InterPlaces("Torre Santa Maria",R.drawable.torresantamaria,resources.getString(R.string.TorSanMarDescFull),43.72442,10.3936933,R.raw.torresantamaria))
-            interplacesList.add(InterPlaces("Cimitero Ebraico",R.drawable.cimiteroebraico,resources.getString(R.string.CimiEbraDesc),43.7240329,10.393226,R.raw.cimiteroebraico))
-            interplacesList.add(InterPlaces("Battistero di San Giovanni",R.drawable.pisa_battistero,resources.getString(R.string.BattDesc),43.7232127,10.3940551,R.raw.battistero))
-            interplacesList.add(InterPlaces("Camposanto Monumentale",R.drawable.camposanto,resources.getString(R.string.CamSantDesc),43.724005,10.3948948,R.raw.camposanto))
-            interplacesList.add(InterPlaces("Cattedrale di Santa Maria Assunta",R.drawable.duomo_pisa_torre,resources.getString(R.string.DuomoDesc),43.7233676,10.39557566,R.raw.duomo))
-            interplacesList.add(InterPlaces("Torre Pendente",R.drawable.torrependente,resources.getString(R.string.TorPendDesc),43.72309347,10.39668073,R.raw.torrependente))
-            interplacesList.add(InterPlaces("Bagni di Nerone",R.drawable.bagnidinerone,resources.getString(R.string.BagnNeroneDesc),43.7222934,10.4019646,R.raw.bagninerone))
-            interplacesList.add(InterPlaces("Chiesa e convento di San Torpè",R.drawable.chiesasantorpe,resources.getString(R.string.ChieSanTorpeDesc),43.72206459,10.4022598,R.raw.santorpe))
-            interplacesList.add(InterPlaces("Chiesa di San Zeno",R.drawable.chiesasanzeno,resources.getString(R.string.ChieSanZenDesc),43.72303073,10.40757626,R.raw.sanzeno))
-            interplacesList.add(InterPlaces("Polo Fibonacci",R.drawable.fibonacci,resources.getString(R.string.FiboDesc),43.72112263,10.40778232,R.raw.fibonacci))
-            interplacesList.add(InterPlaces("Torre Piezometrica",R.drawable.torrepiezometrica,resources.getString(R.string.TorPiezoDescFull),43.72002347,10.40882788,R.raw.piezometrica))
-            interplacesList.add(InterPlaces("Chiesa di San Francesco",R.drawable.chiesasanfrancesco,resources.getString(R.string.ChieSanFranDesc),43.71881031,10.40716524,R.raw.sanfrancesco))
-            interplacesList.add(InterPlaces("Piazza delle Gondole",R.drawable.piazzagondole,resources.getString(R.string.PiazGondDescFull),43.7166266,10.40917109999998,R.raw.gondole))
-            interplacesList.add(InterPlaces("Torre di Legno",R.drawable.torrelegno,resources.getString(R.string.TorLegnDescFull),43.7132137,10.410173,R.raw.torrelegno))
-            var interPlacesJson = Gson().toJson(interplacesList)
-            editor.putString("InterPlacesJson",interPlacesJson).apply()
-
         }
+        //popolo la lista dei monumenti
+        inizializeList()
 
         //inizializzo il fragment usando la api key
         val frag = supportFragmentManager.findFragmentById(R.id.youtubeplayer) as YouTubePlayerSupportFragment
@@ -245,36 +233,22 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
 
         //-------------------------------
 
-
-
-
-
-
-
-        // cose da fare una volta ---------------------------
-        if(savedInstanceState?.getBoolean("Primo avvio")!=null){
-            firsttime=savedInstanceState.getBoolean("Primo avvio") //estraggo la  variabile dal bundle ( se esiste )
-        }
+       //se ho appena aperto l'applicazione e non sono connesso ad internet visualizzo uno Snackbar
         if(firsttime){
             firsttime = false
-            savedInstanceState?.putBoolean("Primo avvio",firsttime) // salvo la variabile nel bundle
             if(!isConnected()){
                 Snackbar.make(viewpager, "Connettiti ad Internet", Snackbar.LENGTH_LONG).show() //mostra avviso in caso non ci sia internet
             }
         }
-        //------------------------------------------------------
-
-
 
     }
 
-
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val mi = menuInflater?.inflate(R.menu.home_menu,menu)
+        menuInflater?.inflate(R.menu.home_menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+    //gestisco il "menù" sulla actionbar
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId) {
             R.id.alarm_home -> {
@@ -294,8 +268,27 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
 
+
+    fun inizializeList(){
+        //inserisco tutti i punti d'interesse nella lista
+        interplacesList = ArrayList()
+        interplacesList.add(InterPlaces("Torre Santa Maria",R.drawable.torresantamaria,resources.getString(R.string.TorSanMarDescFull),43.72442,10.3936933,R.raw.torresantamaria))
+        interplacesList.add(InterPlaces("Cimitero Ebraico",R.drawable.cimiteroebraico,resources.getString(R.string.CimiEbraDesc),43.7240329,10.393226,R.raw.cimiteroebraico))
+        interplacesList.add(InterPlaces("Battistero di San Giovanni",R.drawable.pisa_battistero,resources.getString(R.string.BattDesc),43.7232127,10.3940551,R.raw.battistero))
+        interplacesList.add(InterPlaces("Camposanto Monumentale",R.drawable.camposanto,resources.getString(R.string.CamSantDesc),43.724005,10.3948948,R.raw.camposanto))
+        interplacesList.add(InterPlaces("Cattedrale di Santa Maria Assunta",R.drawable.duomo_pisa_torre,resources.getString(R.string.DuomoDesc),43.7233676,10.39557566,R.raw.duomo))
+        interplacesList.add(InterPlaces("Torre Pendente",R.drawable.torrependente,resources.getString(R.string.TorPendDesc),43.72309347,10.39668073,R.raw.torrependente))
+        interplacesList.add(InterPlaces("Bagni di Nerone",R.drawable.bagnidinerone,resources.getString(R.string.BagnNeroneDesc),43.7222934,10.4019646,R.raw.bagninerone))
+        interplacesList.add(InterPlaces("Chiesa e convento di San Torpè",R.drawable.chiesasantorpe,resources.getString(R.string.ChieSanTorpeDesc),43.72206459,10.4022598,R.raw.santorpe))
+        interplacesList.add(InterPlaces("Chiesa di San Zeno",R.drawable.chiesasanzeno,resources.getString(R.string.ChieSanZenDesc),43.72303073,10.40757626,R.raw.sanzeno))
+        interplacesList.add(InterPlaces("Polo Fibonacci",R.drawable.fibonacci,resources.getString(R.string.FiboDesc),43.72112263,10.40778232,R.raw.fibonacci))
+        interplacesList.add(InterPlaces("Torre Piezometrica",R.drawable.torrepiezometrica,resources.getString(R.string.TorPiezoDescFull),43.72002347,10.40882788,R.raw.piezometrica))
+        interplacesList.add(InterPlaces("Chiesa di San Francesco",R.drawable.chiesasanfrancesco,resources.getString(R.string.ChieSanFranDesc),43.71881031,10.40716524,R.raw.sanfrancesco))
+        interplacesList.add(InterPlaces("Piazza delle Gondole",R.drawable.piazzagondole,resources.getString(R.string.PiazGondDescFull),43.7166266,10.40917109999998,R.raw.gondole))
+        interplacesList.add(InterPlaces("Torre di Legno",R.drawable.torrelegno,resources.getString(R.string.TorLegnDescFull),43.7132137,10.410173,R.raw.torrelegno))
+
+        val interPlacesJson = Gson().toJson(interplacesList)
+        editor.putString("InterPlacesJson",interPlacesJson).apply()
+    }
 }

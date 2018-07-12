@@ -49,7 +49,7 @@
     <string name="alarmDesctr">
         First of all choose an input among those available, and then choose a time.
         \nEnd. You do not have to do anything else.
-        \nSHowever, you know you can only choose dates in the current month. Occasionally a notification will appear that will warn you of the fact that we are looking for your position, this we need to warn you in the best possible moment. We will try not to abuse this permission. We will only check when necessary.
+        \nHowever, you know you can only choose dates in the current month. Occasionally a notification will appear that will warn you of the fact that we are looking for your position, this we need to warn you in the best possible moment. We will try not to abuse this permission. We will only check when necessary.
         \nSaid this; why do not you take a ride around Pisa while you wait?
         \n\nPS: I recommend not turning off the GPS or the alarm will skip.
         </string>
@@ -80,7 +80,7 @@
         Fusce tristique mollis massa. Morbi finibus augue vitae auctor aliquet. Quisque porttitor massa non convallis gravida.
         Mauris vel eleifend risus, vitae convallis massa. Phasellus rhoncus, purus vitae rhoncus mollis, metus dolor sodales ante, ultricies suscipit sapien orci eu metus.
         Aenean suscipit tincidunt neque, et vestibulum sem rutrum quis. Sed a ipsum ex. Pellentesque sit amet eleifend ligula.
-        Phasellus facilisis tellus odio, in facilisis est venenatis et. Sed quis dolor ornare ante dapibus laoreet laoreet vel lorem. Nam a arcu diam. Sed venenatis ex ac nunc varius, id placerat neque commodo. Nulla ac lorem lectus. Cras eget fringilla leo, nec scelerisque est.
+        Phasellus facilisis tellus odio, in facilisis est venenatis et. Sed quis dolor ornare ante dapibus laoreet  vel lorem. Nam a arcu diam. Sed venenatis ex ac nunc varius, id placerat neque commodo. Nulla ac lorem lectus. Cras eget fringilla leo, nec scelerisque est.
     </string>
 
     <string name="PiazGondDescFull">
@@ -180,6 +180,10 @@
     <string name="PremiAdd">Press on "+" to set date and time</string>
 
     <string name="CondCon">Share with</string>
+
+    <string name="viaggiTempo">I can not travel in time. At the moment.</string>
+
+    <string name="meseCorr">You can choose dates only in the current month!</string>
 
 
 

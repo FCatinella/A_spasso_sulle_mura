@@ -34,14 +34,17 @@ class Receiver : BroadcastReceiver(),LocationListener{
 
         //recupero il location Manager
         lm = p0.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        var crit = Criteria()
+        val crit = Criteria()
         crit.accuracy= Criteria.ACCURACY_FINE
         crit.powerRequirement= Criteria.POWER_MEDIUM
-        var locProv = lm.getBestProvider(crit,true)
+        val locProv = lm.getBestProvider(crit,true)
         //attivo gli aggiornamenti delle posizioni
+        try {
         lm.requestLocationUpdates(locProv,2000,10.toFloat(),this)
         updateLocation(lm.getLastKnownLocation(locProv))
-
+        }
+        catch (e : SecurityException){
+        }
     }
 
 
@@ -57,10 +60,6 @@ class Receiver : BroadcastReceiver(),LocationListener{
         Log.w("POSITION","posizione cambiata"+p0.latitude.toString())
 
         handler()
-
-
-
-
 
     }
     override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {}
@@ -82,23 +81,23 @@ class Receiver : BroadcastReceiver(),LocationListener{
        */
 
         //estraggo l'ingresso scelto (JSon)
-        var pref= contextCpy.getSharedPreferences("myprefs",Context.MODE_PRIVATE) as SharedPreferences
-        var locationGsonString = pref.getString("Ingresso scelto","")
-        var chosenLocation = Gson().fromJson(locationGsonString, Location::class.java)
+        val pref= contextCpy.getSharedPreferences("myprefs",Context.MODE_PRIVATE) as SharedPreferences
+        val locationGsonString = pref.getString("Ingresso scelto","")
+        val chosenLocation = Gson().fromJson(locationGsonString, Location::class.java)
 
         //calcolo la differenza che c'è tra l'orario attuale e l'orario scelto
-        var quantomancaGiorno = pref.getInt("chosenDateGiornodelMese",0) - (Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
-        var quantomancaOra= pref.getInt("chosenDateOra",0) - (Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
-        var quantomancaMinuto = pref.getInt("chosenDateMinuto",0) - (Calendar.getInstance().get(Calendar.MINUTE))
+        val quantomancaGiorno = pref.getInt("chosenDateGiornodelMese",0) - (Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
+        val quantomancaOra= pref.getInt("chosenDateOra",0) - (Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
+        val quantomancaMinuto = pref.getInt("chosenDateMinuto",0) - (Calendar.getInstance().get(Calendar.MINUTE))
         //sommo e trasformo in millisecondi
-        var delay= (quantomancaMinuto*60+quantomancaOra*60*60+quantomancaGiorno*24*60*60)*1000
+        val delay= (quantomancaMinuto*60+quantomancaOra*60*60+quantomancaGiorno*24*60*60)*1000
 
         //distanza in tempo ( linea d'aria)
-        var distanceTime = (chosenLocation.distanceTo(position))*1000
+        val distanceTime = (chosenLocation.distanceTo(position))*1000
 
         if(delay-distanceTime<=300000){ //se la differenza è < di 5 minuti allora invia notifica
             //creo la notifica
-            val notification2 = NotificationCompat.Builder(contextCpy!!,"tutte")
+            val notification2 = NotificationCompat.Builder(contextCpy,"tutte")
                     .setSmallIcon(R.drawable.ic_info_black_24dp)
                     .setContentTitle(contextCpy.getText(R.string.EOra))
                     .setContentText(contextCpy.getText(R.string.Incammi))
@@ -107,21 +106,21 @@ class Receiver : BroadcastReceiver(),LocationListener{
             nm.notify(3,notification2) //invio la notifica vera e propria
 
             //siccome la notifica è stata mandanta, posso reimpostare un altro allarme
-            var editor = pref.edit()
+            val editor = pref.edit()
             editor.putInt("Settato",0)
             editor.apply()
         }
         else {
-            //reimposto l'allarme a mentà del tempo
+            //reimposto l'allarme a metà del tempo
             Log.w("Timer", "scattato e reimpostato")
-            var intent = Intent(contextCpy,Receiver::class.java)
-            var alarmmanager = contextCpy.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            var pintent = PendingIntent.getBroadcast(contextCpy,1,intent,0)
+            val intent = Intent(contextCpy,Receiver::class.java)
+            val alarmmanager = contextCpy.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val pintent = PendingIntent.getBroadcast(contextCpy,1,intent,0)
             alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+(delay-(distanceTime.toLong()))/2,pintent)
         }
         lm.removeUpdates(this) //disattivo il listener della posizione
     }
-    //------------------------------------
+
 
 
 

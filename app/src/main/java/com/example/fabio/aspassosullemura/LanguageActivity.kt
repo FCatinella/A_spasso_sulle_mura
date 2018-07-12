@@ -12,11 +12,16 @@ class LanguageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.language_activity_layput)
-        var intent = Intent(this,MainActivity::class.java)
+        val intent = Intent(this,MainActivity::class.java)
         supportActionBar?.elevation=0F
         supportActionBar?.hide()
 
 
+        /*
+        - imposto la lingua
+        - avvio la mainActivity
+        - termino
+         */
 
         itaButton.setOnClickListener{
             setLocale("it")
@@ -35,11 +40,13 @@ class LanguageActivity : AppCompatActivity() {
         }
     }
 
+    //imposto la lingua
     fun setLocale(lang : String){
         val myLocale = Locale(lang)
         val dm= resources.displayMetrics
         val conf = resources.configuration
         conf.locale = myLocale
+        //aggiorno la configurazione con quella nuova ( che è uguale a quella vecchia tranne per la lingua )
         resources.updateConfiguration(conf,dm)
     }
 }

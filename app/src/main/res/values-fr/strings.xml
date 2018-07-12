@@ -185,6 +185,10 @@
 
     <string name="CondCon">Partager avec</string>
 
+    <string name="viaggiTempo">Je ne peux pas voyager à temps. Pour l’instant.</string>
+
+    <string name="meseCorr">Vous pouvez choisir des dates seulement dans le mois en cours!</string>
+
 
 
 

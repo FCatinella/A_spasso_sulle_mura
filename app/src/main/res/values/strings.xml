@@ -170,7 +170,7 @@
         Fusce tristique mollis massa. Morbi finibus augue vitae auctor aliquet. Quisque porttitor massa non convallis gravida.
         Mauris vel eleifend risus, vitae convallis massa. Phasellus rhoncus, purus vitae rhoncus mollis, metus dolor sodales ante, ultricies suscipit sapien orci eu metus.
         Aenean suscipit tincidunt neque, et vestibulum sem rutrum quis. Sed a ipsum ex. Pellentesque sit amet eleifend ligula.
-        Phasellus facilisis tellus odio, in facilisis est venenatis et. Sed quis dolor ornare ante dapibus laoreet laoreet vel lorem. Nam a arcu diam. Sed venenatis ex ac nunc varius, id placerat neque commodo. Nulla ac lorem lectus. Cras eget fringilla leo, nec scelerisque est.
+        Phasellus facilisis tellus odio, in facilisis est venenatis et. Sed quis dolor ornare ante dapibus laoreet  vel lorem. Nam a arcu diam. Sed venenatis ex ac nunc varius, id placerat neque commodo. Nulla ac lorem lectus. Cras eget fringilla leo, nec scelerisque est.
     </string>
 
     <string name="PiazGondDescFull">
@@ -368,4 +368,8 @@
     <string name="ScegliIng">Scegli un ingresso</string>
 
     <string name="CondCon">Condividi con</string>
+
+    <string name="viaggiTempo">Non posso viaggiare nel tempo. Per ora.</string>
+
+    <string name="meseCorr">Puoi scegliere date solo nel mese corrente!</string>
 </resources>

@@ -46,7 +46,7 @@ class VisitActivity : AppCompatActivity(),LocationListener {
     lateinit var locProv : String
     lateinit var lm : LocationManager
     var initialized : Boolean = false
-
+    var firstTime : Boolean = true
     lateinit var mCurrentPhotoPath : String
 
 
@@ -56,15 +56,10 @@ class VisitActivity : AppCompatActivity(),LocationListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.inte_places_layout)
 
-
         //sistemo l'actionbar ( titolo cambiato, pulsante back abilitato e 0 elevazione)
         supportActionBar?.title=resources.getText(R.string.MonumentiVicini)
         supportActionBar?.elevation=0F
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-
-
-
 
         //recupero il RecyclerView
         rv = findViewById(R.id.inter_places_recycler_view)
@@ -80,40 +75,39 @@ class VisitActivity : AppCompatActivity(),LocationListener {
         val interPlacesListType = object : TypeToken<List<InterPlaces>>(){}.type
         interplacesList = Gson().fromJson(pref.getString("InterPlacesJson",""),interPlacesListType)
 
+        //pulsante per vedere subito i monumenti senza aspettare la posizione esatta
         showNowButton.setOnClickListener {
+            //nascondo loader, messaggio e pulsante
             progress_loader.visibility= View.INVISIBLE
             textViewPosMess.visibility = View.INVISIBLE
+            showNowButton.visibility=View.INVISIBLE
+
             rv.adapter= InterPlacesAdapter(interplacesList,this)
             initialized = true
-            showNowButton.visibility=View.INVISIBLE
             rv.visibility=View.VISIBLE
-
         }
 
-
-
-        for(i in interplacesList.indices) {
-            interplacesList[i].setRealIndex(i)
-        }
-
-
-
-        var crit = Criteria()
+        val crit = Criteria()
         crit.accuracy= Criteria.ACCURACY_FINE
         crit.powerRequirement= Criteria.POWER_MEDIUM
         lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         locProv= lm.getBestProvider(crit,true) //location provvider
         Log.w("VisitActivity","provvider scelto: $locProv")
 
-
-
     }
 
 
     override fun onResume() {
         super.onResume()
-        lm.requestLocationUpdates(locProv,30000,10.toFloat(),this) //attivo il listener
 
+        try {
+            lm.requestLocationUpdates(locProv, 10000, 0.toFloat(), this) //attivo il listener
+            val lastLoc = lm.getLastKnownLocation(locProv)
+            if(lastLoc!=null) updateDistAll(lastLoc)
+        }
+        catch ( e : SecurityException ){
+            finish()
+        }
     }
 
     override fun onPause() {
@@ -128,7 +122,8 @@ class VisitActivity : AppCompatActivity(),LocationListener {
     }
 
 
-    fun updateDistAll(currentPos : Location){
+    //Funzione che aggiorna le distanze dei monumenti dalla posizione attuale
+    private fun updateDistAll(currentPos : Location){
         for (i in interplacesList.indices){
             val place = interplacesList[i]
             place.updateDist(place.getLoc().distanceTo(currentPos))
@@ -136,32 +131,38 @@ class VisitActivity : AppCompatActivity(),LocationListener {
                 rv.adapter.notifyItemChanged(i)
             }
         }
+        //clono la lista, la ordino e calcolo le differenze
         val oldList = interplacesList.clone() as List<InterPlaces>
         interplacesList.sort()
         val newList = interplacesList.clone() as List<InterPlaces>
 
-       if(initialized){
+       if(initialized){ //l'adapter è già stato collegato alla recyclerView
+           //avviso l'adapter delle differenze
            val diffResult = DiffUtil.calculateDiff(MyDiffCallback(newList,oldList))
            diffResult.dispatchUpdatesTo(rv.adapter)
        }
-
-        interplacesList.clear()
+        //aggiorno la lista vera e propria
+        interplacesList.removeAll(oldList)
         interplacesList.addAll(newList)
 
-        if(!initialized){
+        if(!initialized){ // se l'adapter non è stato ancora collegato alla view
             progress_loader.visibility= View.INVISIBLE
             textViewPosMess.visibility = View.INVISIBLE
+            showNowButton.visibility=View.INVISIBLE
             rv.adapter= InterPlacesAdapter(interplacesList,this)
             initialized = true
+            firstTime=false
             rv.visibility=View.VISIBLE
-            Toast.makeText(this,resources.getText(R.string.PosizioneAgg),Toast.LENGTH_LONG).show()
-
         }
-
+        if(firstTime){
+            firstTime = false
+            rv.adapter.notifyDataSetChanged()
+        }
     }
 
 
     override fun onLocationChanged(p0: Location?) {
+        //aggiorno le posizioni quando cambia quella attuale
         updateDistAll(p0!!)
     }
 
@@ -169,15 +170,13 @@ class VisitActivity : AppCompatActivity(),LocationListener {
         finish()
     }
 
-    override fun onProviderEnabled(p0: String?) {
-    }
+    override fun onProviderEnabled(p0: String?) {}
 
-    override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
-
-    }
+    override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {}
 
     override fun onDestroy() {
         super.onDestroy()
+        //salvo la lista nelle preferenze condivise
         val editor = pref.edit()
         val interPlacesJson = Gson().toJson(interplacesList)
         editor.putString("InterPlacesJson",interPlacesJson).apply()
@@ -187,71 +186,65 @@ class VisitActivity : AppCompatActivity(),LocationListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.w("onActivityResult","arrivato")
+
         if (requestCode==1 && resultCode!=0){
+            //se è terminata l'attività chiamata dall'intent della camera
             val photoIntent = Intent()
-            photoIntent.setType("image/*")
+            photoIntent.type="image/*"
             photoIntent.action=Intent.ACTION_SEND
+            //recupero il path dove è salvata la foto
             val photoPath = pref.getString("mCurrentPhotoPath","")
-
-
+            //prendo il logo dell'app
             val waterBitmap = BitmapFactory.decodeResource(resources,R.drawable.watermark)
-
-
-
+            //e lo applico sulla foto
             val photoNew = addWaterMark(photoPath,waterBitmap)
-            val bitmapPath = MediaStore.Images.Media.insertImage(contentResolver, photoNew,"title", null);
+            //salvo la foto
+            val bitmapPath = MediaStore.Images.Media.insertImage(contentResolver, photoNew,"title", null)
 
-
+            //invio l'intent di condivisione
             photoIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(bitmapPath))
             startActivity(Intent.createChooser(photoIntent, resources.getText(R.string.CondCon)))
-
         }
     }
 
 
 
-    fun addWaterMark(ImageSrcPath: String, watermarkBitmap: Bitmap): Bitmap? {
+
+   private fun addWaterMark(ImageSrcPath: String, watermarkBitmap: Bitmap): Bitmap? {
         val bitmapOptions = BitmapFactory.Options()
+        //scala della bitmap
         bitmapOptions.inSampleSize = 1
         var imageSet = false
-
 
         while (!imageSet) {
             try {
                 val photoBitmap = BitmapFactory.decodeFile(ImageSrcPath, bitmapOptions)
 
+                //creo il canvas dove "disegnare"
                 val w = photoBitmap.width
                 val h = photoBitmap.height
-
                 val result = Bitmap.createBitmap(w, h, Bitmap.Config.RGB_565)
-
                 val canvas = Canvas(result)
+                //disegno il logo
+                canvas.drawBitmap(photoBitmap, w.toFloat(),h.toFloat(), null)
 
-                canvas.drawBitmap(photoBitmap, Rect(0, 0, photoBitmap.width, photoBitmap.height),
-                        Rect(0, 0, w, h), null)
-
-
+                // e il nome del monumento selezionato
                 val paint = Paint()
                 paint.color=Color.WHITE
                 paint.textSize=100.toFloat()
                 paint.typeface= Typeface.SERIF
                 paint.textAlign=Paint.Align.LEFT
                 paint.isAntiAlias=true
-
-
                 val monuName = pref.getString("ShareButtonName","")
                 canvas.drawBitmap(watermarkBitmap, 50f,( canvas.height-watermarkBitmap.height).toFloat(), null)
                 canvas.drawText(monuName,480f,canvas.height.toFloat()-120,paint)
-
-
                 imageSet = true
-
                 return result
 
             } catch (E: OutOfMemoryError) {
+                //dimezzo la scala
                 bitmapOptions.inSampleSize *= 2
             }
-
         }
         return null
     }

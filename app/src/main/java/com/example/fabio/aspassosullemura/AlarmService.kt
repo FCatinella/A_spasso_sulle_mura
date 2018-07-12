@@ -37,7 +37,7 @@ class AlarmService : Service(),LocationListener {
         updateLocation(p0!!)
         //devo passare la posizione al receiver
         Log.w("AlarmService","posizione cambiata")
-        handler()
+        handler() //cuore del servizio
         stopForeground(true) //rimuovo le notifiche in foreground
         stopSelf() // termino il servizio
     }
@@ -86,9 +86,12 @@ class AlarmService : Service(),LocationListener {
         lm = contextCpy.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         nm= contextCpy.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
+        //invia subito la notifica se manca tempo negativo
+        if ( quantoManca()<=0) sendNoti()
 
         val locProv=LocationManager.GPS_PROVIDER
         Log.w("DEBUG","Provvider attivo - "+lm.isProviderEnabled(locProv).toString())
+
         if(!(lm.isProviderEnabled(locProv))){
             // se il GPS è stato disattivato invio una notifica e termino
             notification2 = NotificationCompat.Builder(contextCpy,"posizione")
@@ -153,44 +156,52 @@ class AlarmService : Service(),LocationListener {
         val locationGsonString = pref.getString("Ingresso scelto","")
         val chosenLocation = Gson().fromJson(locationGsonString, Location::class.java)
 
-        //calcolo la differenza che c'è tra l'orario attuale e l'orario scelto
-        val quantomancaGiorno = pref.getInt("chosenDateGiornodelMese",0) - (Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
-        val quantomancaOra= pref.getInt("chosenDateOra",0) - (Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
-        val quantomancaMinuto = pref.getInt("chosenDateMinuto",0) - (Calendar.getInstance().get(Calendar.MINUTE))
-        //sommo e trasformo in millisecondi
-        val delay= (quantomancaMinuto*60+quantomancaOra*60*60+quantomancaGiorno*24*60*60)*1000
-
-        //distanza in tempo ( linea d'aria)
-        val distanceTime = (chosenLocation.distanceTo(position))*1000
+        val delay = quantoManca()
+        //distanza in tempo ( linea d'aria )
+        val distanceTime = (chosenLocation.distanceTo(position))*1000 //secondi
 
         if(delay-distanceTime<=300000){ //se la differenza è < di 5 minuti allora invia notifica
-            //creo la notifica
-            val notification2 = NotificationCompat.Builder(contextCpy,"tutte")
-                    .setSmallIcon(R.drawable.ic_info_white_24dp)
-                    .setContentTitle(resources.getText(R.string.EOra))
-                    .setContentText(contextCpy.resources.getText(R.string.Incammi))
-                    .addAction(R.drawable.navigation_empty_icon,resources.getText(R.string.Indicazioni),mapPintent)
-                    .build()
-            nm.notify(3,notification2) //invio la notifica vera e propria
-            lm.removeUpdates(this)
-            stopForeground(true)
-
-            //siccome la notifica è stata mandanta, posso reimpostare un altro allarme
-            editor.putInt("Settato",0)
-            editor.apply()
-
+            sendNoti()
         }
        else {
             //reimposto l'allarme a metà del tempo
             Log.w("Timer", "scattato e reimpostato")
             val alarmmanager = contextCpy.getSystemService(Context.ALARM_SERVICE) as AlarmManager
             val pintent = PendingIntent.getService(contextCpy,1,intentCpy,0)
-            //TEST   alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+6000,pintent)
-            alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+delay/*-(distanceTime.toLong()))*//2,pintent)
+            alarmmanager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+delay/2,pintent)
         }
         lm.removeUpdates(this) //disattivo il listener della posizione
     }
 
+
+
+    fun quantoManca() : Int {
+        //calcolo la differenza che c'è tra l'orario attuale e l'orario scelto
+        val quantomancaGiorno = pref.getInt("chosenDateGiornodelMese",0) - (Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
+        val quantomancaOra= pref.getInt("chosenDateOra",0) - (Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
+        val quantomancaMinuto = pref.getInt("chosenDateMinuto",0) - (Calendar.getInstance().get(Calendar.MINUTE))
+        //sommo e trasformo in millisecondi
+        val delay= (quantomancaMinuto*60+quantomancaOra*60*60+quantomancaGiorno*24*60*60)*1000
+        return delay
+    }
+
+
+    fun sendNoti() {
+        val notification2 = NotificationCompat.Builder(contextCpy,"tutte")
+                .setSmallIcon(R.drawable.ic_info_white_24dp)
+                .setContentTitle(resources.getText(R.string.EOra))
+                .setContentText(contextCpy.resources.getText(R.string.Incammi))
+                .addAction(R.drawable.ic_directions_white_24dp,resources.getText(R.string.Indicazioni),mapPintent)
+                .build()
+        nm.notify(3,notification2) //invio la notifica vera e propria
+        lm.removeUpdates(this)
+        stopForeground(true)
+
+        //siccome la notifica è stata mandanta, posso reimpostare un altro allarme
+        editor.putInt("Settato",0)
+        editor.apply()
+
+    }
 
     override fun onDestroy() {
         lm.removeUpdates(this)

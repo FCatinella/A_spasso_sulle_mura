@@ -6,9 +6,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+//preso da : https://medium.com/@iammert/using-diffutil-in-android-recyclerview-bdca8e4fbb00
+
 public class MyDiffCallback extends DiffUtil.Callback {
-    List<InterPlaces> oldInterPlaces;
-    List<InterPlaces> newInterPlaces;
+    private List<InterPlaces> oldInterPlaces;
+    private List<InterPlaces> newInterPlaces;
 
     public MyDiffCallback(List<InterPlaces> newIP, List<InterPlaces> oldIP) {
         this.newInterPlaces = newIP;

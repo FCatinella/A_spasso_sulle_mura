@@ -26,20 +26,18 @@ class AudioService : Service() {
     lateinit var pendingIntent: PendingIntent
 
 
-    // Binder given to clients
+    // Binder da dare ai client
     private val mBinder = LocalBinder()
 
 
 
-   inner class LocalBinder: Binder() {
+    inner class LocalBinder: Binder() {
          fun getService () : AudioService {
             return this@AudioService
         }
-
-
-
     }
 
+    //ritono il Binder alla attività che ha chiamato questa funzione
     override fun onBind(p0: Intent?): IBinder {
         return mBinder
     }
@@ -58,27 +56,33 @@ class AudioService : Service() {
     fun prepareAndPlayMusic(audioId : Int){
         val songFd= resources.openRawResourceFd(audioId)
         song.setAudioStreamType(AudioManager.STREAM_MUSIC)
+        //imposto la sorgente dell'audio da riprodurre
         song.setDataSource(songFd.fileDescriptor, songFd.startOffset, songFd.length)
 
+        //quando è pronto
         song.setOnPreparedListener {
             songPrepared=true
-            it.start()
+            it.start() //avvia l'audio
             pendingIntent = PendingIntent.getActivity(applicationContext,10,intentCpy,PendingIntent.FLAG_CANCEL_CURRENT)
 
             audioNotification = NotificationCompat.Builder(applicationContext,"AudioGuida")
                     .setSmallIcon(R.drawable.ic_audiotrack_white_24dp)
                     .setContentTitle(callerActivity.titolo)
-                    .setContentText("Audio Descrizione")
+                    .setContentText(resources.getText(R.string.AudioDescr))
                     .setContentIntent(pendingIntent)
                     .build()
             showNotification()
+
             //easterEgg
             callerActivity.aaaaaahhhh=true
         }
+
+        //quando l'audio è terminato
         song.setOnCompletionListener { it ->
             stopForeground(true)
             callerActivity.updateFabIcon()
         }
+
         song.prepareAsync()
 
     }
@@ -87,9 +91,5 @@ class AudioService : Service() {
     override fun onCreate() {
         super.onCreate()
         song = MediaPlayer()
-
-
-
-
     }
 }

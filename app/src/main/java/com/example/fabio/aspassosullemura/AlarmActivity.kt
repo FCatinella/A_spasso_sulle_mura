@@ -40,7 +40,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
     var chosenDateMese: Int = 1
     var chosenDateGiornodelMese: Int = 1
 
-    //Listener Date Picker-------------------------
+    //Listener Date Picker
     private val datepickerdialoglistener = DatePickerDialog.OnDateSetListener{ datePicker: DatePicker, i: Int, i1: Int, i2: Int ->
 
         // assegno alle variabili i parametri impostati dall'utente
@@ -52,21 +52,23 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         //visualizzo uno snackbar ed esco se il mese o l'anno non sono quello corrente
         if(i!=Calendar.getInstance().get(Calendar.YEAR) || i1!=Calendar.getInstance().get(Calendar.MONTH)){
             val addFab = findViewById<FloatingActionButton>(R.id.addfab)
-            Snackbar.make(addFab, "Puoi scegliere date solo nel mese corrente!", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(addFab, resources.getText(R.string.meseCorr), Snackbar.LENGTH_LONG).show()
             return@OnDateSetListener
         }
 
         // chiamo il selettore di orario
-        TimePickerDialog(this, timepickerdialoglistener, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE),true).show()
+        TimePickerDialog(this, timepickerdialoglistener, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE),true)
+                .show()
     }
-    //-------------------------------------------------------
+
+
 
 
     //Cosa succede alla modifica di un valore nelle SharedPreferences
     val msharedPreferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener{ sharedPreferences: SharedPreferences, s: String ->
         if(s.equals("Settato")) setSwitch() //Switcho il layout se il parametro "Settato" è stato cambiato nell preferenze
     }
-    //------------------------------
+
 
 
     //Time picker Listener -------------------------------
@@ -93,7 +95,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         //Visualizzo uno snackbar in caso di ora o data sbagliata ed esco
         if(delay<0) {
             val addFab = findViewById<FloatingActionButton>(R.id.addfab)
-            Snackbar.make(addFab, "Non posso viaggiare nel tempo. Per ora.", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(addFab, resources.getText(R.string.viaggiTempo), Snackbar.LENGTH_LONG).show()
             return@OnTimeSetListener
         }
 
@@ -109,11 +111,10 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                 .apply()
 
         allarmIntent = Intent(applicationContext,AlarmService::class.java)
+
         //avvio il servizio che si occuperà del resto (AlarmService)
         startService(allarmIntent)
     }
-    //--------------------------------------------
-
 
 
 
@@ -122,12 +123,15 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
     fun setSwitch() {
         val ingressoNome = pref.getString("Ingresso scelto","null")
         setted = pref.getInt("Settato", 0)
+
         if (setted == 0) {  //allarme da impostare
+
             //imposto il layout "Allarme non settato"
             setContentView(R.layout.activity_alarm)
             val aal= findViewById<View>(R.id.activity_alarm_layout)
             aal.backgroundTintMode= PorterDuff.Mode.DARKEN
             val fb= findViewById<FloatingActionButton>(R.id.addfab) // usare la classica abbreviazione alla Kotlin non funziona
+
             //listener del FAB
             fb.setOnClickListener { view ->
                 //appare dialog per scegliere data e orario
@@ -146,7 +150,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
             ingrButton.setOnClickListener { view ->  //listener del pulsante vero e proprio
                 val popup = PopupMenu(this,view)
                 popup.menuInflater.inflate(R.menu.ingressi,popup.menu) // ""Gonfio"" il menù
-                popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item :MenuItem? -> //listener dei vari pulsanti del menu
+                popup.setOnMenuItemClickListener{ item :MenuItem? -> //listener dei vari pulsanti del menu
                     when (item!!.itemId){
                         //setto le coordinate degli ingressi e salvo tutto nelle preferenze (usando Json)
                         R.id.ingr_TorreSmaria -> {
@@ -180,7 +184,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                     editor.apply()
                     fb.isClickable=true
                     true
-                })
+                }
                 popup.show() // lo mostro ( questo fa parte del primo listener
             }
 
@@ -199,6 +203,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
             if(ingressoNome.equals("null")==false) {
                 // ingresso già scelto
                 avvisoIngr.text = ingrSceltoJson.provider
+                //visualizzo una breve descrizione dell'ingresso scelto
                 when (avvisoIngr.text) {
                     "Piazza Gondole" -> avvisoIngrDesc.text = resources.getString(R.string.PiazGondDesc)
                     "Torre Piezometrica" -> avvisoIngrDesc.text = resources.getString(R.string.TorPiezoDesc)
@@ -214,15 +219,17 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
             val annosettato= pref.getInt("chosenDateAnno",2000)
 
             //imposto i testi nelle Textview riguardanti l'orario e la data scelti
-            avvisoTime.text=(orasettata+":"+minutosettato)
-            avvisoData.text="$giornosettato/$mesesettato/$annosettato"
+            var temp = "$orasettata:$minutosettato"
+            avvisoTime.text=temp
+            temp ="$giornosettato/$mesesettato/$annosettato"
+            avvisoData.text=temp
 
-            bu.setOnClickListener { view -> //listener del tasto "annulla"
+            bu.setOnClickListener {
+                //listener del tasto "annulla"
                 val alarmmanager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-                val intent = Intent(applicationContext,AlarmService::class.java)
-                val pintent = PendingIntent.getService(this,1,intent,0)
+                val pintent = PendingIntent.getService(this,1,allarmIntent,0)
                 //stoppo il servizio (se attivo)
-                val statusDebug = stopService(intent)
+                val statusDebug = stopService(allarmIntent)
                 Log.w("DEBUG","Ho stoppato il servizio: "+statusDebug.toString())
                 //cancello gli allarmi registrati
                 alarmmanager.cancel(pintent)
@@ -230,8 +237,12 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
                 editor.putInt("Settato", 0)
                 editor.apply()
             }
+
+            //pulsante indicazioni
             val indButt= findViewById<Button>(R.id.buttonIndication)
-            indButt.setOnClickListener{view ->
+            indButt.setOnClickListener{
+                //invio un intent con le coordinate dell'ingresso scelto
+                //mode=w -> navigazione impostata a piedi
                 val gmmIntentUri = Uri.parse("google.navigation:q="+ingrSceltoJson.latitude+","+ingrSceltoJson.longitude+"&mode=w")
                 val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
                 startActivity(mapIntent)
@@ -243,18 +254,22 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         //cambio il titolo dell'activity
         supportActionBar?.title=resources.getText(R.string.Allarmi)
         supportActionBar?.elevation=0F
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         allarmIntent = Intent(applicationContext,AlarmService::class.java)
         pref= getSharedPreferences("myprefs",Context.MODE_PRIVATE)
-                        // MODE_PRIVATE modo default di creare il file, può essere acceduto soltanto dall'applicazione che chiama il metodo
+        // MODE_PRIVATE modo default di creare il file, può essere acceduto soltanto dall'applicazione che chiama il metodo
+
         //registro un listener che scatti al variare di un elemento chiave-valore
         pref.registerOnSharedPreferenceChangeListener(msharedPreferenceChangeListener)
         setSwitch()
+
         //nascondo il fab per aggiungere la sveglia, sarà di nuovo visibile quando l'applicazione avrà una posizione valida
-        if((pref.getInt("Settato",0))!=1){
+        if((pref.getInt("Settato",0))!=1){ //solo se non già impostata
             val fb = findViewById<FloatingActionButton>(R.id.addfab)
             fb.visibility=View.INVISIBLE
         }
@@ -267,8 +282,9 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         locProv= lm.getBestProvider(crit,true) //location provvider
         Log.w("PROVVIDER SCELTO",locProv)
-        //se il providder migliore in quel momento non è il GPS, questa funzione non si può usare
-        if(locProv.equals(LocationManager.GPS_PROVIDER)==false) {
+
+        //se il provvider migliore in quel momento non è il GPS, questa funzione non si può usare
+        if(!(locProv.equals(LocationManager.GPS_PROVIDER))) {
             //avviso con un messaggio toast
             val toast = Toast.makeText(applicationContext,resources.getText(R.string.AttivaGPS), Toast.LENGTH_LONG)
             toast.show()
@@ -281,7 +297,8 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
     }
 
 
-    //Funzioni riguardanti l'interfaccia LocationListener
+    //Funzioni riguardanti l'interfaccia LocationListener-------------
+
     fun updateLocation (newLoc : Location){
         position = Location(newLoc)
     }
@@ -294,6 +311,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
         addfab?.visibility=View.VISIBLE
         lm.removeUpdates(this) //disattivo il listener
     }
+
     override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {}
 
     override fun onProviderDisabled(p0: String?) {
@@ -310,6 +328,7 @@ class AlarmActivity : AppCompatActivity(),LocationListener {
 
     override fun onResume() {
         super.onResume()
+        //controllo i permessi
         if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_DENIED) finish()
         lm.requestLocationUpdates(locProv,5000,1.toFloat(),this) //attivo il listener
         if(lm.getLastKnownLocation(locProv)!=null){
