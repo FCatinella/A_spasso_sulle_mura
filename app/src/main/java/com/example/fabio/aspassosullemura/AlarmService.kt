@@ -87,7 +87,10 @@ class AlarmService : Service(),LocationListener {
         nm= contextCpy.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         //invia subito la notifica se manca tempo negativo
-        if ( quantoManca()<=0) sendNoti()
+        if ( quantoManca()<=0) {
+            sendNoti()
+            stopSelf()
+        }
 
         val locProv=LocationManager.GPS_PROVIDER
         Log.w("DEBUG","Provvider attivo - "+lm.isProviderEnabled(locProv).toString())

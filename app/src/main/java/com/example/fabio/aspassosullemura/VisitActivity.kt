@@ -226,7 +226,7 @@ class VisitActivity : AppCompatActivity(),LocationListener {
                 val result = Bitmap.createBitmap(w, h, Bitmap.Config.RGB_565)
                 val canvas = Canvas(result)
                 //disegno il logo
-                canvas.drawBitmap(photoBitmap, w.toFloat(),h.toFloat(), null)
+                canvas.drawBitmap(photoBitmap,0f,0f, null)
 
                 // e il nome del monumento selezionato
                 val paint = Paint()
