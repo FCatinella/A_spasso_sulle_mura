@@ -14,5 +14,4 @@ L’applicazione ha lo scopo di aiutare i turisti a godersi il giro panoramico s
 - [x] Sarà possibile impostare un’allarme che ricordi al turista quando partire per raggiungere
   l’ingresso più vicino entro l’orario scelto. Questo cambia in base a dove l’utente si trova.
   
-- [ ] Durante il primo avvio ( o dopo nelle impostazioni ) sarà possibile scegliere la lingua
-  dell’applicazione tra italiano, inglese e francese.
+- [X] All'avvio sarà possibile scegliere la lingua dell’applicazione tra italiano, inglese e francese.
