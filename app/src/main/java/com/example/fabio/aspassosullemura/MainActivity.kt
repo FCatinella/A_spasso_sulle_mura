@@ -7,9 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.content.res.Configuration
-import android.graphics.PorterDuff
-import android.graphics.drawable.ColorDrawable
 import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.Uri
@@ -18,13 +15,10 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
-import android.support.v4.app.NotificationCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
-import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.appcompat.R.id.action_bar_title
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -37,7 +31,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.home_layout.*
 import java.util.ArrayList
 import com.google.android.youtube.player.YouTubePlayerSupportFragment
-import android.widget.TextView
 import android.widget.Toast
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.info_layout.*

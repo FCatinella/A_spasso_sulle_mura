@@ -8,6 +8,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.ServiceConnection
 import android.location.Location
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.IBinder
 import android.util.Log
@@ -17,7 +18,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.content_scrolling.*
 
@@ -27,6 +27,7 @@ class Monu_detailsActivity : AppCompatActivity(), OnMapReadyCallback{
     lateinit var titolo : String
     lateinit var mService : AudioService
     var mBound : Boolean = false
+    lateinit var ee : MediaPlayer
     var aaaaaahhhh : Boolean = false
 
     //gestisco le riprese della mappa
@@ -98,7 +99,7 @@ class Monu_detailsActivity : AppCompatActivity(), OnMapReadyCallback{
         //listener del fab
         fab.setOnClickListener {
             //se il servizio è bindato
-            if(mBound) {
+            if(mBound && !aaaaaahhhh) {
                 //se la traccia è pronta
                 if(mService.songPrepared){
                     if(mService.song.isPlaying){
@@ -113,13 +114,35 @@ class Monu_detailsActivity : AppCompatActivity(), OnMapReadyCallback{
                 }
                 else {
                     mService.prepareAndPlayMusic(intent.extras.getInt("AudioId",0))
-                    //easter egg AAAAAAAAAHHHHH
-                    if(titolo=="Polo Fibonacci" ) image_scrolling_top.setImageResource(R.drawable.aaaaahhhh)
                     fab.setImageDrawable(resources.getDrawable(R.drawable.ic_pause_white_24dp))
                 }
 
             }
 
+        }
+
+        fab.setOnLongClickListener {
+            //AAAAAAAAAHHHHH
+            if(titolo=="Polo Fibonacci"){
+                aaaaaahhhh = true
+                ee = MediaPlayer.create(this,R.raw.aaaahhh)
+                ee.setOnCompletionListener {
+                    aaaaaahhhh=false
+                }
+                if(mBound) {
+                        if(mService.song.isPlaying){
+                            mService.song.pause()
+                            ee.start()
+                            fab.setImageDrawable(resources.getDrawable(R.drawable.ic_play_arrow_white_24dp))
+                            image_scrolling_top.setImageResource(R.drawable.aaaaahhhh)
+                        }
+                    else {
+                            ee.start()
+                            image_scrolling_top.setImageResource(R.drawable.aaaaahhhh)
+                        }
+                }
+            }
+            true
         }
 
 
@@ -137,9 +160,12 @@ class Monu_detailsActivity : AppCompatActivity(), OnMapReadyCallback{
 
     }
 
+
+
     override fun onDestroy() {
         super.onDestroy()
         if(mBound) mService.stopMusic()
+        if(aaaaaahhhh) ee.stop()
         unbindService(mConnection)
     }
 

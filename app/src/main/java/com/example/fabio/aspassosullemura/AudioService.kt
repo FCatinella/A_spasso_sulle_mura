@@ -73,14 +73,13 @@ class AudioService : Service() {
                     .build()
             showNotification()
 
-            //easterEgg
-            callerActivity.aaaaaahhhh=true
-        }
+            }
 
         //quando l'audio è terminato
         song.setOnCompletionListener { it ->
             stopForeground(true)
             callerActivity.updateFabIcon()
+            callerActivity.aaaaaahhhh=false
         }
 
         song.prepareAsync()
