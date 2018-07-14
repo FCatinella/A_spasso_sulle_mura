@@ -2,36 +2,25 @@ package com.example.fabio.aspassosullemura
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.app.NotificationCompat
 import android.support.v7.app.AppCompatActivity
-import android.view.WindowManager
-import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_monu_details.*
-import android.support.v4.app.NotificationManagerCompat
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.TimePickerDialog
 import android.content.ComponentName
 import android.content.Context
 import android.content.ServiceConnection
 import android.location.Location
-import android.media.AudioManager
-import android.media.MediaPlayer
-import android.os.Build
+import android.net.Uri
 import android.os.IBinder
 import android.util.Log
-import android.view.MotionEvent
-import android.widget.TimePicker
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.content_scrolling.*
-import kotlinx.android.synthetic.main.timepicker_layout.*
+
 
 
 class Monu_detailsActivity : AppCompatActivity(), OnMapReadyCallback{
@@ -61,6 +50,15 @@ class Monu_detailsActivity : AppCompatActivity(), OnMapReadyCallback{
         p0?.isBuildingsEnabled=true
         //aggiungo il marker sulla mappa
         p0?.addMarker(MarkerOptions().position(latlng))?.title=titolo
+
+        //quando l'utente preme sul marker faccio una ricerca su Google Maps
+        p0?.setOnMarkerClickListener{
+            //"Pisa" aggiunto per essere il più precisi possibile
+            val uri = Uri.parse("geo:${latlng.latitude},${latlng.longitude}?q=$titolo,Pisa")
+            val mapIntent = Intent(Intent.ACTION_VIEW,uri)
+            startActivity(mapIntent)
+            true
+        }
 
         //animo la camera
         p0?.moveCamera(CameraUpdateFactory.newLatLng(latlng))

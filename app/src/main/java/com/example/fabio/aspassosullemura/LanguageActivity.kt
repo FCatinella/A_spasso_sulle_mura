@@ -2,16 +2,15 @@ package com.example.fabio.aspassosullemura
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.language_activity_layput.*
+import kotlinx.android.synthetic.main.language_activity_layout.*
 import java.util.*
 
 class LanguageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.language_activity_layput)
+        setContentView(R.layout.language_activity_layout)
         val intent = Intent(this,MainActivity::class.java)
         supportActionBar?.elevation=0F
         supportActionBar?.hide()

@@ -284,7 +284,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener {
     fun inizializeList(){
         //inserisco tutti i punti d'interesse nella lista
         interplacesList = ArrayList()
-        interplacesList.add(InterPlaces("Torre Santa Maria",R.drawable.torresantamaria,resources.getString(R.string.TorSanMarDescFull),43.72442,10.3936933,R.raw.torresantamaria))
+        interplacesList.add(InterPlaces("Torre di Santa Maria",R.drawable.torresantamaria,resources.getString(R.string.TorSanMarDescFull),43.72442,10.3936933,R.raw.torresantamaria))
         interplacesList.add(InterPlaces("Cimitero Ebraico",R.drawable.cimiteroebraico,resources.getString(R.string.CimiEbraDesc),43.7240329,10.393226,R.raw.cimiteroebraico))
         interplacesList.add(InterPlaces("Battistero di San Giovanni",R.drawable.pisa_battistero,resources.getString(R.string.BattDesc),43.7232127,10.3940551,R.raw.battistero))
         interplacesList.add(InterPlaces("Camposanto Monumentale",R.drawable.camposanto,resources.getString(R.string.CamSantDesc),43.724005,10.3948948,R.raw.camposanto))
