@@ -49,8 +49,7 @@
             android:stopWithTask="true" />
 
         <activity
-            android:name=".VisitActivity"
-            android:configChanges="orientation|screenSize" />
+            android:name=".VisitActivity" />
 
         <activity android:name=".LanguageActivity">
             <intent-filter>

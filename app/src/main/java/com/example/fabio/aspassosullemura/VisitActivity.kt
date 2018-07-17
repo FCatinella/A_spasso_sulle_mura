@@ -8,6 +8,7 @@ import android.location.Criteria
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.media.ExifInterface
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -218,7 +219,24 @@ class VisitActivity : AppCompatActivity(),LocationListener {
 
         while (!imageSet) {
             try {
-                val photoBitmap = BitmapFactory.decodeFile(ImageSrcPath, bitmapOptions)
+                var photoBitmap = BitmapFactory.decodeFile(ImageSrcPath, bitmapOptions)
+
+                //su alcuni dispositivi la foto è orientata nel verso sbagliata, devo correggere se voglio disegnare nel punto giusto
+                val exifInter = ExifInterface(ImageSrcPath)
+                //ottengo l'orientazione della foto
+                val orientation = exifInter.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)
+                // la ruoto nel caso
+                when(orientation) {
+                    ExifInterface.ORIENTATION_ROTATE_90 -> {
+                        photoBitmap = RotateBitmap(photoBitmap, 90f)
+                    }
+                    ExifInterface.ORIENTATION_ROTATE_180 -> {
+                        photoBitmap = RotateBitmap(photoBitmap, 180f)
+                    }
+                    ExifInterface.ORIENTATION_ROTATE_270 -> {
+                        photoBitmap = RotateBitmap(photoBitmap, 270f)
+                    }
+                }
 
                 //creo il canvas dove "disegnare"
                 val w = photoBitmap.width
@@ -250,6 +268,13 @@ class VisitActivity : AppCompatActivity(),LocationListener {
     }
 
 
+    //funzione per ruotare la foto
+    fun RotateBitmap( bitmap: Bitmap, angolo: Float) : Bitmap {
+         val matrix = Matrix()
+         matrix.postRotate(angolo)
+         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+
+    }
 
 
 
